@@ -32,7 +32,9 @@ namespace ProgramZaRacunovodstvo
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            _mainWindow.ShowPrijava();
+            _mainWindow.OverlayContainer.Visibility = Visibility.Collapsed;
+            _mainWindow.MainLayout.Visibility = Visibility.Visible;
+            _mainWindow.Title = "Početna";
         }
     }
 }

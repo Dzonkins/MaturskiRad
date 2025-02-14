@@ -75,3 +75,4 @@ C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\D
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows\Prism.Events.dll
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows\ViewModel\GlavnaStrana.g.cs
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows\ViewModel\GlavnaStrana.baml
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows\ProgramZaRacunovodstvo.sourcelink.json

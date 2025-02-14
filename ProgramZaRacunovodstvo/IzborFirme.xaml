@@ -13,24 +13,35 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Button Content="ImeFirme" Width="560" Background="White" BorderThickness="0" FontFamily="pack://application:,,,/Fonts/#Poppins-Meduim" FontSize="40" Margin="0,234,0,0" HorizontalAlignment="Center" Height="90" VerticalAlignment="Top" Click="Button_Click_1">
+            <Button.Effect>
+                <DropShadowEffect
+                  ShadowDepth="10"
+                  Direction="320"
+                  Color="Gray"
+                  Opacity="0.5"
+                  BlurRadius="30"/>
+            </Button.Effect>
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="{TemplateBinding Background}" CornerRadius="15" Padding="10" BorderThickness="0">
-                        <Border.Effect>
-                            <DropShadowEffect Color="Black" Direction="315" ShadowDepth="5" Opacity="0.5" BlurRadius="10"/>
-                        </Border.Effect>
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>
             </Button.Template>
         </Button>
         <Button Content="Dodaj firmu" Width="560" Height="90" Background="White" BorderThickness="0" FontFamily="pack://application:,,,/Fonts/#Poppins-Meduim" FontSize="40" Margin="0,348,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Button.Effect>
+                <DropShadowEffect
+                  ShadowDepth="10"
+                  Direction="320"
+                  Color="Gray"
+                  Opacity="0.5"
+                  BlurRadius="30"/>
+            </Button.Effect>
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="{TemplateBinding Background}" CornerRadius="15" Padding="10" BorderThickness="0">
-                        <Border.Effect>
-                            <DropShadowEffect Color="Black" Direction="315" ShadowDepth="5" Opacity="0.5" BlurRadius="10"/>
-                        </Border.Effect>
+                       
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </ControlTemplate>

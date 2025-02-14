@@ -26,6 +26,14 @@
                 FontSize="40"
                 Grid.Column="1" 
                 Click="Button_Click_1">
+            <Button.Effect>
+                <DropShadowEffect
+                  ShadowDepth="10"
+                  Direction="320"
+                  Color="Gray"
+                  Opacity="0.5"
+                  BlurRadius="30"/>
+            </Button.Effect>
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
@@ -51,6 +59,14 @@
                 FontSize="40"
                 Grid.Column="1" 
                 Click="Button_Click">
+            <Button.Effect>
+                <DropShadowEffect
+                  ShadowDepth="10"
+                  Direction="320"
+                  Color="Gray"
+                  Opacity="0.5"
+                  BlurRadius="30"/>
+            </Button.Effect>
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="{TemplateBinding Background}"
@@ -76,6 +92,20 @@
                  VerticalContentAlignment="Center" 
                  BorderThickness="0"
                  Grid.Column="1">
+
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect ShadowDepth="10"
+                                      Direction="320"
+                                      Color="Gray"
+                                      Opacity="0.5"
+                                      BlurRadius="30"/>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TextBox.Style>
             <TextBox.Template>
                 <ControlTemplate TargetType="TextBox">
                     <Border Background="White" 
@@ -102,6 +132,19 @@
                  VerticalContentAlignment="Center" 
                  BorderThickness="0"
                  Grid.Column="1">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect ShadowDepth="10"
+                          Direction="320"
+                          Color="Gray"
+                          Opacity="0.5"
+                          BlurRadius="30"/>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TextBox.Style>
             <TextBox.Template>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Border Background="White" 
