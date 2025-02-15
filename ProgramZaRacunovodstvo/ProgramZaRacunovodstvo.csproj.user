@@ -7,27 +7,27 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="IzborFirme.xaml.cs">
+    <Compile Update="Views\IzborFirme.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Prijava.xaml.cs">
+    <Compile Update="Views\Prijava.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="ViewModel\GlavnaStrana.xaml.cs">
+    <Compile Update="Views\GlavnaStrana.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="IzborFirme.xaml">
+    <Page Update="Views\IzborFirme.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Prijava.xaml">
+    <Page Update="Views\Prijava.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="ViewModel\GlavnaStrana.xaml">
+    <Page Update="Views\GlavnaStrana.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

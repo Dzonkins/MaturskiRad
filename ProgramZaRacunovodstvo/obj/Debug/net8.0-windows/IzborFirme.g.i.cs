@@ -53,7 +53,7 @@ namespace ProgramZaRacunovodstvo {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ProgramZaRacunovodstvo;component/izborfirme.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ProgramZaRacunovodstvo;V1.0.0.0;component/izborfirme.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\IzborFirme.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

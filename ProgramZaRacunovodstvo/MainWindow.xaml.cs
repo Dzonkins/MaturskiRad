@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using ProgramZaRacunovodstvo.ViewModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -51,6 +52,30 @@ namespace ProgramZaRacunovodstvo
         {
             OverlayContainer.Visibility = Visibility.Collapsed;
             OverlayContent.Content = null;
+        }
+
+        private void Navigate_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.Tag is string controlName)
+            {
+                switch (controlName)
+                {
+                    case "Pocetna":
+                        NavigateTo(new GlavnaStrana());
+                        break;
+                   // case "SettingsControl":
+                   //     NavigateTo(new Views.SettingsControl());
+                    //    break;
+                   // case "ReportsControl":
+                    //    NavigateTo(new Views.ReportsControl());
+                     //   break;
+                }
+            }
+        }
+
+        public void NavigateTo(UserControl control)
+        {
+            MainContent.Content = control;
         }
     }
 }
