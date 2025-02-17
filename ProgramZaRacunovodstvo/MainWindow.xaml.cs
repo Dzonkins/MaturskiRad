@@ -1,4 +1,5 @@
-﻿using ProgramZaRacunovodstvo.ViewModel;
+﻿using ProgramZaRacunovodstvo.Views;
+using ProgramZaRacunovodstvo.ViewModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,6 +20,7 @@ namespace ProgramZaRacunovodstvo
     {
         private Prijava _prijava;
         private IzborFirme _IzborFirme;
+        private Registracija _registracija;
 
         public MainWindow()
         {
@@ -28,6 +30,7 @@ namespace ProgramZaRacunovodstvo
 
             _prijava = new Prijava(this);
             _IzborFirme = new IzborFirme(this);
+            _registracija = new Registracija(this);
         }
 
         public void ShowPrijava()
@@ -40,6 +43,12 @@ namespace ProgramZaRacunovodstvo
         {
             ShowOverlay(_IzborFirme);
             this.Title = "Izbor Firme";
+        }
+
+        public void ShowIzborRegistracija()
+        {
+            ShowOverlay(_registracija);
+            this.Title = "Resgistracija";
         }
 
         public void ShowOverlay(UserControl control)

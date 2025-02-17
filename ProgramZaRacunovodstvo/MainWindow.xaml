@@ -58,22 +58,38 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="slike/pocetna.png" Width="30" Height="30"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="-50,0,0,0" Grid.Column="0"/>
+                        <Image Source="slike/pocetna.png" Width="30" Height="30"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="-49,0,0,0" Grid.Column="0"/>
                         <TextBlock Text="Početna" VerticalAlignment="Center" Grid.Column="1" Margin="-6,0,5,0"/>
                     </Grid>
                 </Button>
-                <Button Content="Nabavke" Tag="Nabavke" Style="{StaticResource SidebarButtonStyle}">
-                    
+                <Button Tag="Nabavke" Style="{StaticResource SidebarButtonStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="slike/nabavke.png" Width="30" Height="30"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="-46,0,0,0" Grid.Column="0"/>
+                        <TextBlock Text="Nabavke" VerticalAlignment="Center" Grid.Column="1" Margin="-5,0,2,0"/>
+                    </Grid>
                 </Button>
-                <Button Content="Prodaja" Tag="Prodaja" Style="{StaticResource SidebarButtonStyle}"/>
+                <Button Tag="Prodaja" Style="{StaticResource SidebarButtonStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="slike/prodaja.png" Width="30" Height="30"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="-50,0,0,0" Grid.Column="0"/>
+                        <TextBlock Text="Prodaja" VerticalAlignment="Center" Grid.Column="1" Margin="-8,0,8,0"/>
+                    </Grid>
+                </Button>
                 <Button Tag="Izvodi" Style="{StaticResource SidebarButtonStyle}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="slike/izvod.png" Width="30" Height="30"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="-62,0,0,0" Grid.Column="0"/>
-                        <TextBlock Text="Izvodi" VerticalAlignment="Bottom" Grid.Column="1" Margin="-16,0,15,0"/>
+                        <Image Source="slike/izvod.png" Width="30" Height="30"  VerticalAlignment="Center" HorizontalAlignment="Left" Margin="-63,0,0,0" Grid.Column="0"/>
+                        <TextBlock Text="Izvodi" VerticalAlignment="Center" Grid.Column="1" Margin="-20,0,18,0"/>
                     </Grid>
                 </Button>
             </StackPanel>

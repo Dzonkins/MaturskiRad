@@ -21,6 +21,7 @@ namespace ProgramZaRacunovodstvo
     public partial class Prijava : UserControl
     {
         private MainWindow _mainWindow;
+        bool visibleText = false;
 
         public Prijava(MainWindow mainWindow)
         {
@@ -38,7 +39,59 @@ namespace ProgramZaRacunovodstvo
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            _mainWindow.ShowIzborRegistracija();
 
+        }
+
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox? textBox = sender as TextBox;
+            if (textBox != null && (textBox.Text == "Email" || textBox.Text == "Lozinka"))
+            {
+                textBox.Text = "";
+                textBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void txtPassword_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtPasswordPlaceholder.Visibility = Visibility.Collapsed;
+        }
+
+        private void txtPassword_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtPassword.Password))
+            {
+                txtPasswordPlaceholder.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox? textBox = sender as TextBox;
+
+            if (textBox != null && string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.Foreground = Brushes.Gray;
+                textBox.Text = textBox.Name.Remove(0, 3);
+            }
+        }
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            
+            if (!visibleText) {
+                txtPasswordVisible.Text = txtPassword.Password;
+                txtPasswordVisible.Visibility = Visibility.Visible;
+                txtPassword.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                txtPassword.Password = txtPasswordVisible.Text;
+                txtPasswordVisible.Visibility = Visibility.Collapsed;
+                txtPassword.Visibility = Visibility.Visible;
+            }
+            visibleText = !visibleText;
         }
     }
 }

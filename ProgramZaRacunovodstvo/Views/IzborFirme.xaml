@@ -5,64 +5,90 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ProgramZaRacunovodstvo"
              mc:Ignorable="d">
-    <Grid Width="auto" Height="auto">
+    <Grid>
         <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF223FFF" Offset="1"/>
-                <GradientStop Color="#FF4FBBFF"/>
+            <LinearGradientBrush EndPoint="0.5,1"
+                                 StartPoint="0.5,0">
+                <GradientStop Color="#FF223FFF"
+                              Offset="1" />
+                <GradientStop Color="#FF4FBBFF" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Button Content="ImeFirme" 
-        HorizontalAlignment="Left" 
-        Margin="0,259,0,0"
-        VerticalAlignment="Top" 
-        Height="70" 
-        Width="470" 
-        Background="White" 
-        BorderThickness="0"
-        FontFamily="pack://application:,,,/Fonts/#Poppins Light" 
-        FontSize="30" 
-        Click="Button_Click_1">
+
+        <Button HorizontalAlignment="Left"
+                Margin="10,20,0,0"
+                VerticalAlignment="Top"
+                Height="58"
+                Width="58"
+                BorderThickness="0"
+                Background="{x:Null}"
+                Click="Button_Click"
+                Focusable="False">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="OverridesDefaultStyle"
+                            Value="True" />
+                    <Setter Property="Cursor"
+                            Value="Arrow" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="Transparent">
+                                    <Image Source="pack://application:,,,/slike/nazad.png"
+                                           Stretch="Fill"
+                                           Height="54"
+                                           Width="54" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Image Margin="0,60,0,0"
+               Source="/slike/firma.png"
+               Stretch="Fill"
+               HorizontalAlignment="Center"
+               Width="146"
+               Height="139"
+               VerticalAlignment="Top" />
+
+        <UniformGrid x:Name="FirmaPanel"
+                     Grid.Column="1"
+                     Rows="4"
+                     Columns="2"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Top"
+                     Margin="0,200,0,0" />
+
+        <Button Content="Dodaj firmu"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,50"
+                Height="70"
+                Width="470"
+                Background="White"
+                BorderThickness="0"
+                FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                FontSize="30">
             <Button.Effect>
-                <DropShadowEffect
-          ShadowDepth="10"
-          Direction="320"
-          Color="Gray"
-          Opacity="0.5"
-          BlurRadius="30"/>
+                <DropShadowEffect ShadowDepth="10"
+                                  Direction="320"
+                                  Color="Gray"
+                                  Opacity="0.5"
+                                  BlurRadius="30" />
             </Button.Effect>
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
-                    CornerRadius="15"
-                    Padding="10"
-                    BorderThickness="0">
+                            CornerRadius="15"
+                            Padding="10"
+                            BorderThickness="0">
                         <ContentPresenter HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"/>
+                                          VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
             </Button.Template>
         </Button>
-
-
-        <Button Content="Dodaj firmu" Width="470" Height="70" Background="White" BorderThickness="0" FontFamily="pack://application:,,,/Fonts/#Poppins Light" FontSize="40" Margin="0,348,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
-            <Button.Effect>
-                <DropShadowEffect
-                  ShadowDepth="10"
-                  Direction="320"
-                  Color="Gray"
-                  Opacity="0.5"
-                  BlurRadius="30"/>
-            </Button.Effect>
-            <Button.Template>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border Background="{TemplateBinding Background}" CornerRadius="15" Padding="10" BorderThickness="0">
-
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Image Margin="0,60,0,0" Source="/slike/firma.png" Stretch="Fill" HorizontalAlignment="Center" Width="146" Height="139" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

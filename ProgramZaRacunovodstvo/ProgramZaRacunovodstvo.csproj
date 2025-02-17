@@ -30,7 +30,11 @@
     <None Remove="slike\firma.png" />
     <None Remove="slike\icons8-company-64.png" />
     <None Remove="slike\izvod.png" />
+    <None Remove="slike\nabavke.png" />
+    <None Remove="slike\nazad.png" />
     <None Remove="slike\pocetna.png" />
+    <None Remove="slike\prodaja.png" />
+    <None Remove="slike\sifra.png" />
     <None Remove="slike\Vector.png" />
   </ItemGroup>
 
@@ -101,7 +105,19 @@
     <Resource Include="slike\izvod.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="slike\nabavke.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="slike\nazad.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="slike\pocetna.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="slike\prodaja.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="slike\sifra.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="slike\Vector.png">
