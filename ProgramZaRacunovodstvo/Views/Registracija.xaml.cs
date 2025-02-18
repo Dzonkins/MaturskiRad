@@ -47,7 +47,7 @@ namespace ProgramZaRacunovodstvo.Views
 
         private void txtPassword_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtPassword.Password))
+            if (string.IsNullOrWhiteSpace(txtPassword.Password) && string.IsNullOrWhiteSpace(txtPasswordVisible.Text))
             {
                 txtPasswordPlaceholder.Visibility = Visibility.Visible;
             }
@@ -77,12 +77,14 @@ namespace ProgramZaRacunovodstvo.Views
                 txtPasswordVisible.Text = txtPassword.Password;
                 txtPasswordVisible.Visibility = Visibility.Visible;
                 txtPassword.Visibility = Visibility.Collapsed;
+                txtPasswordVisible.Focus();
             }
             else
             {
                 txtPassword.Password = txtPasswordVisible.Text;
                 txtPasswordVisible.Visibility = Visibility.Collapsed;
                 txtPassword.Visibility = Visibility.Visible;
+                txtPassword.Focus();
             }
             visibleText = !visibleText;
         }

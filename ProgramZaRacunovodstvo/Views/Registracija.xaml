@@ -116,7 +116,9 @@
                      Margin="0,451,0,0"
                      HorizontalAlignment="Center"
                      Width="470"
-                     Visibility="Collapsed">
+                     Visibility="Collapsed"
+                     GotFocus="txtPassword_GotFocus"
+                     LostFocus="txtPassword_LostFocus">
                 <TextBox.Style>
                     <Style TargetType="TextBox">
                         <Setter Property="Effect">

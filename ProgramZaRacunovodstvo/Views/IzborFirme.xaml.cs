@@ -33,7 +33,7 @@ namespace ProgramZaRacunovodstvo
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Otvorifirmu()
         {
             _mainWindow.OverlayContainer.Visibility = Visibility.Collapsed;
             _mainWindow.MainLayout.Visibility = Visibility.Visible;
@@ -56,7 +56,7 @@ namespace ProgramZaRacunovodstvo
             foreach (string firma in firme)
             {
                 Button btn = KreirajDugme(firma);
-                btn.Click += (s, e) => OpenCompany(firma);
+                btn.Click += (s, e) => Otvorifirmu();
                 FirmaPanel.Children.Add(btn);
             }
 
