@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\views\\registracija.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\views\\registracija.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -38,11 +46,35 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\App.xaml",
+              "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\App.xaml",
+              "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\App.xaml",
+              "RelativeToolTip": "ProgramZaRacunovodstvo\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-19T10:17:15.041Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\MainWindow.xaml",
+              "RelativeToolTip": "ProgramZaRacunovodstvo\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-19T10:17:13.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Registracija.xaml",
               "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Registracija.xaml",
               "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\Registracija.xaml",
@@ -54,7 +86,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Registracija.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Registracija.xaml.cs",
               "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\Registracija.xaml.cs",
@@ -62,24 +94,22 @@
               "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\Registracija.xaml.cs",
               "ViewState": "AgIAACcAAAAAAAAAAAAowCoAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-18T21:21:08.873Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T21:21:08.873Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "GlavnaStrana.xaml",
               "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\GlavnaStrana.xaml",
               "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\GlavnaStrana.xaml",
               "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\GlavnaStrana.xaml",
               "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\GlavnaStrana.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-18T21:18:29.428Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T21:18:29.428Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "IzborFirme.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\IzborFirme.xaml.cs",
               "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\IzborFirme.xaml.cs",
@@ -87,24 +117,22 @@
               "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\IzborFirme.xaml.cs",
               "ViewState": "AgIAAB0AAAAAAAAAAAAqwCMAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-18T21:16:12.3Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T21:16:12.3Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "IzborFirme.xaml",
               "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\IzborFirme.xaml",
               "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\IzborFirme.xaml",
               "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\IzborFirme.xaml",
               "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\IzborFirme.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-18T21:16:05.502Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T21:16:05.502Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Prijava.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Prijava.xaml.cs",
               "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\Prijava.xaml.cs",
@@ -112,20 +140,18 @@
               "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\Prijava.xaml.cs",
               "ViewState": "AgIAACwAAAAAAAAAAAAqwEIAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-18T21:09:41.269Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T21:09:41.269Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Prijava.xaml",
               "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Prijava.xaml",
               "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\Prijava.xaml",
               "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Prijava.xaml",
               "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\Prijava.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-18T21:08:46.786Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T21:08:46.786Z"
             }
           ]
         }

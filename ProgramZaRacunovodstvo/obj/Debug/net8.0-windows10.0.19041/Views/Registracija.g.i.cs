@@ -125,7 +125,7 @@ namespace ProgramZaRacunovodstvo.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ProgramZaRacunovodstvo;component/views/registracija.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ProgramZaRacunovodstvo;V1.0.0.0;component/views/registracija.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\Registracija.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

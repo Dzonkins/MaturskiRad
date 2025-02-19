@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ProgramZaRacunovodstvo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff5d3606a986563e13012658fd7e4fc560232b5a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+21f128e2e552590977692e6379f932a30732b0d9")]
 [assembly: System.Reflection.AssemblyProductAttribute("ProgramZaRacunovodstvo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProgramZaRacunovodstvo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
