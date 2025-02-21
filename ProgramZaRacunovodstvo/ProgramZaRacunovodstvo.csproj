@@ -30,6 +30,7 @@
     <None Remove="slike\firma.png" />
     <None Remove="slike\icons8-company-64.png" />
     <None Remove="slike\izvod.png" />
+    <None Remove="slike\logout.png" />
     <None Remove="slike\nabavke.png" />
     <None Remove="slike\nazad.png" />
     <None Remove="slike\pocetna.png" />
@@ -102,6 +103,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="slike\izvod.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="slike\logout.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="slike\nabavke.png">

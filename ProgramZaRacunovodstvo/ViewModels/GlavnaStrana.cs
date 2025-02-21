@@ -11,17 +11,18 @@ using SkiaSharp;
 using System.Globalization;
 using System.IO;
 using HarfBuzzSharp;
+using ProgramZaRacunovodstvo.ViewModel;
 
 namespace ProgramZaRacunovodstvo.ViewModels
 {
-    internal class Test
+    internal class GlavnaStrana
     {
 
         private static readonly CultureInfo culture = new("sr-RS");
 
         private static readonly SKTypeface customFont;
 
-        static Test()
+        static GlavnaStrana()
         {
             try
             {
@@ -40,14 +41,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 customFont = SKTypeface.Default;
             }
         }
-
-
-
-        public IEnumerable<ISeries> Series { get; set; } =
-            new[] { 2, 4, 1, 4, 3 }.AsPieSeries();
-
-
-        public IEnumerable<ISeries> Series2 { get; set; } =
+        public IEnumerable<ISeries> PrihodiRashodi { get; set; } =
         [
             new PieSeries<double>
             {
@@ -77,7 +71,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
             }
         ];
 
-        public LabelVisual Title { get; set; } =
+        public LabelVisual PrihodiRashodiNaslov { get; set; } =
             new LabelVisual
             {
 
@@ -90,5 +84,46 @@ namespace ProgramZaRacunovodstvo.ViewModels
                     Color = SKColors.Black
                 }
             };
+        public LabelVisual DobavljaciNaslov { get; set; } =
+           new LabelVisual
+           {
+
+               Text = "Najveći dobavljači za " + DateTime.Now.ToString("MMMM"),
+               TextSize = 25,
+               Padding = new LiveChartsCore.Drawing.Padding(15),
+               Paint = new SolidColorPaint
+               {
+                   SKTypeface = customFont,
+                   Color = SKColors.Black
+               }
+           };
+
+        public LabelVisual KlijentiNaslov { get; set; } =
+           new LabelVisual
+           {
+
+               Text = "Najveći klijenti za " + DateTime.Now.ToString("MMMM"),
+               TextSize = 25,
+               Padding = new LiveChartsCore.Drawing.Padding(15),
+               Paint = new SolidColorPaint
+               {
+                   SKTypeface = customFont,
+                   Color = SKColors.Black
+               }
+           };
+
+        public LabelVisual PrihodiRashodiVise { get; set; } =
+           new LabelVisual
+           {
+
+               Text = "Prihodi i rashodi za prethodnih 6 meseci",
+               TextSize = 25,
+               Padding = new LiveChartsCore.Drawing.Padding(15),
+               Paint = new SolidColorPaint
+               {
+                   SKTypeface = customFont,
+                   Color = SKColors.Black
+               }
+           };
     }
 }

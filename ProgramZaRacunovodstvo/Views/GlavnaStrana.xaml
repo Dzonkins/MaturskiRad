@@ -1,32 +1,161 @@
 ﻿<UserControl x:Class="ProgramZaRacunovodstvo.ViewModel.GlavnaStrana"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ProgramZaRacunovodstvo.ViewModels"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
              xmlns:vms="clr-namespace:ProgramZaRacunovodstvo.ViewModels"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
 
     <UserControl.DataContext>
-        <vms:Test/>
+        <vms:GlavnaStrana />
     </UserControl.DataContext>
 
     <Grid Background="White">
-        <ScrollViewer>
-            <UniformGrid Columns="2">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-                <StackPanel>
-                    <TextBlock Text="Dobrodošli ImeFirme" FontFamily="pack://application:,,,/Fonts/#Poppins Light" FontSize="28" Margin="25,20,0,5" Width="759"/>
-                    <lvc:PieChart Series="{Binding Series2}" Title="{Binding Title}" LegendPosition="Bottom" Height="400"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="0"
+                            Grid.Column="0">
+                    <TextBlock Text="Dobrodošli ImeFirme"
+                               FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                               FontSize="28"
+                               Margin="25,20,0,20"
+                               Width="759" />
+                    <lvc:PieChart Series="{Binding PrihodiRashodi}"
+                                  Title="{Binding PrihodiRashodiNaslov}"
+                                  LegendPosition="Bottom"
+                                  Height="500" />
                 </StackPanel>
 
-                <lvc:PieChart Series="{Binding Series}" Height="300"/>
-                <lvc:PieChart Series="{Binding Series}" Height="300"/>
-                <lvc:PieChart Series="{Binding Series}" Height="300"/>
-                <lvc:PieChart Series="{Binding Series}" Height="300"/>
-            </UniformGrid>
+                <StackPanel Grid.Row="0"
+                            Grid.Column="1">
+                    <Border Width="Auto"
+                            Height="120"
+                            Background="#FF4F72FF"
+                            CornerRadius="20"
+                            Padding="10"
+                            BorderThickness="1"
+                            Margin="40,80,40,10">
+                        <StackPanel>
+                            <TextBlock Text="Ulazne fakture u februaru"
+                                       FontSize="20"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
+                            <TextBlock Text="20"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border Width="Auto"
+                            Height="120"
+                            Background="#FF4F72FF"
+                            CornerRadius="20"
+                            Padding="10"
+                            BorderThickness="1"
+                            Margin="40,0,40,10">
+                        <StackPanel>
+                            <TextBlock Text="Izlazne fakture u februaru"
+                                       FontSize="20"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
+                            <TextBlock Text="20"
+                                       FontSize="30"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
+                        </StackPanel>
+                    </Border>
+
+                    <Button Width="Auto"
+                            Height="120"
+                            Background="#FF4F72FF"
+                            Padding="10"
+                            BorderThickness="0"
+                            Margin="40,0,40,10"
+                            Content="Kreiraj novi dokument"
+                            Foreground="White"
+                            FontSize="25"
+                            FontFamily="pack://application:,,,/Fonts/#Poppins Light">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        CornerRadius="20"
+                                        Padding="{TemplateBinding Padding}">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button Width="Auto"
+                            Height="120"
+                            Background="#FF4F72FF"
+                            Padding="10"
+                            BorderThickness="0"
+                            Margin="40,0,40,0"
+                            Content="Kreiraj novi dokument"
+                            Foreground="White"
+                            FontSize="25"
+                            FontFamily="pack://application:,,,/Fonts/#Poppins Light">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        CornerRadius="20"
+                                        Padding="{TemplateBinding Padding}">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+
+                <lvc:CartesianChart Grid.Row="2"
+                                    Grid.Column="0"
+                                    Series="{Binding Series}"
+                                    XAxes="{Binding XAxes}"
+                                    YAxes="{Binding YAxes}"
+                                    Title="{Binding DobavljaciNaslov}"
+                                    Height="350"
+                                    Margin="10" />
+
+                <lvc:CartesianChart Grid.Row="2"
+                                    Grid.Column="1"
+                                    Series="{Binding Series}"
+                                    XAxes="{Binding XAxes}"
+                                    YAxes="{Binding YAxes}"
+                                    Title="{Binding KlijentiNaslov}"
+                                    Height="350"
+                                    Margin="10" />
+
+                <lvc:CartesianChart Grid.Row="3"
+                                    Grid.ColumnSpan="2"
+                                    Series="{Binding Series}"
+                                    Height="400"
+                                    Margin="10"
+                                    Title="{Binding PrihodiRashodiVise}" />
+            </Grid>
         </ScrollViewer>
     </Grid>
 </UserControl>

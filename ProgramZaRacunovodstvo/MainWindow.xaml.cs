@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System;
 
 namespace ProgramZaRacunovodstvo
 {
@@ -63,10 +64,25 @@ namespace ProgramZaRacunovodstvo
             OverlayContent.Content = null;
         }
 
-        private void Navigate_Click(object sender, RoutedEventArgs e)
+        private Button? _selectedButton;
+
+        public void Navigacija(object sender, RoutedEventArgs? e)
         {
+
+
+
             if (sender is Button btn && btn.Tag is string controlName)
             {
+                if (_selectedButton != null)
+                {
+                    _selectedButton.ClearValue(Button.BackgroundProperty);
+                    _selectedButton.ClearValue(Button.BorderBrushProperty);
+                }
+
+                btn.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2B4FFF"));
+                btn.BorderBrush = Brushes.White;
+                _selectedButton = btn;
+
                 switch (controlName)
                 {
                     case "Pocetna":
@@ -78,6 +94,26 @@ namespace ProgramZaRacunovodstvo
                    // case "ReportsControl":
                     //    NavigateTo(new Views.ReportsControl());
                      //   break;
+                }
+            }
+        }
+
+        public static IEnumerable<T> nadjiSveElemente<T>(DependencyObject depObj) where T : DependencyObject
+        {
+            if (depObj != null)
+            {
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+                {
+                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+                    if (child is T tChild)
+                    {
+                        yield return tChild;
+                    }
+
+                    foreach (T childOfChild in nadjiSveElemente<T>(child))
+                    {
+                        yield return childOfChild;
+                    }
                 }
             }
         }

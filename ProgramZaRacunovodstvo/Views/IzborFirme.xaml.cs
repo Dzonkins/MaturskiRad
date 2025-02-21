@@ -1,6 +1,7 @@
 ﻿using ProgramZaRacunovodstvo.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,12 +41,17 @@ namespace ProgramZaRacunovodstvo
             _mainWindow.Title = "Početna";
             _mainWindow.NavigateTo(new GlavnaStrana());
 
+            var pocetnaButton = MainWindow.nadjiSveElemente<Button>(_mainWindow)
+                              .FirstOrDefault(b => b.Tag as string == "Pocetna");
+
+            if (pocetnaButton != null)
+            {
+                _mainWindow.Navigacija(pocetnaButton, new RoutedEventArgs());
+            }
+
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            _mainWindow.ShowPrijava();
-        }
+
 
         private void UcitajFirme()
         {
@@ -73,7 +79,6 @@ namespace ProgramZaRacunovodstvo
                 Height = 70,
                 Background = Brushes.White,
                 BorderThickness = new Thickness(0),
-                FontFamily = new FontFamily("pack://application:,,,/Fonts/#Poppins Light"),
                 FontSize = 30,
                 Margin = new Thickness(10, 10, 10, 10),
                 Effect = new DropShadowEffect
@@ -95,7 +100,7 @@ namespace ProgramZaRacunovodstvo
             FrameworkElementFactory contentPresenter = new FrameworkElementFactory(typeof(ContentPresenter));
             contentPresenter.SetValue(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center);
             contentPresenter.SetValue(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center);
-
+            button.FontFamily = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Poppins Light");
             border.AppendChild(contentPresenter);
 
             button.Template = new ControlTemplate(typeof(Button))
@@ -112,9 +117,12 @@ namespace ProgramZaRacunovodstvo
             return new List<string> { "Firma A", "Firma B", "Firma C", "Firma D", "Firma E", "Firma F", "Firma G", "Firma H" };
         }
 
-        private void OpenCompany(string imeFirme)
+
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"Otvaram firmu: {imeFirme}");
+            _mainWindow.ShowPrijava();
+
         }
     }
 }
