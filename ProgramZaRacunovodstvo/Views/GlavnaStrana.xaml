@@ -46,19 +46,41 @@
                             Grid.Column="1">
                     <Border Width="Auto"
                             Height="120"
-                            Background="#FF4F72FF"
+                            Background="#FF7BD27B"
                             CornerRadius="20"
                             Padding="10"
                             BorderThickness="1"
                             Margin="40,80,40,10">
                         <StackPanel>
+                            <TextBlock Text="Trenutno stanje"
+                                       FontSize="30"
+                                       Margin="10,0,0,0"
+                                       Foreground="Black"
+                                       FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
+                            <TextBlock Text="100.000.000,75 RSD"
+                                       FontSize="35"
+                                       Margin="10,0,0,0"
+                                       Foreground="Black"
+                                       FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
+                        </StackPanel>
+                    </Border>
+                    <Border Width="Auto"
+                            Height="120"
+                            Background="#FF4F72FF"
+                            CornerRadius="20"
+                            Padding="10"
+                            BorderThickness="1"
+                            Margin="40,0,40,10">
+                        <StackPanel>
                             <TextBlock Text="Ulazne fakture u februaru"
-                                       FontSize="20"
+                                       FontSize="30"
+                                       Margin="10,0,0,0"
                                        FontWeight="Bold"
                                        Foreground="White"
                                        FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
                             <TextBlock Text="20"
-                                       FontSize="30"
+                                       FontSize="40"
+                                       Margin="10,0,0,0"
                                        FontWeight="Bold"
                                        Foreground="White"
                                        FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
@@ -74,12 +96,14 @@
                             Margin="40,0,40,10">
                         <StackPanel>
                             <TextBlock Text="Izlazne fakture u februaru"
-                                       FontSize="20"
+                                       FontSize="30"
+                                       Margin="10,0,0,0"
                                        FontWeight="Bold"
                                        Foreground="White"
                                        FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
                             <TextBlock Text="20"
-                                       FontSize="30"
+                                       Margin="10,0,0,0"
+                                       FontSize="40"
                                        FontWeight="Bold"
                                        Foreground="White"
                                        FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
@@ -94,7 +118,7 @@
                             Margin="40,0,40,10"
                             Content="Kreiraj novi dokument"
                             Foreground="White"
-                            FontSize="25"
+                            FontSize="30"
                             FontFamily="pack://application:,,,/Fonts/#Poppins Light">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
@@ -108,27 +132,7 @@
                         </Button.Template>
                     </Button>
 
-                    <Button Width="Auto"
-                            Height="120"
-                            Background="#FF4F72FF"
-                            Padding="10"
-                            BorderThickness="0"
-                            Margin="40,0,40,0"
-                            Content="Kreiraj novi dokument"
-                            Foreground="White"
-                            FontSize="25"
-                            FontFamily="pack://application:,,,/Fonts/#Poppins Light">
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}"
-                                        CornerRadius="20"
-                                        Padding="{TemplateBinding Padding}">
-                                    <ContentPresenter HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center" />
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
+                    
                 </StackPanel>
 
                 <lvc:CartesianChart Grid.Row="2"
@@ -153,7 +157,7 @@
                                     Grid.ColumnSpan="2"
                                     Series="{Binding Series}"
                                     Height="400"
-                                    Margin="10"
+                                    Margin="20"
                                     Title="{Binding PrihodiRashodiVise}" />
             </Grid>
         </ScrollViewer>

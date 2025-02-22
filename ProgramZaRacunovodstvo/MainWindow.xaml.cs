@@ -86,11 +86,13 @@ namespace ProgramZaRacunovodstvo
                 switch (controlName)
                 {
                     case "Pocetna":
+                        this.Title = "Početna";
                         NavigateTo(new GlavnaStrana());
                         break;
-                   // case "SettingsControl":
-                   //     NavigateTo(new Views.SettingsControl());
-                    //    break;
+                   case "Nabavke":
+                        this.Title = "Nabavke";
+                        NavigateTo(new Nabavke());
+                        break;
                    // case "ReportsControl":
                     //    NavigateTo(new Views.ReportsControl());
                      //   break;
