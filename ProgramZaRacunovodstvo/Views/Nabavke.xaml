@@ -205,7 +205,6 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="DataGridColumnHeader">
                                     <Border Background="{TemplateBinding Background}"
-                                            CornerRadius="20,0,0,0"
                                             Padding="10"
                                             BorderThickness="0">
                                         <ContentPresenter HorizontalAlignment="Center" />

@@ -27,6 +27,8 @@ namespace ProgramZaRacunovodstvo
         {
             InitializeComponent();
             _mainWindow = mainWindow;
+
+            txtPasswordVisible.LostFocus += txtPasswordVisible_LostFocus;
         }
 
 
@@ -61,7 +63,15 @@ namespace ProgramZaRacunovodstvo
 
         private void txtPassword_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtPassword.Password) && string.IsNullOrWhiteSpace(txtPasswordVisible.Text))
+            if (string.IsNullOrWhiteSpace(txtPassword.Password) && txtPasswordVisible.Visibility == Visibility.Collapsed)
+            {
+                txtPasswordPlaceholder.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void txtPasswordVisible_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtPasswordVisible.Text) && txtPassword.Visibility == Visibility.Collapsed)
             {
                 txtPasswordPlaceholder.Visibility = Visibility.Visible;
             }
@@ -93,6 +103,16 @@ namespace ProgramZaRacunovodstvo
                 txtPassword.Visibility = Visibility.Visible;
                 txtPassword.Focus();
             }
+
+            if (string.IsNullOrWhiteSpace(txtPassword.Password) && string.IsNullOrWhiteSpace(txtPasswordVisible.Text))
+            {
+                txtPasswordPlaceholder.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                txtPasswordPlaceholder.Visibility = Visibility.Collapsed;
+            }
+
             visibleText = !visibleText;
         }
     }

@@ -25,7 +25,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Button Content="Kreiraj nalog"
+            <Button 
                     Margin="0,543,0,0"
                     VerticalAlignment="Top"
                     Height="70"
@@ -53,10 +53,15 @@
                         </Border>
                     </ControlTemplate>
                 </Button.Template>
+                <TextBlock Text="Kreiraj nalog"
+                           FontSize="30"
+                           FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center" />
             </Button>
             <TextBlock Name="txtPasswordPlaceholder"
                        Text="Lozinka"
-                       Foreground="Gray"
+                       Foreground="#FF616161"
                        FontSize="24"
                        FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                        IsHitTestVisible="False"
@@ -66,18 +71,22 @@
             <PasswordBox Name="txtPassword"
                          VerticalAlignment="Top"
                          Height="70"
+                         Width="470"
                          FontSize="24"
                          FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                         Foreground="Black"
+                         Foreground="#FF616161"
                          VerticalContentAlignment="Center"
                          BorderThickness="0"
+                         Background="#8CFFFFFF"
                          Margin="0,451,0,0"
-                         HorizontalAlignment="Center"
-                         Width="470"
                          GotFocus="txtPassword_GotFocus"
                          LostFocus="txtPassword_LostFocus">
                 <PasswordBox.Style>
                     <Style TargetType="PasswordBox">
+                        <Setter Property="Background"
+                                Value="#8CFFFFFF" />
+                        <Setter Property="Foreground"
+                                Value="Black" />
                         <Setter Property="Effect">
                             <Setter.Value>
                                 <DropShadowEffect ShadowDepth="10"
@@ -87,29 +96,31 @@
                                                   BlurRadius="30" />
                             </Setter.Value>
                         </Setter>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="PasswordBox">
+                                    <Border CornerRadius="15"
+                                            BorderThickness="0"
+                                            BorderBrush="Transparent"
+                                            Background="#8CFFFFFF"
+                                            Padding="10">
+                                        <ScrollViewer x:Name="PART_ContentHost"
+                                                      VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
                     </Style>
                 </PasswordBox.Style>
-
-                <PasswordBox.Template>
-                    <ControlTemplate TargetType="PasswordBox">
-                        <Border Background="White"
-                                CornerRadius="15"
-                                BorderBrush="Gray"
-                                BorderThickness="2"
-                                Padding="10">
-                            <ScrollViewer x:Name="PART_ContentHost"
-                                          VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </PasswordBox.Template>
             </PasswordBox>
+
 
             <TextBox Name="txtPasswordVisible"
                      VerticalAlignment="Top"
                      Height="70"
                      FontSize="24"
                      FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                     Foreground="Black"
+                     Foreground="#FF616161"
                      VerticalContentAlignment="Center"
                      BorderThickness="0"
                      Grid.Column="1"
@@ -134,12 +145,12 @@
                 </TextBox.Style>
 
                 <TextBox.Template>
-                    <ControlTemplate TargetType="TextBox">
-                        <Border Background="White"
-                                CornerRadius="15"
-                                BorderBrush="Gray"
-                                BorderThickness="2"
-                                Padding="10">
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="15"
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Padding="10"
+                                Background="#8CFFFFFF">
                             <ScrollViewer x:Name="PART_ContentHost"
                                           VerticalAlignment="Center" />
                         </Border>
@@ -154,7 +165,7 @@
                      Height="70"
                      FontSize="24"
                      FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                     Foreground="Gray"
+                     Foreground="#FF616161"
                      Text="Email"
                      VerticalContentAlignment="Center"
                      BorderThickness="0"
@@ -177,11 +188,11 @@
                 </TextBox.Style>
                 <TextBox.Template>
                     <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border Background="White"
-                                CornerRadius="15"
-                                BorderBrush="Gray"
-                                BorderThickness="2"
-                                Padding="10">
+                        <Border CornerRadius="15"
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Padding="10"
+                                Background="#8CFFFFFF">
                             <ScrollViewer x:Name="PART_ContentHost"
                                           VerticalAlignment="Center" />
                         </Border>
@@ -214,7 +225,7 @@
                      Height="70"
                      FontSize="24"
                      FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                     Foreground="Gray"
+                     Foreground="#FF616161"
                      Text="Ime"
                      VerticalContentAlignment="Center"
                      BorderThickness="0"
@@ -237,11 +248,11 @@
                 </TextBox.Style>
                 <TextBox.Template>
                     <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border Background="White"
-                                CornerRadius="15"
-                                BorderBrush="Gray"
-                                BorderThickness="2"
-                                Padding="10">
+                        <Border CornerRadius="15"
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Padding="10"
+                                Background="#8CFFFFFF">
                             <ScrollViewer x:Name="PART_ContentHost"
                                           VerticalAlignment="Center" />
                         </Border>
@@ -254,7 +265,7 @@
                      Height="70"
                      FontSize="24"
                      FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                     Foreground="Gray"
+                     Foreground="#FF616161"
                      Text="Prezime"
                      VerticalContentAlignment="Center"
                      BorderThickness="0"
@@ -277,11 +288,11 @@
                 </TextBox.Style>
                 <TextBox.Template>
                     <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border Background="White"
-                                CornerRadius="15"
-                                BorderBrush="Gray"
-                                BorderThickness="2"
-                                Padding="10">
+                        <Border CornerRadius="15"
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Padding="10"
+                                Background="#8CFFFFFF">
                             <ScrollViewer x:Name="PART_ContentHost"
                                           VerticalAlignment="Center" />
                         </Border>
@@ -294,7 +305,7 @@
                      Height="70"
                      FontSize="24"
                      FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                     Foreground="Gray"
+                     Foreground="#FF616161"
                      Text="JMBG"
                      VerticalContentAlignment="Center"
                      BorderThickness="0"
@@ -317,11 +328,11 @@
                 </TextBox.Style>
                 <TextBox.Template>
                     <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border Background="White"
-                                CornerRadius="15"
-                                BorderBrush="Gray"
-                                BorderThickness="2"
-                                Padding="10">
+                        <Border CornerRadius="15"
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Padding="10"
+                                Background="#8CFFFFFF">
                             <ScrollViewer x:Name="PART_ContentHost"
                                           VerticalAlignment="Center" />
                         </Border>
@@ -334,7 +345,7 @@
                      Height="70"
                      FontSize="24"
                      FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                     Foreground="Gray"
+                     Foreground="#FF616161"
                      Text="Adresa"
                      VerticalContentAlignment="Center"
                      BorderThickness="0"
@@ -357,11 +368,11 @@
                 </TextBox.Style>
                 <TextBox.Template>
                     <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border Background="White"
-                                CornerRadius="15"
-                                BorderBrush="Gray"
-                                BorderThickness="2"
-                                Padding="10">
+                        <Border CornerRadius="15"
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Padding="10"
+                                Background="#8CFFFFFF">
                             <ScrollViewer x:Name="PART_ContentHost"
                                           VerticalAlignment="Center" />
                         </Border>
@@ -374,7 +385,7 @@
                      Height="70"
                      FontSize="24"
                      FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                     Foreground="Gray"
+                     Foreground="#FF616161"
                      Text="Grad"
                      VerticalContentAlignment="Center"
                      BorderThickness="0"
@@ -397,21 +408,19 @@
                 </TextBox.Style>
                 <TextBox.Template>
                     <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border Background="White"
-                                CornerRadius="15"
-                                BorderBrush="Gray"
-                                BorderThickness="2"
-                                Padding="10">
+                        <Border CornerRadius="15"
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Padding="10"
+                                Background="#8CFFFFFF">
                             <ScrollViewer x:Name="PART_ContentHost"
                                           VerticalAlignment="Center" />
                         </Border>
                     </ControlTemplate>
                 </TextBox.Template>
             </TextBox>
-            <Button Content="Odustani"
-                    Margin="0,636,0,33"
+            <Button Margin="0,636,0,33"
                     Foreground="White"
-                    Background="Red"
                     BorderThickness="0"
                     FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                     FontSize="30"
@@ -426,18 +435,50 @@
                                       Opacity="0.5"
                                       BlurRadius="30" />
                 </Button.Effect>
-                <Button.Template>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}"
-                                CornerRadius="15"
-                                Padding="10"
-                                BorderThickness="0">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
+
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background"
+                                Value="Red" />
+                        <Setter Property="Foreground"
+                                Value="White" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="15">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#F73B3B" />
+                                        </Trigger>
+
+                                        <Trigger Property="IsPressed"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#D32F2F" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+
+                <TextBlock Text="Odustani"
+                           FontSize="30"
+                           FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center" />
             </Button>
+
+
         </Grid>
     </Grid>
 </UserControl>

@@ -28,6 +28,7 @@ namespace ProgramZaRacunovodstvo.Views
             InitializeComponent();
             _mainWindow = mainWindow;
 
+            txtPasswordVisible.LostFocus += txtPasswordVisible_LostFocus;
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -47,7 +48,16 @@ namespace ProgramZaRacunovodstvo.Views
 
         private void txtPassword_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtPassword.Password) && string.IsNullOrWhiteSpace(txtPasswordVisible.Text))
+
+            if (string.IsNullOrWhiteSpace(txtPassword.Password) && txtPasswordVisible.Visibility == Visibility.Collapsed)
+            {
+                txtPasswordPlaceholder.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void txtPasswordVisible_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtPasswordVisible.Text) && txtPassword.Visibility == Visibility.Collapsed)
             {
                 txtPasswordPlaceholder.Visibility = Visibility.Visible;
             }
@@ -67,6 +77,7 @@ namespace ProgramZaRacunovodstvo.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            _mainWindow.ShowPrijava();
 
         }
 
@@ -86,6 +97,16 @@ namespace ProgramZaRacunovodstvo.Views
                 txtPassword.Visibility = Visibility.Visible;
                 txtPassword.Focus();
             }
+
+            if (string.IsNullOrWhiteSpace(txtPassword.Password) && string.IsNullOrWhiteSpace(txtPasswordVisible.Text))
+            {
+                txtPasswordPlaceholder.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                txtPasswordPlaceholder.Visibility = Visibility.Collapsed;
+            }
+
             visibleText = !visibleText;
         }
     }

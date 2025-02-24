@@ -79,7 +79,7 @@
 
             <TextBlock Name="txtPasswordPlaceholder"
                        Text="Lozinka"
-                       Foreground="Gray"
+                       Foreground="#FF616161"
                        FontSize="24"
                        FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                        IsHitTestVisible="False"
@@ -97,6 +97,8 @@
                          VerticalContentAlignment="Center"
                          BorderThickness="0"
                          Margin="0,275,0,220"
+                         Background="#8CFFFFFF"
+                         PasswordChar="●"
                          GotFocus="txtPassword_GotFocus"
                          LostFocus="txtPassword_LostFocus">
                 <PasswordBox.Style>
@@ -110,20 +112,22 @@
                                                   BlurRadius="30" />
                             </Setter.Value>
                         </Setter>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="PasswordBox">
+                                    <Border CornerRadius="15"
+                                            BorderThickness="0"
+                                            BorderBrush="Transparent"
+                                            Background="{TemplateBinding Background}"
+                                            Padding="10">
+                                        <ScrollViewer x:Name="PART_ContentHost"
+                                                      VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
                     </Style>
                 </PasswordBox.Style>
-                <PasswordBox.Template>
-                    <ControlTemplate TargetType="PasswordBox">
-                        <Border Background="White"
-                                CornerRadius="15"
-                                BorderBrush="Gray"
-                                BorderThickness="2"
-                                Padding="10">
-                            <ScrollViewer x:Name="PART_ContentHost"
-                                          VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </PasswordBox.Template>
             </PasswordBox>
 
             <TextBox Name="txtPasswordVisible"
@@ -154,12 +158,12 @@
                     </Style>
                 </TextBox.Style>
                 <TextBox.Template>
-                    <ControlTemplate TargetType="TextBox">
-                        <Border Background="White"
-                                CornerRadius="15"
-                                BorderBrush="Gray"
-                                BorderThickness="2"
-                                Padding="10">
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="15"
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Padding="10"
+                                Background="#8CFFFFFF">
                             <ScrollViewer x:Name="PART_ContentHost"
                                           VerticalAlignment="Center" />
                         </Border>
@@ -175,7 +179,7 @@
                         Height="70"
                         FontSize="24"
                         FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                        Foreground="Gray"
+                        Foreground="#FF616161"
                         Text="Email"
                         VerticalContentAlignment="Center"
                         BorderThickness="0"
@@ -196,17 +200,19 @@
                 </TextBox.Style>
                 <TextBox.Template>
                     <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border Background="White"
-                                CornerRadius="15"
-                                BorderBrush="Gray"
-                                BorderThickness="2"
-                                Padding="10">
+                        <Border CornerRadius="15"
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Padding="10"
+                                Background="#8CFFFFFF">
                             <ScrollViewer x:Name="PART_ContentHost"
                                           VerticalAlignment="Center" />
                         </Border>
                     </ControlTemplate>
                 </TextBox.Template>
             </ui:TextBox>
+
+
 
             <Image Margin="0,48,0,0"
                    Source="/slike/Vector.png"
