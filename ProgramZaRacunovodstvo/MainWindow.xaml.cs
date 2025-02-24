@@ -46,7 +46,7 @@ namespace ProgramZaRacunovodstvo
             this.Title = "Izbor Firme";
         }
 
-        public void ShowIzborRegistracija()
+        public void ShowRegistracija()
         {
             ShowOverlay(_registracija);
             this.Title = "Resgistracija";

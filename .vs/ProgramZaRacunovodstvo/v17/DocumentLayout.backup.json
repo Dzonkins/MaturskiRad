@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\views\\prijava.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\views\\prijava.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\views\\registracija.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\views\\registracija.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\views\\nabavke.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\views\\nabavke.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\views\\prijava.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\views\\prijava.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\views\\registracija.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,19 +46,18 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Nabavke.xaml",
               "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Nabavke.xaml",
               "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\Nabavke.xaml",
               "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Nabavke.xaml",
               "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\Nabavke.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T22:59:54.295Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-24T22:59:54.295Z"
             },
             {
               "$type": "Document",
@@ -70,12 +69,11 @@
               "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\Registracija.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T22:57:09.221Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-24T22:57:09.221Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Registracija.xaml",
               "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Registracija.xaml",
               "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\Registracija.xaml",
@@ -95,17 +93,16 @@
               "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\Prijava.xaml.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAuwB4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T22:04:23.775Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-24T22:04:23.775Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Prijava.xaml",
               "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Prijava.xaml",
               "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\Prijava.xaml",
-              "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Prijava.xaml",
-              "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\Prijava.xaml",
+              "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Prijava.xaml*",
+              "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\Prijava.xaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-02-18T21:08:46.786Z",
               "EditorCaption": ""
@@ -120,8 +117,7 @@
               "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\IzborFirme.xaml.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAiwHkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T22:02:55.144Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-21T22:02:55.144Z"
             },
             {
               "$type": "Document",

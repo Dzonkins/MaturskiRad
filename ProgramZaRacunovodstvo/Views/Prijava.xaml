@@ -28,7 +28,7 @@
                        BorderThickness="0"
                        FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                        FontSize="30"
-                       Click="Button_Click_1"
+                       Click="RegistrujSe"
                        CornerRadius="15"
                        Padding="10">
                 <ui:Button.Effect>
@@ -60,7 +60,7 @@
                        BorderThickness="0"
                        FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                        FontSize="30"
-                       Click="Button_Click"
+                       Click="PrijaviSe"
                        CornerRadius="15"
                        Padding="10">
                 <ui:Button.Effect>
@@ -221,13 +221,17 @@
                    Width="120"
                    Height="120"
                    VerticalAlignment="Top" />
-
+            <TextBlock Text="Netačan email ili lozinka"
+                       FontSize="18"
+                       Foreground="Red"
+                       Visibility="Collapsed"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,155,0,0"></TextBlock>
             <ui:Button Width="46"
                        Height="32"
                        Margin="447,294,52,239"
                        Background="{x:Null}"
                        BorderThickness="0"
-                       Click="Button_Click_2">
+                       Click="prikaziLozinku">
                 <ui:Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="Transparent"

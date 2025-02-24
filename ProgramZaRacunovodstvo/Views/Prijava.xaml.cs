@@ -33,15 +33,15 @@ namespace ProgramZaRacunovodstvo
 
 
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void PrijaviSe(object sender, RoutedEventArgs e)
         {
             _mainWindow.ShowIzborFirme();
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void RegistrujSe(object sender, RoutedEventArgs e)
         {
-            _mainWindow.ShowIzborRegistracija();
+            _mainWindow.ShowRegistracija();
 
         }
 
@@ -87,7 +87,7 @@ namespace ProgramZaRacunovodstvo
                 textBox.Text = textBox.Name.Remove(0, 3);
             }
         }
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void prikaziLozinku(object sender, RoutedEventArgs e)
         {
             
             if (!visibleText) {
