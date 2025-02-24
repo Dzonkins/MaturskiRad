@@ -1,0 +1,37 @@
+﻿using System;
+using System.Globalization;
+using System.Windows.Data;
+
+namespace ProgramZaRacunovodstvo.ViewModels
+{
+    class DatumConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is DateTime date)
+            {
+                return date.ToString("dd.MM.yyyy");
+            }
+
+            // Use the parameter to determine the placeholder text
+            if (parameter is string param && param == "end")
+            {
+                return "Odaberite krajnji datum";
+            }
+
+            return "Odaberite početni datum";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is string str && !string.IsNullOrWhiteSpace(str))
+            {
+                if (DateTime.TryParseExact(str, "dd.MM.yyyy", culture, DateTimeStyles.None, out var parsedDate))
+                {
+                    return parsedDate;
+                }
+            }
+            return null;
+        }
+    }
+}

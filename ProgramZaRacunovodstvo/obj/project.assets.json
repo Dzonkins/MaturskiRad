@@ -548,6 +548,38 @@
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
         }
+      },
+      "WPF-UI/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "WPF-UI.Abstractions": "4.0.1"
+        },
+        "compile": {
+          "lib/net8.0-windows7.0/Wpf.Ui.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0-windows7.0/Wpf.Ui.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "WPF-UI.Abstractions/4.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Wpf.Ui.Abstractions.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Wpf.Ui.Abstractions.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
       }
     }
   },
@@ -1169,12 +1201,84 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "WPF-UI/4.0.1": {
+      "sha512": "1ZH6oTmyNYv1BZ6Y4i+YfvTUqwoM66XCPWls+u+dMuqeqr14MQ22VDDF/84yf7Si502K6c1t9CK+vA6KcrV1Vg==",
+      "type": "package",
+      "path": "wpf-ui/4.0.1",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.md",
+        "README.md",
+        "ThirdPartyNotices.txt",
+        "lib/net462/Wpf.Ui.dll",
+        "lib/net462/Wpf.Ui.pdb",
+        "lib/net462/Wpf.Ui.xml",
+        "lib/net472/Wpf.Ui.dll",
+        "lib/net472/Wpf.Ui.pdb",
+        "lib/net472/Wpf.Ui.xml",
+        "lib/net481/Wpf.Ui.dll",
+        "lib/net481/Wpf.Ui.pdb",
+        "lib/net481/Wpf.Ui.xml",
+        "lib/net6.0-windows7.0/Wpf.Ui.dll",
+        "lib/net6.0-windows7.0/Wpf.Ui.pdb",
+        "lib/net6.0-windows7.0/Wpf.Ui.xml",
+        "lib/net8.0-windows7.0/Wpf.Ui.dll",
+        "lib/net8.0-windows7.0/Wpf.Ui.pdb",
+        "lib/net8.0-windows7.0/Wpf.Ui.xml",
+        "lib/net9.0-windows7.0/Wpf.Ui.dll",
+        "lib/net9.0-windows7.0/Wpf.Ui.pdb",
+        "lib/net9.0-windows7.0/Wpf.Ui.xml",
+        "tools/VisualStudioToolsManifest.xml",
+        "wpf-ui.4.0.1.nupkg.sha512",
+        "wpf-ui.nuspec"
+      ]
+    },
+    "WPF-UI.Abstractions/4.0.1": {
+      "sha512": "wa3HTgrqwUcrJyqjYeyjJW6NZca7CQT78dlXq5Zr8wgcspqJtmhVSfD/AcsCyHNb266QlKCa9isZn507T06/wQ==",
+      "type": "package",
+      "path": "wpf-ui.abstractions/4.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.md",
+        "README.md",
+        "ThirdPartyNotices.txt",
+        "lib/net462/Wpf.Ui.Abstractions.dll",
+        "lib/net462/Wpf.Ui.Abstractions.pdb",
+        "lib/net462/Wpf.Ui.Abstractions.xml",
+        "lib/net472/Wpf.Ui.Abstractions.dll",
+        "lib/net472/Wpf.Ui.Abstractions.pdb",
+        "lib/net472/Wpf.Ui.Abstractions.xml",
+        "lib/net6.0/Wpf.Ui.Abstractions.dll",
+        "lib/net6.0/Wpf.Ui.Abstractions.pdb",
+        "lib/net6.0/Wpf.Ui.Abstractions.xml",
+        "lib/net8.0/Wpf.Ui.Abstractions.dll",
+        "lib/net8.0/Wpf.Ui.Abstractions.pdb",
+        "lib/net8.0/Wpf.Ui.Abstractions.xml",
+        "lib/net9.0/Wpf.Ui.Abstractions.dll",
+        "lib/net9.0/Wpf.Ui.Abstractions.pdb",
+        "lib/net9.0/Wpf.Ui.Abstractions.xml",
+        "lib/netstandard2.0/Wpf.Ui.Abstractions.dll",
+        "lib/netstandard2.0/Wpf.Ui.Abstractions.pdb",
+        "lib/netstandard2.0/Wpf.Ui.Abstractions.xml",
+        "lib/netstandard2.1/Wpf.Ui.Abstractions.dll",
+        "lib/netstandard2.1/Wpf.Ui.Abstractions.pdb",
+        "lib/netstandard2.1/Wpf.Ui.Abstractions.xml",
+        "wpf-ui.abstractions.4.0.1.nupkg.sha512",
+        "wpf-ui.abstractions.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net8.0-windows10.0.19041": [
       "LiveChartsCore.SkiaSharpView.WPF >= 2.0.0-rc5.4",
-      "Microsoft.Data.Sqlite >= 9.0.2"
+      "Microsoft.Data.Sqlite >= 9.0.2",
+      "WPF-UI >= 4.0.1"
     ]
   },
   "packageFolders": {
@@ -1234,6 +1338,10 @@
           "Microsoft.Data.Sqlite": {
             "target": "Package",
             "version": "[9.0.2, )"
+          },
+          "WPF-UI": {
+            "target": "Package",
+            "version": "[4.0.1, )"
           }
         },
         "imports": [

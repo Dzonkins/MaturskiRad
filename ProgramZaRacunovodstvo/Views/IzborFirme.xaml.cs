@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace ProgramZaRacunovodstvo
 {
     /// <summary>
@@ -70,47 +71,44 @@ namespace ProgramZaRacunovodstvo
             FirmaPanel.Rows = rowCount > 4 ? 4 : rowCount;
         }
 
-        private Button KreirajDugme(string content)
+        private Wpf.Ui.Controls.Button KreirajDugme(string content)
         {
-            Button button = new Button
+            var button = new Wpf.Ui.Controls.Button
             {
                 Content = content,
                 Width = 470,
                 Height = 70,
-                Background = Brushes.White,
-                BorderThickness = new Thickness(0),
                 FontSize = 30,
-                Margin = new Thickness(10, 10, 10, 10),
-                Effect = new DropShadowEffect
-                {
-                    ShadowDepth = 10,
-                    Direction = 320,
-                    Color = Colors.Gray,
-                    Opacity = 0.5,
-                    BlurRadius = 30
-                }
+                Margin = new Thickness(10),
+                CornerRadius = new CornerRadius(15),
+                Background = new SolidColorBrush(Colors.White),
+                BorderThickness = new Thickness(0),
+                Foreground = new SolidColorBrush(Colors.Black),
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center
             };
 
-            FrameworkElementFactory border = new FrameworkElementFactory(typeof(Border));
-            border.SetValue(Border.BackgroundProperty, new TemplateBindingExtension(Button.BackgroundProperty));
-            border.SetValue(Border.CornerRadiusProperty, new CornerRadius(15));
-            border.SetValue(Border.PaddingProperty, new Thickness(10));
-            border.SetValue(Border.BorderThicknessProperty, new Thickness(0));
-
-            FrameworkElementFactory contentPresenter = new FrameworkElementFactory(typeof(ContentPresenter));
-            contentPresenter.SetValue(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center);
-            contentPresenter.SetValue(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center);
-            button.FontFamily = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Poppins Light");
-            border.AppendChild(contentPresenter);
-
-            button.Template = new ControlTemplate(typeof(Button))
+            button.Effect = new DropShadowEffect
             {
-                VisualTree = border
+                ShadowDepth = 10,
+                Direction = 320,
+                Color = Colors.Gray,
+                Opacity = 0.5,
+                BlurRadius = 30
             };
 
+            button.Content = new TextBlock
+            {
+                Text = content,
+                FontSize = 30,
+                FontFamily = new FontFamily(new Uri("pack://application:,,,/"), "./Fonts/#Poppins Light"),
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center
+            };
 
             return button;
         }
+
 
         private List<string> IzvuciFirmeIzBaze()
         {

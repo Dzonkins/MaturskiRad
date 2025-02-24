@@ -27,9 +27,14 @@
     <None Remove="Fonts\Poppins-SemiBoldItalic.ttf" />
     <None Remove="Fonts\Poppins-Thin.ttf" />
     <None Remove="Fonts\Poppins-ThinItalic.ttf" />
+    <None Remove="Fonts\Segoe Fluent Icons.ttf" />
+    <None Remove="slike\detalji.png" />
     <None Remove="slike\firma.png" />
     <None Remove="slike\icons8-company-64.png" />
+    <None Remove="slike\izbrisi.png" />
+    <None Remove="slike\izmeni.png" />
     <None Remove="slike\izvod.png" />
+    <None Remove="slike\kalendar.png" />
     <None Remove="slike\logout.png" />
     <None Remove="slike\nabavke.png" />
     <None Remove="slike\nazad.png" />
@@ -42,6 +47,7 @@
   <ItemGroup>
     <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-rc5.4" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.2" />
+    <PackageReference Include="WPF-UI" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -99,10 +105,25 @@
     <Resource Include="Fonts\Poppins-ThinItalic.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Fonts\Segoe Fluent Icons.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="slike\detalji.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="slike\firma.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="slike\izbrisi.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="slike\izmeni.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="slike\izvod.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="slike\kalendar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="slike\logout.png">

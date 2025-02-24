@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ProgramZaRacunovodstvo.ViewModels"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:vms="clr-namespace:ProgramZaRacunovodstvo.ViewModels"
              mc:Ignorable="d"
              d:DesignHeight="450"
@@ -44,13 +45,35 @@
 
                 <StackPanel Grid.Row="0"
                             Grid.Column="1">
-                    <Border Width="Auto"
-                            Height="120"
-                            Background="#FF7BD27B"
-                            CornerRadius="20"
-                            Padding="10"
-                            BorderThickness="1"
-                            Margin="40,80,40,10">
+                    <ui:Card Width="Auto"
+                             Height="120"
+                             Padding="10"
+                             Margin="40,80,40,10">
+                        <ui:Card.Template>
+                            <ControlTemplate TargetType="ui:Card">
+                                <Border CornerRadius="20"
+                                        Padding="{TemplateBinding Padding}">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0"
+                                                             EndPoint="1,1">
+                                            <GradientStop Color="#FF7BD27B"
+                                                          Offset="0" />
+                                            <GradientStop Color="#FF98E599"
+                                                          Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="10"
+                                                          Direction="320"
+                                                          Color="Gray"
+                                                          Opacity="0.5"
+                                                          BlurRadius="30" />
+                                    </Border.Effect>
+                                    <ContentPresenter HorizontalAlignment="Stretch"
+                                                      VerticalAlignment="Stretch" />
+                                </Border>
+                            </ControlTemplate>
+                        </ui:Card.Template>
                         <StackPanel>
                             <TextBlock Text="Trenutno stanje"
                                        FontSize="30"
@@ -63,14 +86,37 @@
                                        Foreground="Black"
                                        FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
                         </StackPanel>
-                    </Border>
-                    <Border Width="Auto"
-                            Height="120"
-                            Background="#FF4F72FF"
-                            CornerRadius="20"
-                            Padding="10"
-                            BorderThickness="1"
-                            Margin="40,0,40,10">
+                    </ui:Card>
+
+                    <ui:Card Width="Auto"
+                             Height="120"
+                             Padding="10"
+                             Margin="40,0,40,10">
+                        <ui:Card.Template>
+                            <ControlTemplate TargetType="ui:Card">
+                                <Border CornerRadius="20"
+                                        Padding="{TemplateBinding Padding}">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0"
+                                                             EndPoint="1,1">
+                                            <GradientStop Color="#FF4F72FF"
+                                                          Offset="0" />
+                                            <GradientStop Color="#FF6A8CFF"
+                                                          Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="10"
+                                                          Direction="320"
+                                                          Color="Gray"
+                                                          Opacity="0.5"
+                                                          BlurRadius="30" />
+                                    </Border.Effect>
+                                    <ContentPresenter HorizontalAlignment="Stretch"
+                                                      VerticalAlignment="Stretch" />
+                                </Border>
+                            </ControlTemplate>
+                        </ui:Card.Template>
                         <StackPanel>
                             <TextBlock Text="Ulazne fakture u februaru"
                                        FontSize="30"
@@ -85,15 +131,37 @@
                                        Foreground="White"
                                        FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
                         </StackPanel>
-                    </Border>
+                    </ui:Card>
 
-                    <Border Width="Auto"
-                            Height="120"
-                            Background="#FF4F72FF"
-                            CornerRadius="20"
-                            Padding="10"
-                            BorderThickness="1"
-                            Margin="40,0,40,10">
+                    <ui:Card Width="Auto"
+                             Height="120"
+                             Padding="10"
+                             Margin="40,0,40,10">
+                        <ui:Card.Template>
+                            <ControlTemplate TargetType="ui:Card">
+                                <Border CornerRadius="20"
+                                        Padding="{TemplateBinding Padding}">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0"
+                                                             EndPoint="1,1">
+                                            <GradientStop Color="#FF4F72FF"
+                                                          Offset="0" />
+                                            <GradientStop Color="#FF6A8CFF"
+                                                          Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="10"
+                                                          Direction="320"
+                                                          Color="Gray"
+                                                          Opacity="0.5"
+                                                          BlurRadius="30" />
+                                    </Border.Effect>
+                                    <ContentPresenter HorizontalAlignment="Stretch"
+                                                      VerticalAlignment="Stretch" />
+                                </Border>
+                            </ControlTemplate>
+                        </ui:Card.Template>
                         <StackPanel>
                             <TextBlock Text="Izlazne fakture u februaru"
                                        FontSize="30"
@@ -102,37 +170,56 @@
                                        Foreground="White"
                                        FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
                             <TextBlock Text="20"
-                                       Margin="10,0,0,0"
                                        FontSize="40"
+                                       Margin="10,0,0,0"
                                        FontWeight="Bold"
                                        Foreground="White"
                                        FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
                         </StackPanel>
-                    </Border>
+                    </ui:Card>
 
-                    <Button Width="Auto"
+                    <Button HorizontalAlignment="Stretch"
                             Height="120"
                             Background="#FF4F72FF"
                             Padding="10"
                             BorderThickness="0"
                             Margin="40,0,40,10"
-                            Content="Kreiraj novi dokument"
                             Foreground="White"
-                            FontSize="30"
+                            FontSize="85"
                             FontFamily="pack://application:,,,/Fonts/#Poppins Light">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}"
-                                        CornerRadius="20"
+                                <Border CornerRadius="20"
                                         Padding="{TemplateBinding Padding}">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0"
+                                                             EndPoint="1,1">
+                                            <GradientStop Color="#FF4F72FF"
+                                                          Offset="0" />
+                                            <GradientStop Color="#FF6A8CFF"
+                                                          Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="10"
+                                                          Direction="320"
+                                                          Color="Gray"
+                                                          Opacity="0.5"
+                                                          BlurRadius="30" />
+                                    </Border.Effect>
                                     <ContentPresenter HorizontalAlignment="Center"
                                                       VerticalAlignment="Center" />
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
+                        <Button.Content>
+                            <TextBlock Text="Kreiraj novi dokument"
+                                       FontSize="30"
+                                       FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" />
+                        </Button.Content>
                     </Button>
-
-                    
                 </StackPanel>
 
                 <lvc:CartesianChart Grid.Row="2"
@@ -143,7 +230,6 @@
                                     Title="{Binding DobavljaciNaslov}"
                                     Height="350"
                                     Margin="10" />
-
                 <lvc:CartesianChart Grid.Row="2"
                                     Grid.Column="1"
                                     Series="{Binding Series}"
@@ -152,7 +238,6 @@
                                     Title="{Binding KlijentiNaslov}"
                                     Height="350"
                                     Margin="10" />
-
                 <lvc:CartesianChart Grid.Row="3"
                                     Grid.ColumnSpan="2"
                                     Series="{Binding Series}"

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              xmlns:local="clr-namespace:ProgramZaRacunovodstvo.ViewModels"
              mc:Ignorable="d"
              d:DesignHeight="450"
@@ -10,11 +11,152 @@
     <UserControl.DataContext>
         <local:NabavkeViewModel />
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <local:DatumConverter x:Key="DatumConverter" />
+    </UserControl.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="300" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <TextBlock Text="Nabavke"
+                   FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                   FontSize="28"
+                   Margin="20,40,0,20"
+                   Width="759" 
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"/>
+        <Button Grid.Column="0"
+                Width="200"
+                Height="40"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                Margin="0,0,20,20"
+                BorderThickness="0"
+                Foreground="White"
+                Content="Kreiraj novi dokument"
+                FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                FontSize="15">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="10"
+                                  Direction="320"
+                                  Color="Gray"
+                                  Opacity="0.5"
+                                  BlurRadius="30" />
+            </Button.Effect>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background"
+                            Value="#FF4F72FF" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="13">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver"
+                                             Value="True">
+                                        <Setter Property="Background"
+                                                Value="#82A6FF" />
+                                    </Trigger>
+                                    <Trigger Property="IsPressed"
+                                             Value="True">
+                                        <Setter Property="Background"
+                                                Value="#3D64C2" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Border BorderBrush="LightGray"
+                BorderThickness="1"
+                Height="40"
+                Width="220"
+                CornerRadius="10"
+                Padding="5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Margin="20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Name="DatumTextbox"
+                           Text="{Binding Date, StringFormat='{}{0:d}', FallbackValue='Odaberite početni datum', Converter={StaticResource DatumConverter}, ConverterParameter=start}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="0,0,5,0"
+                           Grid.Column="0" />
+
+                <ui:CalendarDatePicker Name="DatumPocetni"
+                                       Height="40"
+                                       Width="40"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Center"
+                                       Margin="0"
+                                       Grid.Column="1"
+                                       Date="{Binding Date, Mode=TwoWay}">
+                </ui:CalendarDatePicker>
+                <Image Source="/slike/kalendar.png"
+                       HorizontalAlignment="Right"
+                       Width="12"
+                       Height="12"
+                       VerticalAlignment="Center"
+                       IsHitTestVisible="False"
+                       Grid.Column="1"
+                       Panel.ZIndex="10"
+                       Margin="2">
+                    <Image.RenderTransform>
+                        <ScaleTransform ScaleX="-1" />
+                    </Image.RenderTransform>
+                </Image>
+            </Grid>
+        </Border>
+
+        <Border BorderBrush="LightGray"
+                BorderThickness="1"
+                Height="40"
+                Width="220"
+                CornerRadius="10"
+                Padding="5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Margin="270,0,0,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Name="DatumTextbox2"
+                           Text="{Binding Date2, StringFormat='{}{0:d}', FallbackValue='Odaberite krajnji datum', Converter={StaticResource DatumConverter}, ConverterParameter=end}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="0,0,5,0"
+                           Grid.Column="0" />
+
+                <ui:CalendarDatePicker Name="DatumKrajnji"
+                                       Height="40"
+                                       Width="40"
+                                       HorizontalAlignment="Right"
+                                       VerticalAlignment="Center"
+                                       Margin="0"
+                                       Grid.Column="1"
+                                       Date="{Binding Date2, Mode=TwoWay}">
+                </ui:CalendarDatePicker>
+            </Grid>
+        </Border>
 
         <Border CornerRadius="20"
                 Padding="0"
@@ -22,20 +164,22 @@
                 Grid.Row="1"
                 Margin="20,0,20,20">
             <Border.Effect>
-                <DropShadowEffect BlurRadius="10"
-                                  ShadowDepth="2"
-                                  Opacity="0.3" />
+                <DropShadowEffect ShadowDepth="10"
+                                  Direction="320"
+                                  Color="Gray"
+                                  Opacity="0.5"
+                                  BlurRadius="30" />
             </Border.Effect>
             <DataGrid AutoGenerateColumns="False"
                       CanUserAddRows="False"
+                      Background="Transparent"
                       CanUserResizeRows="False"
                       GridLinesVisibility="None"
                       HeadersVisibility="Column"
-                      RowBackground="#F8F9FA"
-                      AlternatingRowBackground="#E9ECEF"
-                      BorderBrush="Gray"
+                      BorderBrush="Transparent"
                       BorderThickness="0"
                       FontSize="16"
+                      IsReadOnly="True"
                       FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                       HorizontalGridLinesBrush="Transparent"
                       VerticalGridLinesBrush="Transparent"
@@ -44,6 +188,61 @@
                       HorizontalAlignment="Center"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled">
+
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background"
+                                Value="#FF4F72FF" />
+                        <Setter Property="Foreground"
+                                Value="White" />
+                        <Setter Property="FontWeight"
+                                Value="Bold" />
+                        <Setter Property="Padding"
+                                Value="10" />
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Center" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="DataGridColumnHeader">
+                                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="20,0,0,0"
+                                            Padding="10"
+                                            BorderThickness="0">
+                                        <ContentPresenter HorizontalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="MinHeight"
+                                Value="50" />
+                        <Setter Property="Background"
+                                Value="White" />
+                        <Setter Property="BorderBrush"
+                                Value="Transparent" />
+                        <Setter Property="OverridesDefaultStyle"
+                                Value="False" />
+
+                    </Style>
+
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Background"
+                                Value="Transparent" />
+                        <Setter Property="BorderBrush"
+                                Value="Transparent" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="Transparent" />
+                                <Setter Property="Foreground"
+                                        Value="Black" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Resources>
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Broj fakture"
@@ -146,79 +345,156 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal"
                                             HorizontalAlignment="Center">
-                                    <Button Content=""
-                                            Command="{Binding Izmeni}"
-                                            Width="30"
+                                    <Button Command="{Binding Izmeni}"
+                                            Width="40"
                                             Height="30"
                                             BorderThickness="0"
-                                            Background="#4CAF50"
                                             Foreground="White"
                                             Cursor="Hand"
-                                            Margin="0,0,10,0" />
-
-                                    <Button Content=""
-                                            Command="{Binding Izbrisi}"
-                                            Width="30"
+                                            Margin="0,0,10,0"
+                                            Padding="0">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Background"
+                                                        Value="#4CAF50" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border Background="{TemplateBinding Background}"
+                                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                                    CornerRadius="5">
+                                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                                  VerticalAlignment="Center" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsMouseOver"
+                                                                         Value="True">
+                                                                    <Setter Property="Background"
+                                                                            Value="#81C784" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsPressed"
+                                                                         Value="True">
+                                                                    <Setter Property="Background"
+                                                                            Value="#388E3C" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Button.Style>
+                                        <Image Source="/slike/izmeni.png"
+                                               Width="25"
+                                               Height="20"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" />
+                                    </Button>
+                                    <Button Command="{Binding Izbrisi}"
+                                            Width="40"
                                             Height="30"
                                             BorderThickness="0"
-                                            Background="#F44336"
                                             Foreground="White"
                                             Cursor="Hand"
-                                            Margin="0,0,10,0"/>
-                                    <Button Content=""
-                                            Command="{Binding Detalji}"
-                                            Width="30"
+                                            Margin="0,0,10,0">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Background"
+                                                        Value="#F44336" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border Background="{TemplateBinding Background}"
+                                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                                    CornerRadius="5">
+                                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                                  VerticalAlignment="Center" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsMouseOver"
+                                                                         Value="True">
+                                                                    <Setter Property="Background"
+                                                                            Value="#F88780" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsPressed"
+                                                                         Value="True">
+                                                                    <Setter Property="Background"
+                                                                            Value="#D32F2F" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver"
+                                                             Value="True">
+                                                        <Setter Property="Background"
+                                                                Value="#F88780" />
+                                                    </Trigger>
+                                                    <Trigger Property="IsPressed"
+                                                             Value="True">
+                                                        <Setter Property="Background"
+                                                                Value="#D32F2F" />
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                        <Image Source="/slike/izbrisi.png"
+                                               Width="25"
+                                               Height="20"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" />
+                                    </Button>
+                                    <Button Command="{Binding Detalji}"
+                                            Width="40"
                                             Height="30"
                                             BorderThickness="0"
-                                            Background="#FF4F72FF"
                                             Foreground="White"
-                                            Cursor="Hand" />
+                                            Cursor="Hand"
+                                            Padding="0">
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Background"
+                                                        Value="#FF4F72FF" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border Background="{TemplateBinding Background}"
+                                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                                    CornerRadius="5">
+                                                                <ContentPresenter HorizontalAlignment="Center"
+                                                                                  VerticalAlignment="Center" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsMouseOver"
+                                                                         Value="True">
+                                                                    <Setter Property="Background"
+                                                                            Value="#82A6FF" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsPressed"
+                                                                         Value="True">
+                                                                    <Setter Property="Background"
+                                                                            Value="#3D64C2" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Button.Style>
+                                        <Image Source="/slike/detalji.png"
+                                               Width="25"
+                                               Height="20"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" />
+                                    </Button>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-
                 </DataGrid.Columns>
-
-                <DataGrid.Resources>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background"
-                                Value="#FF4F72FF" />
-                        <Setter Property="Foreground"
-                                Value="White" />
-                        <Setter Property="FontWeight"
-                                Value="Bold" />
-                        <Setter Property="Padding"
-                                Value="10" />
-                        <Setter Property="HorizontalContentAlignment"
-                                Value="Center" />
-                    </Style>
-
-                    <Style TargetType="DataGridRow">
-                        <Setter Property="MinHeight"
-                                Value="50" />
-                        <Setter Property="ToolTip"
-                                Value="Click for details" />
-                        <Setter Property="Background"
-                                Value="White" />
-                        <Setter Property="BorderBrush"
-                                Value="Transparent" />
-                        <Style.Triggers>
-                            <Trigger Property="IsSelected"
-                                     Value="True">
-                                <Setter Property="Background"
-                                        Value="#17A2B8" />
-                                <Setter Property="Foreground"
-                                        Value="White" />
-                            </Trigger>
-                            <Trigger Property="IsMouseOver"
-                                     Value="True">
-                                <Setter Property="Background"
-                                        Value="#D6EAF8" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </DataGrid.Resources>
             </DataGrid>
         </Border>
     </Grid>
