@@ -81,13 +81,43 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
+                <Border Height="100">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Image Source="slike/vector.png" Width="30" Height="30" Grid.Column="0"  Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-27,0,0,0"></Image>
+                        <StackPanel Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,0,0"
+                                    Width="125">
+                            <Border Width="125"></Border>
+                            <TextBlock Text="Dobrodošli"
+                                       Foreground="White"
+                                       HorizontalAlignment="Left"
+                                       FontSize="20"
+                                       FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
 
+                            <TextBlock Text="ImeKorisnika"
+                                       Foreground="White"
+                                       HorizontalAlignment="Left"
+                                       FontSize="20"
+                                       FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
                 <Button Tag="Pocetna"
                         Style="{StaticResource SidebarButtonStyle}"
-                        Grid.Row="0">
+                        Grid.Row="1">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -111,7 +141,7 @@
 
                 <Button Tag="Nabavke"
                         Style="{StaticResource SidebarButtonStyle}"
-                        Grid.Row="1">
+                        Grid.Row="2">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -135,7 +165,7 @@
 
                 <Button Tag="Prodaja"
                         Style="{StaticResource SidebarButtonStyle}"
-                        Grid.Row="2">
+                        Grid.Row="3">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -159,7 +189,7 @@
 
                 <Button Tag="Izvodi"
                         Style="{StaticResource SidebarButtonStyle}"
-                        Grid.Row="3">
+                        Grid.Row="4">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -183,7 +213,7 @@
 
                 <Button Tag="IzlogujSe"
                         Style="{StaticResource SidebarButtonStyle}"
-                        Grid.Row="5">
+                        Grid.Row="6">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />

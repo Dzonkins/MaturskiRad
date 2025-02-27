@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProgramZaRacunovodstvo.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,39 @@ namespace ProgramZaRacunovodstvo.Views
         public Nabavke()
         {
             InitializeComponent();
+        }
+
+        private void DataGrid_Ucitano(object sender, RoutedEventArgs e)
+        {
+            IzmeniBrojStavki();
+        }
+
+        private async void DataGrid_promenjeneDimenzije(object sender, SizeChangedEventArgs e)
+        {
+            await Task.Delay(200);
+            Dispatcher.Invoke(IzmeniBrojStavki);
+        }
+
+        private void IzmeniBrojStavki()
+        {
+            if (DataContext is NabavkeViewModel viewModel && NabavkeDataGrid.ActualHeight > 0)
+            {
+                double rowHeight = 50;
+                double headerHeight = 41;
+                int novBrojStavki = (int)((NabavkeDataGrid.ActualHeight - headerHeight) / rowHeight);
+
+                if (viewModel.stavkiPoStranici != novBrojStavki)
+                {
+                    viewModel.stavkiPoStranici = novBrojStavki;
+
+                    Dispatcher.Invoke(() =>
+                    {
+                        CollectionViewSource.GetDefaultView(NabavkeDataGrid.ItemsSource)?.Refresh();
+                    });
+                }
+
+
+            }
         }
     }
 }

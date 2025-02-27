@@ -93,9 +93,9 @@ namespace ProgramZaRacunovodstvo
                         this.Title = "Nabavke";
                         NavigateTo(new Nabavke());
                         break;
-                   // case "ReportsControl":
-                    //    NavigateTo(new Views.ReportsControl());
-                     //   break;
+                    case "Prodaja":
+                        NavigateTo(new Views.Prodaja());
+                        break;
                 }
             }
         }

@@ -6,11 +6,80 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Wpf.Ui.Input;
+using System.Timers;
 
 namespace ProgramZaRacunovodstvo.ViewModels
 {
     class NabavkeViewModel : INotifyPropertyChanged
     {
+        private System.Timers.Timer _timer;
+        private int _trenutnaStranica = 1;
+        private int _stavkiPoStranici = 9;
+        private int _totalPages;
+        private string _pretragaText = string.Empty;
+        private ObservableCollection<Nabavka> _originalNabavke = new();
+
+
+        public string PretragaText
+        {
+            get => _pretragaText;
+            set
+            {
+                if (_pretragaText != value)
+                {
+                    _pretragaText = value;
+                    OnPropertyChanged(nameof(PretragaText));
+                    _timer.Stop();
+                    _timer.Start();
+                }
+            }
+        }
+
+        public int TotalPages
+        {
+            get => _totalPages;
+            private set
+            {
+                if (_totalPages != value)
+                {
+                    _totalPages = value;
+                    OnPropertyChanged(nameof(TotalPages));
+                    OsveziStatusKomandi();
+                }
+            }
+        }
+
+        public int stavkiPoStranici
+        {
+            get => _stavkiPoStranici;
+            set
+            {
+                if (_stavkiPoStranici != value)
+                {
+                    _stavkiPoStranici = value;
+                    OnPropertyChanged(nameof(stavkiPoStranici));
+                    OsveziStavke();
+                }
+            }
+        }
+
+        private ObservableCollection<Nabavka> _pagedNabavke = new();
+
+        public ObservableCollection<Nabavka> PagedNabavke
+        {
+            get => _pagedNabavke;
+            set
+            {
+                _pagedNabavke = value;
+                OnPropertyChanged(nameof(PagedNabavke));
+            }
+        }
+
+        public ICommand PrethodnaStranica { get; }
+        public ICommand SledecaStranica { get; }
+
         private DateTime? _date;
 
         public DateTime? Date
@@ -20,22 +89,23 @@ namespace ProgramZaRacunovodstvo.ViewModels
             {
                 if (_date != value)
                 {
-                    // Validation: Ensure Date1 is not bigger than Date2
                     if (Date2.HasValue && value.HasValue && value > Date2)
                     {
-                        _date = Date2; // Set Date1 to Date2 if it's bigger
+                        _date = Date2;
+                        Pretraga();
                     }
                     else
                     {
                         _date = value;
+                        Pretraga();
                     }
 
                     OnPropertyChanged(nameof(Date));
 
-                    // Update Date2 if it's less than Date
                     if (Date2.HasValue && Date.HasValue && Date2 < Date)
                     {
                         Date2 = Date;
+                        Pretraga();
                     }
                 }
             }
@@ -51,14 +121,15 @@ namespace ProgramZaRacunovodstvo.ViewModels
             {
                 if (_date2 != value)
                 {
-                    // Validation: Ensure Date2 is not less than Date1
                     if (Date.HasValue && value.HasValue && value < Date)
                     {
-                        _date2 = Date; // Set Date2 to Date1 if it's less
+                        _date2 = Date;
+                        Pretraga();
                     }
                     else
                     {
                         _date2 = value;
+                        Pretraga();
                     }
 
                     OnPropertyChanged(nameof(Date2));
@@ -66,13 +137,6 @@ namespace ProgramZaRacunovodstvo.ViewModels
             }
         }
 
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         private ObservableCollection<Nabavka> _nabavke = new();
 
@@ -82,21 +146,131 @@ namespace ProgramZaRacunovodstvo.ViewModels
             set
             {
                 _nabavke = value;
+                OnPropertyChanged(nameof(Nabavke));
             }
         }
 
         public NabavkeViewModel()
         {
-            LoadData();
+            PrethodnaStranica = new RelayCommand<object>(_ => PrethodnaStrana(), _ => _trenutnaStranica > 1);
+            SledecaStranica = new RelayCommand<object>(_ => SledecaStrana(), _ => _trenutnaStranica < TotalPages);
+            ucitajPodatke();
+
+            _timer = new System.Timers.Timer(300);
+            _timer.AutoReset = false;
+            _timer.Elapsed += (s, e) => Pretraga();
+
+
         }
 
-        private void LoadData()
+        private void Pretraga()
         {
-            Nabavke = new ObservableCollection<Nabavka>
+            App.Current.Dispatcher.Invoke(() =>
             {
+                var filter = _originalNabavke.AsEnumerable();
+
+                if (!string.IsNullOrWhiteSpace(PretragaText))
+                {
+                    filter = filter.Where(n =>
+                        (n.BrojFakture?.Contains(PretragaText, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                        (n.TipFakture?.Contains(PretragaText, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                        (n.Status != null && n.Status.StartsWith(PretragaText, StringComparison.OrdinalIgnoreCase)) ||
+                        (n.Dobavljac?.Contains(PretragaText, StringComparison.OrdinalIgnoreCase) ?? false)
+                    );
+                }
+
+                if (Date.HasValue)
+                {
+                    DateOnly startDate = DateOnly.FromDateTime(Date.Value);
+                    filter = filter.Where(n => n.DatumSlanja >= startDate);
+                }
+
+                if (Date2.HasValue)
+                {
+                    DateOnly endDate = DateOnly.FromDateTime(Date2.Value);
+                    filter = filter.Where(n => n.DatumSlanja <= endDate);
+                }
+
+                Nabavke = new ObservableCollection<Nabavka>(filter);
+                OsveziStavke();
+            });
+        }
+
+
+
+        private void OsveziStatusKomandi()
+        {
+            (PrethodnaStranica as RelayCommand<object>)?.NotifyCanExecuteChanged();
+            (SledecaStranica as RelayCommand<object>)?.NotifyCanExecuteChanged();
+        }
+
+        private void ucitajPodatke()
+        {
+            _originalNabavke = new ObservableCollection<Nabavka>
+            {
+                new Nabavka { BrojFakture = "F2345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Iznos = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
+                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Iznos = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
+                new Nabavka { BrojFakture = "F12345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Iznos = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
+                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Iznos = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
+                new Nabavka { BrojFakture = "1F2345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Iznos = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
+                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Iznos = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
+                new Nabavka { BrojFakture = "F12345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Iznos = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
+                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Iznos = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
+                new Nabavka { BrojFakture = "F12345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Iznos = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
+                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Iznos = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
+                new Nabavka { BrojFakture = "F12345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Iznos = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
+                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Iznos = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
+                new Nabavka { BrojFakture = "F12345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Iznos = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
+                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Iznos = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
                 new Nabavka { BrojFakture = "F12345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Iznos = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
                 new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Iznos = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)}
             };
+            Nabavke = new ObservableCollection<Nabavka>(_originalNabavke);
+
+            OsveziStavke();
+
         }
+
+
+        private void OsveziStavke()
+        {
+
+            TotalPages = (Nabavke.Count + stavkiPoStranici - 1) / stavkiPoStranici;
+
+            if (_trenutnaStranica > TotalPages) _trenutnaStranica = TotalPages;
+
+            PagedNabavke = new ObservableCollection<Nabavka>(
+                Nabavke.Skip((_trenutnaStranica - 1) * stavkiPoStranici).Take(stavkiPoStranici)
+            );
+
+            OsveziStatusKomandi();
+
+        }
+
+        private void PrethodnaStrana()
+        {
+            if (_trenutnaStranica > 1)
+            {
+                _trenutnaStranica--;
+                OsveziStavke();
+                OsveziStatusKomandi();
+
+            }
+        }
+
+        private void SledecaStrana()
+        {
+            if (_trenutnaStranica < TotalPages)
+            {
+                _trenutnaStranica++;
+                OsveziStavke();
+                OsveziStatusKomandi();
+
+            }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

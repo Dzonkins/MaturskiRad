@@ -3,44 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\views\\prijava.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\views\\prijava.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\views\\prodaja.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\views\\prodaja.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\views\\prijava.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\views\\prijava.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\views\\prodaja.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\views\\prodaja.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\views\\registracija.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\views\\registracija.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\viewmodels\\prodajaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\viewmodels\\prodajaviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\viewmodels\\nabavkeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\viewmodels\\nabavkeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\views\\nabavke.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\views\\nabavke.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\views\\registracija.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\views\\registracija.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\views\\izborfirme.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\views\\izborfirme.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\views\\izborfirme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\views\\izborfirme.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\views\\glavnastrana.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\views\\glavnastrana.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|c:\\users\\nikola\\source\\repos\\programzaracunovodstvo\\programzaracunovodstvo\\views\\nabavke.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FC0ADD1-CA90-4923-9C0E-559AE7173BDB}|ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj|solutionrelative:programzaracunovodstvo\\views\\nabavke.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,126 +38,95 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\MainWindow.xaml.cs",
-              "RelativeToolTip": "ProgramZaRacunovodstvo\\MainWindow.xaml.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAADAAAAAkAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Prodaja.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Prodaja.xaml.cs",
+              "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\Prodaja.xaml.cs",
+              "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Prodaja.xaml.cs",
+              "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\Prodaja.xaml.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAArwDUAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T23:16:40.03Z",
+              "WhenOpened": "2025-02-27T18:29:13.889Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProdajaViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\ViewModels\\ProdajaViewModel.cs",
+              "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\ViewModels\\ProdajaViewModel.cs",
+              "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\ViewModels\\ProdajaViewModel.cs",
+              "RelativeToolTip": "ProgramZaRacunovodstvo\\ViewModels\\ProdajaViewModel.cs",
+              "ViewState": "AgIAAMAAAAAAAAAAAAArwOoAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-27T18:27:32.887Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Prodaja.xaml",
+              "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Prodaja.xaml",
+              "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\Prodaja.xaml",
+              "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Prodaja.xaml",
+              "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\Prodaja.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-27T18:26:42.173Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "NabavkeViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\ViewModels\\NabavkeViewModel.cs",
+              "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\ViewModels\\NabavkeViewModel.cs",
+              "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\ViewModels\\NabavkeViewModel.cs",
+              "RelativeToolTip": "ProgramZaRacunovodstvo\\ViewModels\\NabavkeViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJ0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T14:26:58.737Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Nabavke.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Nabavke.xaml.cs",
+              "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\Nabavke.xaml.cs",
+              "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Nabavke.xaml.cs",
+              "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\Nabavke.xaml.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAjwB0AAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T14:25:09.067Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Nabavke.xaml",
               "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Nabavke.xaml",
               "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\Nabavke.xaml",
               "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Nabavke.xaml",
               "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\Nabavke.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T22:59:54.295Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Registracija.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Registracija.xaml.cs",
-              "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\Registracija.xaml.cs",
-              "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Registracija.xaml.cs",
-              "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\Registracija.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T22:57:09.221Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Registracija.xaml",
-              "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Registracija.xaml",
-              "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\Registracija.xaml",
-              "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Registracija.xaml",
-              "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\Registracija.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T22:50:45.578Z",
+              "WhenOpened": "2025-02-24T22:59:54.295Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Prijava.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Prijava.xaml.cs",
-              "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\Prijava.xaml.cs",
-              "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Prijava.xaml.cs",
-              "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\Prijava.xaml.cs",
-              "ViewState": "AgIAAEcAAAAAAAAAAAA6wFkAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T22:04:23.775Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Prijava.xaml",
-              "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Prijava.xaml",
-              "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\Prijava.xaml",
-              "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\Prijava.xaml",
-              "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\Prijava.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-18T21:08:46.786Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IzborFirme.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\IzborFirme.xaml.cs",
-              "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\IzborFirme.xaml.cs",
-              "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\IzborFirme.xaml.cs",
-              "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\IzborFirme.xaml.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAiwHkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T22:02:55.144Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IzborFirme.xaml",
-              "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\IzborFirme.xaml",
-              "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\IzborFirme.xaml",
-              "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\IzborFirme.xaml",
-              "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\IzborFirme.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-18T21:16:05.502Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\MainWindow.xaml",
               "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\MainWindow.xaml",
               "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\MainWindow.xaml",
               "RelativeToolTip": "ProgramZaRacunovodstvo\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-19T10:17:13.943Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "GlavnaStrana.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\GlavnaStrana.xaml.cs",
-              "RelativeDocumentMoniker": "ProgramZaRacunovodstvo\\Views\\GlavnaStrana.xaml.cs",
-              "ToolTip": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\Views\\GlavnaStrana.xaml.cs",
-              "RelativeToolTip": "ProgramZaRacunovodstvo\\Views\\GlavnaStrana.xaml.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAIBZwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T20:30:37.078Z"
+              "WhenOpened": "2025-02-19T10:17:13.943Z",
+              "EditorCaption": ""
             }
           ]
         }
