@@ -24,6 +24,8 @@ namespace ProgramZaRacunovodstvo
         private Registracija _registracija;
         private DodajFirmu _dodajFirmu;
 
+        public string? SelectedFirma { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -95,7 +97,7 @@ namespace ProgramZaRacunovodstvo
                 {
                     case "Pocetna":
                         this.Title = "Početna";
-                        NavigateTo(new GlavnaStrana());
+                        NavigateTo(new GlavnaStrana(this));
                         break;
                    case "Nabavke":
                         this.Title = "Nabavke";
@@ -103,6 +105,12 @@ namespace ProgramZaRacunovodstvo
                         break;
                     case "Prodaja":
                         NavigateTo(new Views.Prodaja());
+                        break;
+                    case "IzlogujSe":
+                        OverlayContainer.Visibility = Visibility.Visible;
+                        MainLayout.Visibility = Visibility.Collapsed;
+                        Title = "Prijava";
+                        ShowPrijava();
                         break;
                 }
             }

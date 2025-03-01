@@ -20,9 +20,25 @@ namespace ProgramZaRacunovodstvo.ViewModel
     /// </summary>
     public partial class GlavnaStrana : UserControl
     {
-        public GlavnaStrana()
+
+        private MainWindow _mainWindow;
+
+
+        public GlavnaStrana(MainWindow mainWindow)
         {
             InitializeComponent();
+            _mainWindow = mainWindow;
+            Naslovi();
+        }
+
+        private void Naslovi()
+        {
+
+            Stanje.Text = "Trenutno stanje za " + DateTime.Now.ToString("MMMM");
+            Ulazne.Text = "Ulazne fakture u " + DateTime.Now.ToString("MMMM") + "u";
+            Izlazne.Text = "Izlazne fakture u " + DateTime.Now.ToString("MMMM") + "u";
+            Firma.Text = "Dobrodošli " + _mainWindow.SelectedFirma;
+
         }
     }
 }

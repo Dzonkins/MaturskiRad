@@ -32,7 +32,7 @@ namespace ProgramZaRacunovodstvo.Views
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox? textBox = sender as TextBox;
-            if (textBox != null && (textBox.Text == "Ime firme" || textBox.Text == "PIB" || textBox.Text == "Matični broj" || textBox.Text == "Grad" || textBox.Text == "Adresa sedišta firme" || textBox.Text == "Broj telefona" || textBox.Text == "Zastupnik"))
+            if (textBox != null && (textBox.Text == "Ime firme" || textBox.Text == "PIB" || textBox.Text == "Matični broj" || textBox.Text == "Grad" || textBox.Text == "Adresa sedišta firme" || textBox.Text == "Broj žiro računa" || textBox.Text == "Zastupnik"))
             {
                 textBox.Text = "";
                 textBox.Foreground = Brushes.Black;
@@ -51,7 +51,7 @@ namespace ProgramZaRacunovodstvo.Views
             }
         }
 
-        private void BrojTelefona(object sender, TextCompositionEventArgs e)
+        private void BrojZiroRacuna(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);

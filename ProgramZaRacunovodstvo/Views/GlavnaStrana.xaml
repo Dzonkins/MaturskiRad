@@ -33,6 +33,7 @@
                 <StackPanel Grid.Row="0"
                             Grid.Column="0">
                     <TextBlock Text="Dobrodošli ImeFirme"
+                               Name="Firma"
                                FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                                FontSize="28"
                                Margin="25,20,0,20"
@@ -75,8 +76,9 @@
                             </ControlTemplate>
                         </ui:Card.Template>
                         <StackPanel>
-                            <TextBlock Text="Trenutno stanje"
+                            <TextBlock Text="Trenutno stanje za februar"
                                        FontSize="30"
+                                       Name="Stanje"
                                        Margin="10,0,0,0"
                                        Foreground="Black"
                                        FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
@@ -119,6 +121,7 @@
                         </ui:Card.Template>
                         <StackPanel>
                             <TextBlock Text="Ulazne fakture u februaru"
+                                       Name="Ulazne"
                                        FontSize="30"
                                        Margin="10,0,0,0"
                                        FontWeight="Bold"
@@ -165,6 +168,7 @@
                         <StackPanel>
                             <TextBlock Text="Izlazne fakture u februaru"
                                        FontSize="30"
+                                       Name="Izlazne"
                                        Margin="10,0,0,0"
                                        FontWeight="Bold"
                                        Foreground="White"
@@ -178,48 +182,7 @@
                         </StackPanel>
                     </ui:Card>
 
-                    <Button HorizontalAlignment="Stretch"
-                            Height="120"
-                            Background="#FF4F72FF"
-                            Padding="10"
-                            BorderThickness="0"
-                            Margin="40,0,40,10"
-                            Foreground="White"
-                            FontSize="85"
-                            FontFamily="pack://application:,,,/Fonts/#Poppins Light">
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border CornerRadius="20"
-                                        Padding="{TemplateBinding Padding}">
-                                    <Border.Background>
-                                        <LinearGradientBrush StartPoint="0,0"
-                                                             EndPoint="1,1">
-                                            <GradientStop Color="#FF4F72FF"
-                                                          Offset="0" />
-                                            <GradientStop Color="#FF6A8CFF"
-                                                          Offset="1" />
-                                        </LinearGradientBrush>
-                                    </Border.Background>
-                                    <Border.Effect>
-                                        <DropShadowEffect ShadowDepth="10"
-                                                          Direction="320"
-                                                          Color="Gray"
-                                                          Opacity="0.5"
-                                                          BlurRadius="30" />
-                                    </Border.Effect>
-                                    <ContentPresenter HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center" />
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                        <Button.Content>
-                            <TextBlock Text="Kreiraj novi dokument"
-                                       FontSize="30"
-                                       FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center" />
-                        </Button.Content>
-                    </Button>
+                    
                 </StackPanel>
 
                 <lvc:CartesianChart Grid.Row="2"

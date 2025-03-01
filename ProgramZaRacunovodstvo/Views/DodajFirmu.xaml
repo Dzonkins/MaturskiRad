@@ -223,22 +223,22 @@
                     </ControlTemplate>
                 </TextBox.Template>
             </TextBox>
-            <TextBox x:Name="txtBrojTelefona"
+            <TextBox x:Name="txtBrojZiroRacuna"
                      Margin="0,420,0,0"
                      VerticalAlignment="Top"
-                     Tag="Broj telefona"
+                     Tag="Broj žiro računa"
                      Height="70"
                      FontSize="24"
                      FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                      Foreground="#FF616161"
-                     Text="Broj telefona"
+                     Text="Broj žiro računa"
                      VerticalContentAlignment="Center"
                      BorderThickness="0"
                      HorizontalAlignment="Center"
                      Width="470"
                      GotFocus="TextBox_GotFocus"
                      LostFocus="TextBox_LostFocus"
-                     PreviewTextInput="BrojTelefona">
+                     PreviewTextInput="BrojZiroRacuna">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="Effect">

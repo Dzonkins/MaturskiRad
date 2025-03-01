@@ -208,22 +208,22 @@ namespace ProgramZaRacunovodstvo.ViewModels
         {
             _originalNabavke = new ObservableCollection<Nabavka>
             {
-                new Nabavka { BrojFakture = "F2345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Iznos = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
-                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Iznos = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
-                new Nabavka { BrojFakture = "F12345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Iznos = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
-                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Iznos = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
-                new Nabavka { BrojFakture = "1F2345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Iznos = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
-                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Iznos = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
-                new Nabavka { BrojFakture = "F12345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Iznos = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
-                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Iznos = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
-                new Nabavka { BrojFakture = "F12345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Iznos = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
-                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Iznos = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
-                new Nabavka { BrojFakture = "F12345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Iznos = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
-                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Iznos = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
-                new Nabavka { BrojFakture = "F12345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Iznos = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
-                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Iznos = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
-                new Nabavka { BrojFakture = "F12345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Iznos = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
-                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Iznos = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)}
+                new Nabavka { BrojFakture = "F2345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
+                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
+                new Nabavka { BrojFakture = "F12345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
+                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
+                new Nabavka { BrojFakture = "1F2345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
+                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
+                new Nabavka { BrojFakture = "F12345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
+                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
+                new Nabavka { BrojFakture = "F12345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
+                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
+                new Nabavka { BrojFakture = "F12345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
+                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
+                new Nabavka { BrojFakture = "F12345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
+                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
+                new Nabavka { BrojFakture = "F12345", TipFakture = "Ulazna", Status = "Plaćeno", Dobavljac = "ABC d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
+                new Nabavka { BrojFakture = "F12346", TipFakture = "Izlazna", Status = "Neplaćeno", Dobavljac = "XYZ d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)}
             };
             Nabavke = new ObservableCollection<Nabavka>(_originalNabavke);
 

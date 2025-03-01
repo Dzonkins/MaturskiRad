@@ -22,6 +22,8 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         private static readonly SKTypeface customFont;
 
+        
+
         static GlavnaStrana()
         {
             try
@@ -125,5 +127,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
                    Color = SKColors.Black
                }
            };
+
+       
     }
 }

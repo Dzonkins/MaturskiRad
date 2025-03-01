@@ -35,12 +35,13 @@ namespace ProgramZaRacunovodstvo
 
         }
 
-        private void Otvorifirmu()
+        private void Otvorifirmu(string firma)
         {
+            _mainWindow.SelectedFirma = firma;
             _mainWindow.OverlayContainer.Visibility = Visibility.Collapsed;
             _mainWindow.MainLayout.Visibility = Visibility.Visible;
             _mainWindow.Title = "Početna";
-            _mainWindow.NavigateTo(new GlavnaStrana());
+            _mainWindow.NavigateTo(new GlavnaStrana(_mainWindow));
 
             var pocetnaButton = MainWindow.nadjiSveElemente<Button>(_mainWindow)
                               .FirstOrDefault(b => b.Tag as string == "Pocetna");
@@ -63,7 +64,7 @@ namespace ProgramZaRacunovodstvo
             foreach (string firma in firme)
             {
                 Button btn = KreirajDugme(firma);
-                btn.Click += (s, e) => Otvorifirmu();
+                btn.Click += (s, e) => Otvorifirmu(firma);
                 FirmaPanel.Children.Add(btn);
             }
 
