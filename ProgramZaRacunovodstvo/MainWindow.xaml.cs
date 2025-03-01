@@ -22,6 +22,7 @@ namespace ProgramZaRacunovodstvo
         private Prijava _prijava;
         private IzborFirme _IzborFirme;
         private Registracija _registracija;
+        private DodajFirmu _dodajFirmu;
 
         public MainWindow()
         {
@@ -32,6 +33,7 @@ namespace ProgramZaRacunovodstvo
             _prijava = new Prijava(this);
             _IzborFirme = new IzborFirme(this);
             _registracija = new Registracija(this);
+            _dodajFirmu = new DodajFirmu(this);
         }
 
         public void ShowPrijava()
@@ -50,6 +52,12 @@ namespace ProgramZaRacunovodstvo
         {
             ShowOverlay(_registracija);
             this.Title = "Resgistracija";
+        }
+
+        public void ShowDodajFirmu()
+        {
+            ShowOverlay(_dodajFirmu);
+            this.Title = "Dodaj firmu";
         }
 
         public void ShowOverlay(UserControl control)

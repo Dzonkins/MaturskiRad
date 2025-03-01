@@ -1,27 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace ProgramZaRacunovodstvo
 {
-    /// <summary>
-    /// Interaction logic for UserControl1.xaml
-    /// </summary>
     public partial class Prijava : UserControl
     {
         private MainWindow _mainWindow;
         bool visibleText = false;
+        private bool sifraFokus = false;
 
         public Prijava(MainWindow mainWindow)
         {
@@ -29,22 +18,29 @@ namespace ProgramZaRacunovodstvo
             _mainWindow = mainWindow;
 
             txtPasswordVisible.LostFocus += txtPasswordVisible_LostFocus;
+            txtPasswordVisible.GotFocus += txtPasswordVisible_GotFocus;
+            txtPassword.GotFocus += txtPassword_GotFocus;
+            txtPassword.LostFocus += txtPassword_LostFocus;
         }
-
-
 
         private void PrijaviSe(object sender, RoutedEventArgs e)
         {
-            _mainWindow.ShowIzborFirme();
-
+            if (string.IsNullOrEmpty(txtEmail.Text) || txtEmail.Text == "Email" || string.IsNullOrEmpty(txtPassword.Password))
+            {
+                greska.Visibility = Visibility.Visible;
+                greska.Text = "Molimo vas popunite sva polja";
+            }
+            else
+            {
+                greska.Visibility = Visibility.Hidden;
+                _mainWindow.ShowIzborFirme();
+            }
         }
 
         private void RegistrujSe(object sender, RoutedEventArgs e)
         {
             _mainWindow.ShowRegistracija();
-
         }
-
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -59,38 +55,43 @@ namespace ProgramZaRacunovodstvo
         private void txtPassword_GotFocus(object sender, RoutedEventArgs e)
         {
             txtPasswordPlaceholder.Visibility = Visibility.Collapsed;
+            sifraFokus = true;
         }
 
         private void txtPassword_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtPassword.Password) && txtPasswordVisible.Visibility == Visibility.Collapsed)
-            {
-                txtPasswordPlaceholder.Visibility = Visibility.Visible;
-            }
+            sifraFokus = false;
+            LozinkaPlaceholder();
+        }
+
+        private void txtPasswordVisible_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtPasswordPlaceholder.Visibility = Visibility.Collapsed;
+            sifraFokus = true;
         }
 
         private void txtPasswordVisible_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtPasswordVisible.Text) && txtPassword.Visibility == Visibility.Collapsed)
-            {
-                txtPasswordPlaceholder.Visibility = Visibility.Visible;
-            }
+            sifraFokus = false;
+            LozinkaPlaceholder();
         }
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             TextBox? textBox = sender as TextBox;
-
             if (textBox != null && string.IsNullOrWhiteSpace(textBox.Text))
             {
-                textBox.Foreground = Brushes.Gray;
+                textBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
                 textBox.Text = textBox.Name.Remove(0, 3);
             }
         }
+
         private void prikaziLozinku(object sender, RoutedEventArgs e)
         {
-            
-            if (!visibleText) {
+            visibleText = !visibleText;
+
+            if (visibleText)
+            {
                 txtPasswordVisible.Text = txtPassword.Password;
                 txtPasswordVisible.Visibility = Visibility.Visible;
                 txtPassword.Visibility = Visibility.Collapsed;
@@ -104,7 +105,15 @@ namespace ProgramZaRacunovodstvo
                 txtPassword.Focus();
             }
 
-            if (string.IsNullOrWhiteSpace(txtPassword.Password) && string.IsNullOrWhiteSpace(txtPasswordVisible.Text))
+            Dispatcher.Invoke(() =>
+            {
+                LozinkaPlaceholder();
+            }, DispatcherPriority.Render);
+        }
+
+        private void LozinkaPlaceholder()
+        {
+            if (!sifraFokus && string.IsNullOrWhiteSpace(visibleText ? txtPasswordVisible.Text : txtPassword.Password))
             {
                 txtPasswordPlaceholder.Visibility = Visibility.Visible;
             }
@@ -112,8 +121,6 @@ namespace ProgramZaRacunovodstvo
             {
                 txtPasswordPlaceholder.Visibility = Visibility.Collapsed;
             }
-
-            visibleText = !visibleText;
         }
     }
 }

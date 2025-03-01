@@ -8,6 +8,7 @@ namespace ProgramZaRacunovodstvo.Models
 {
     public class Prodaja
     {
+        public int ID { get; set; }
         public string BrojFakture { get; set; } = string.Empty;
         public string TipFakture { get; set; } = string.Empty;
         public string Status { get; set; } = string.Empty;

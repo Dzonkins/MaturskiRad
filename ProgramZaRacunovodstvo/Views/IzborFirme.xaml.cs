@@ -81,7 +81,6 @@ namespace ProgramZaRacunovodstvo
                 FontSize = 30,
                 Margin = new Thickness(10),
                 CornerRadius = new CornerRadius(15),
-                Background = new SolidColorBrush(Colors.White),
                 BorderThickness = new Thickness(0),
                 Foreground = new SolidColorBrush(Colors.Black),
                 VerticalAlignment = VerticalAlignment.Center,
@@ -106,6 +105,56 @@ namespace ProgramZaRacunovodstvo
                 HorizontalAlignment = HorizontalAlignment.Center
             };
 
+            var buttonStyle = new Style(typeof(Wpf.Ui.Controls.Button));
+
+            buttonStyle.Setters.Add(new Setter(Wpf.Ui.Controls.Button.BackgroundProperty, Brushes.White));
+            buttonStyle.Setters.Add(new Setter(Wpf.Ui.Controls.Button.ForegroundProperty, Brushes.Black));
+
+            var controlTemplate = new ControlTemplate(typeof(Wpf.Ui.Controls.Button));
+            var borderFactory = new FrameworkElementFactory(typeof(Border));
+            borderFactory.SetValue(Border.CornerRadiusProperty, new CornerRadius(15));
+
+            borderFactory.SetBinding(Border.BackgroundProperty, new Binding("Background")
+            {
+                RelativeSource = new RelativeSource(RelativeSourceMode.TemplatedParent)
+            });
+            borderFactory.SetBinding(Border.BorderBrushProperty, new Binding("BorderBrush")
+            {
+                RelativeSource = new RelativeSource(RelativeSourceMode.TemplatedParent)
+            });
+            borderFactory.SetBinding(Border.BorderThicknessProperty, new Binding("BorderThickness")
+            {
+                RelativeSource = new RelativeSource(RelativeSourceMode.TemplatedParent)
+            });
+
+            var contentPresenterFactory = new FrameworkElementFactory(typeof(ContentPresenter));
+            contentPresenterFactory.SetValue(ContentPresenter.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+            contentPresenterFactory.SetValue(ContentPresenter.VerticalAlignmentProperty, VerticalAlignment.Center);
+
+            borderFactory.AppendChild(contentPresenterFactory);
+            controlTemplate.VisualTree = borderFactory;
+
+            buttonStyle.Setters.Add(new Setter(Wpf.Ui.Controls.Button.TemplateProperty, controlTemplate));
+
+            var mouseOverTrigger = new Trigger
+            {
+                Property = Wpf.Ui.Controls.Button.IsMouseOverProperty,
+                Value = true
+            };
+            mouseOverTrigger.Setters.Add(new Setter(Wpf.Ui.Controls.Button.BackgroundProperty, new SolidColorBrush(Color.FromRgb(237, 237, 237))));
+
+            var isPressedTrigger = new Trigger
+            {
+                Property = Wpf.Ui.Controls.Button.IsPressedProperty,
+                Value = true
+            };
+            isPressedTrigger.Setters.Add(new Setter(Wpf.Ui.Controls.Button.BackgroundProperty, new SolidColorBrush(Color.FromRgb(184, 183, 182))));
+
+            buttonStyle.Triggers.Add(mouseOverTrigger);
+            buttonStyle.Triggers.Add(isPressedTrigger);
+
+            button.Style = buttonStyle;
+
             return button;
         }
 
@@ -121,6 +170,10 @@ namespace ProgramZaRacunovodstvo
         {
             _mainWindow.ShowPrijava();
 
+        }
+        private void dodajFirmu(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.ShowDodajFirmu();
         }
     }
 }

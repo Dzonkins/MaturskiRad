@@ -39,6 +39,7 @@
     <None Remove="slike\nabavke.png" />
     <None Remove="slike\nazad.png" />
     <None Remove="slike\pocetna.png" />
+    <None Remove="slike\pravnalica.png" />
     <None Remove="slike\prodaja.png" />
     <None Remove="slike\sifra.png" />
     <None Remove="slike\Vector.png" />
@@ -136,6 +137,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="slike\pocetna.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="slike\pravnalica.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="slike\prodaja.png">

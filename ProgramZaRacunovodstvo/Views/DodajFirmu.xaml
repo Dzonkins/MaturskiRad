@@ -1,0 +1,423 @@
+﻿<UserControl x:Class="ProgramZaRacunovodstvo.Views.DodajFirmu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ProgramZaRacunovodstvo.Views"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             mc:Ignorable="d">
+    <Grid  Width="auto"
+           Height="auto">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1"
+                                 StartPoint="0.5,0">
+                <GradientStop Color="#FF223FFF"
+                              Offset="1" />
+                <GradientStop Color="#FF4FBBFF" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+            <TextBox x:Name="txtImeFirme"
+                     Tag="Ime firme"
+                     Margin="0,0,0,0"
+                     VerticalAlignment="Top"
+                     Height="70"
+                     FontSize="24"
+                     FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                     Foreground="#FF616161"
+                     Text="Ime firme"
+                     VerticalContentAlignment="Center"
+                     BorderThickness="0"
+                     HorizontalAlignment="Center"
+                     Width="470"
+                     GotFocus="TextBox_GotFocus"
+                     LostFocus="TextBox_LostFocus">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect ShadowDepth="10"
+                                                  Direction="320"
+                                                  Color="Gray"
+                                                  Opacity="0.5"
+                                                  BlurRadius="30" />
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+                <TextBox.Template>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="15"
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Padding="10"
+                                Background="#8CFFFFFF">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+            <TextBox x:Name="txtMaticni"
+                     Margin="0,168,0,0"
+                     Tag="Matični broj"
+                     VerticalAlignment="Top"
+                     Height="70"
+                     FontSize="24"
+                     FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                     Foreground="#FF616161"
+                     Text="Matični broj"
+                     VerticalContentAlignment="Center"
+                     BorderThickness="0"
+                     HorizontalAlignment="Center"
+                     Width="470"
+                     GotFocus="TextBox_GotFocus"
+                     LostFocus="TextBox_LostFocus">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect ShadowDepth="10"
+                                                  Direction="320"
+                                                  Color="Gray"
+                                                  Opacity="0.5"
+                                                  BlurRadius="30" />
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+                <TextBox.Template>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="15"
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Padding="10"
+                                Background="#8CFFFFFF">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+            <TextBox x:Name="txtPIB"
+                     Margin="0,84,0,0"
+                     Tag="PIB"
+                     VerticalAlignment="Top"
+                     Height="70"
+                     FontSize="24"
+                     FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                     Foreground="#FF616161"
+                     Text="PIB"
+                     VerticalContentAlignment="Center"
+                     BorderThickness="0"
+                     HorizontalAlignment="Center"
+                     Width="470"
+                     GotFocus="TextBox_GotFocus"
+                     LostFocus="TextBox_LostFocus">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect ShadowDepth="10"
+                                                  Direction="320"
+                                                  Color="Gray"
+                                                  Opacity="0.5"
+                                                  BlurRadius="30" />
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+                <TextBox.Template>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="15"
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Padding="10"
+                                Background="#8CFFFFFF">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+            <TextBox x:Name="txtAdresa"
+                     Margin="0,252,0,0"
+                     VerticalAlignment="Top"
+                     Tag="Adresa sedišta firme"
+                     Height="70"
+                     FontSize="24"
+                     FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                     Foreground="#FF616161"
+                     Text="Adresa sedišta firme"
+                     VerticalContentAlignment="Center"
+                     BorderThickness="0"
+                     HorizontalAlignment="Center"
+                     Width="470"
+                     GotFocus="TextBox_GotFocus"
+                     LostFocus="TextBox_LostFocus">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect ShadowDepth="10"
+                                                  Direction="320"
+                                                  Color="Gray"
+                                                  Opacity="0.5"
+                                                  BlurRadius="30" />
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+                <TextBox.Template>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="15"
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Padding="10"
+                                Background="#8CFFFFFF">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+            <TextBox x:Name="txtGrad"
+                     Margin="0,336,0,0"
+                     VerticalAlignment="Top"
+                     Tag="Grad"
+                     Height="70"
+                     FontSize="24"
+                     FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                     Foreground="#FF616161"
+                     Text="Grad"
+                     VerticalContentAlignment="Center"
+                     BorderThickness="0"
+                     HorizontalAlignment="Center"
+                     Width="470"
+                     GotFocus="TextBox_GotFocus"
+                     LostFocus="TextBox_LostFocus">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect ShadowDepth="10"
+                                                  Direction="320"
+                                                  Color="Gray"
+                                                  Opacity="0.5"
+                                                  BlurRadius="30" />
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+                <TextBox.Template>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="15"
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Padding="10"
+                                Background="#8CFFFFFF">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+            <TextBox x:Name="txtBrojTelefona"
+                     Margin="0,420,0,0"
+                     VerticalAlignment="Top"
+                     Tag="Broj telefona"
+                     Height="70"
+                     FontSize="24"
+                     FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                     Foreground="#FF616161"
+                     Text="Broj telefona"
+                     VerticalContentAlignment="Center"
+                     BorderThickness="0"
+                     HorizontalAlignment="Center"
+                     Width="470"
+                     GotFocus="TextBox_GotFocus"
+                     LostFocus="TextBox_LostFocus"
+                     PreviewTextInput="BrojTelefona">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect ShadowDepth="10"
+                                                  Direction="320"
+                                                  Color="Gray"
+                                                  Opacity="0.5"
+                                                  BlurRadius="30" />
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+                <TextBox.Template>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="15"
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Padding="10"
+                                Background="#8CFFFFFF">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+            <TextBox x:Name="txtZastupnik"
+                     Margin="0,504,0,0"
+                     VerticalAlignment="Top"
+                     Tag="Zastupnik"
+                     Height="70"
+                     FontSize="24"
+                     FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                     Foreground="#FF616161"
+                     Text="Zastupnik"
+                     VerticalContentAlignment="Center"
+                     BorderThickness="0"
+                     HorizontalAlignment="Center"
+                     Width="470"
+                     GotFocus="TextBox_GotFocus"
+                     LostFocus="TextBox_LostFocus">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect ShadowDepth="10"
+                                                  Direction="320"
+                                                  Color="Gray"
+                                                  Opacity="0.5"
+                                                  BlurRadius="30" />
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+                <TextBox.Template>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="15"
+                                BorderThickness="0"
+                                BorderBrush="Transparent"
+                                Padding="10"
+                                Background="#8CFFFFFF">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+            <Button Margin="0,588,0,0"
+                    VerticalAlignment="Top"
+                    Height="70"
+                    Foreground="White"
+                    BorderThickness="0"
+                    FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                    FontSize="30"
+                    HorizontalAlignment="Right"
+                    Width="226"
+                    Click="Nazad">
+                <Button.Effect>
+                    <DropShadowEffect ShadowDepth="10"
+                                      Direction="320"
+                                      Color="Gray"
+                                      Opacity="0.5"
+                                      BlurRadius="30" />
+                </Button.Effect>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background"
+                                Value="Red" />
+                        <Setter Property="Foreground"
+                                Value="White" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="15">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#F73B3B" />
+                                        </Trigger>
+
+                                        <Trigger Property="IsPressed"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#D32F2F" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+                <TextBlock Text="Nazad"
+                           FontSize="30"
+                           FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center" />
+            </Button>
+            <Button Margin="0,588,0,0"
+                    VerticalAlignment="Top"
+                    Height="70"
+                    BorderThickness="0"
+                    FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                    FontSize="30"
+                    HorizontalAlignment="Left"
+                    Width="226">
+                <Button.Effect>
+                    <DropShadowEffect ShadowDepth="10"
+                                      Direction="320"
+                                      Color="Gray"
+                                      Opacity="0.5"
+                                      BlurRadius="30" />
+                </Button.Effect>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background"
+                                Value="Orange" />
+                        <Setter Property="Foreground"
+                                Value="Black" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="15">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#FFB300" />
+                                        </Trigger>
+
+                                        <Trigger Property="IsPressed"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#CC7700" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+                <TextBlock Text="Dodaj firmu"
+                           FontSize="30"
+                           FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center" />
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,27 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace ProgramZaRacunovodstvo.Views
 {
-    /// <summary>
-    /// Interaction logic for Registracija.xaml
-    /// </summary>
     public partial class Registracija : UserControl
     {
         private MainWindow _mainWindow;
         bool visibleText = false;
+        private bool sifraFokus = false;
 
         public Registracija(MainWindow mainWindow)
         {
@@ -29,6 +18,9 @@ namespace ProgramZaRacunovodstvo.Views
             _mainWindow = mainWindow;
 
             txtPasswordVisible.LostFocus += txtPasswordVisible_LostFocus;
+            txtPasswordVisible.GotFocus += txtPasswordVisible_GotFocus;
+            txtPassword.GotFocus += txtPassword_GotFocus;
+            txtPassword.LostFocus += txtPassword_LostFocus;
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -44,23 +36,25 @@ namespace ProgramZaRacunovodstvo.Views
         private void txtPassword_GotFocus(object sender, RoutedEventArgs e)
         {
             txtPasswordPlaceholder.Visibility = Visibility.Collapsed;
+            sifraFokus = true;
         }
 
         private void txtPassword_LostFocus(object sender, RoutedEventArgs e)
         {
+            sifraFokus = false;
+            LozinkaPlaceholder();
+        }
 
-            if (string.IsNullOrWhiteSpace(txtPassword.Password) && txtPasswordVisible.Visibility == Visibility.Collapsed)
-            {
-                txtPasswordPlaceholder.Visibility = Visibility.Visible;
-            }
+        private void txtPasswordVisible_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtPasswordPlaceholder.Visibility = Visibility.Collapsed;
+            sifraFokus = true;
         }
 
         private void txtPasswordVisible_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtPasswordVisible.Text) && txtPassword.Visibility == Visibility.Collapsed)
-            {
-                txtPasswordPlaceholder.Visibility = Visibility.Visible;
-            }
+            sifraFokus = false;
+            LozinkaPlaceholder();
         }
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -69,21 +63,40 @@ namespace ProgramZaRacunovodstvo.Views
 
             if (textBox != null && string.IsNullOrWhiteSpace(textBox.Text))
             {
-                textBox.Foreground = Brushes.Gray;
+                textBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
                 textBox.Text = textBox.Name.Remove(0, 3);
-
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Nazad(object sender, RoutedEventArgs e)
         {
-            _mainWindow.ShowPrijava();
+            txtIme.Text = "Ime";
+            txtPrezime.Text = "Prezime";
+            txtJMBG.Text = "JMBG";
+            txtGrad.Text = "Grad";
+            txtAdresa.Text = "Adresa";
+            txtEmail.Text = "Email";
+            txtPassword.Password = "";
+            txtPasswordVisible.Text = "";
+            txtIme.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+            txtPrezime.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+            txtJMBG.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+            txtGrad.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+            txtAdresa.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+            txtEmail.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+            txtPassword.Visibility = Visibility.Visible;
+            txtPasswordVisible.Visibility = Visibility.Collapsed;
+            visibleText = false;
 
+            txtPasswordPlaceholder.Visibility = Visibility.Visible;
+            _mainWindow.ShowPrijava();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (!visibleText)
+            visibleText = !visibleText;
+
+            if (visibleText)
             {
                 txtPasswordVisible.Text = txtPassword.Password;
                 txtPasswordVisible.Visibility = Visibility.Visible;
@@ -98,7 +111,15 @@ namespace ProgramZaRacunovodstvo.Views
                 txtPassword.Focus();
             }
 
-            if (string.IsNullOrWhiteSpace(txtPassword.Password) && string.IsNullOrWhiteSpace(txtPasswordVisible.Text))
+            Dispatcher.Invoke(() =>
+            {
+                LozinkaPlaceholder();
+            }, DispatcherPriority.Render);
+        }
+
+        private void LozinkaPlaceholder()
+        {
+            if (!sifraFokus && string.IsNullOrWhiteSpace(visibleText ? txtPasswordVisible.Text : txtPassword.Password))
             {
                 txtPasswordPlaceholder.Visibility = Visibility.Visible;
             }
@@ -106,8 +127,39 @@ namespace ProgramZaRacunovodstvo.Views
             {
                 txtPasswordPlaceholder.Visibility = Visibility.Collapsed;
             }
+        }
 
-            visibleText = !visibleText;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtEmail.Text) || txtEmail.Text == "Email" || string.IsNullOrEmpty(txtPassword.Password))
+            {
+                greska.Visibility = Visibility.Visible;
+                greska.Text = "Molimo vas popunite sva polja";
+            }
+            else
+            {
+                txtIme.Text = "Ime";
+                txtPrezime.Text = "Prezime";
+                txtJMBG.Text = "JMBG";
+                txtGrad.Text = "Grad";
+                txtAdresa.Text = "Adresa";
+                txtEmail.Text = "Email";
+                txtPassword.Password = "";
+                txtPasswordVisible.Text = "";
+                txtIme.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+                txtPrezime.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+                txtJMBG.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+                txtGrad.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+                txtAdresa.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+                txtEmail.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+                txtPassword.Visibility = Visibility.Visible;
+                txtPasswordVisible.Visibility = Visibility.Collapsed;
+                visibleText = false;
+
+                txtPasswordPlaceholder.Visibility = Visibility.Visible;
+                greska.Visibility = Visibility.Hidden;
+                _mainWindow.ShowPrijava();
+            }
         }
     }
 }

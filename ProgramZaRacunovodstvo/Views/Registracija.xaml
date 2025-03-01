@@ -26,15 +26,15 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Button 
-                    Margin="0,543,0,0"
+                    Margin="0,550,0,0"
                     VerticalAlignment="Top"
                     Height="70"
-                    Background="Orange"
                     BorderThickness="0"
                     FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                     FontSize="30"
                     HorizontalAlignment="Center"
-                    Width="470">
+                    Width="470"
+                    Click="Button_Click">
                 <Button.Effect>
                     <DropShadowEffect ShadowDepth="10"
                                       Direction="320"
@@ -42,17 +42,40 @@
                                       Opacity="0.5"
                                       BlurRadius="30" />
                 </Button.Effect>
-                <Button.Template>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}"
-                                CornerRadius="15"
-                                Padding="10"
-                                BorderThickness="0">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background"
+                                Value="Orange" />
+                        <Setter Property="Foreground"
+                                Value="Black" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="15">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#FFB300" />
+                                        </Trigger>
+
+                                        <Trigger Property="IsPressed"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#CC7700" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
                 <TextBlock Text="Kreiraj nalog"
                            FontSize="30"
                            FontFamily="pack://application:,,,/Fonts/#Poppins Light"
@@ -74,7 +97,7 @@
                          Width="470"
                          FontSize="24"
                          FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                         Foreground="#FF616161"
+                         Foreground="Black"
                          VerticalContentAlignment="Center"
                          BorderThickness="0"
                          Background="#8CFFFFFF"
@@ -120,7 +143,7 @@
                      Height="70"
                      FontSize="24"
                      FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                     Foreground="#FF616161"
+                     Foreground="Black"
                      VerticalContentAlignment="Center"
                      BorderThickness="0"
                      Grid.Column="1"
@@ -419,14 +442,14 @@
                     </ControlTemplate>
                 </TextBox.Template>
             </TextBox>
-            <Button Margin="0,636,0,33"
+            <Button Margin="0,643,0,33"
                     Foreground="White"
                     BorderThickness="0"
                     FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                     FontSize="30"
                     HorizontalAlignment="Center"
                     Width="470"
-                    Click="Button_Click"
+                    Click="Nazad"
                     Height="70">
                 <Button.Effect>
                     <DropShadowEffect ShadowDepth="10"
@@ -477,8 +500,14 @@
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center" />
             </Button>
-
-
+            <TextBlock Name="greska"
+                       Text="Netačan email ili lozinka"
+                       FontSize="18"
+                       Foreground="Red"
+                       Visibility="Collapsed"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Margin="0,323,0,0" />
         </Grid>
     </Grid>
 </UserControl>

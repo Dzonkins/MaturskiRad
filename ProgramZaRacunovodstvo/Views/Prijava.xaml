@@ -24,7 +24,6 @@
                        VerticalAlignment="Top"
                        Height="70"
                        Width="470"
-                       Background="Orange"
                        BorderThickness="0"
                        FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                        FontSize="30"
@@ -38,6 +37,40 @@
                                       Opacity="0.5"
                                       BlurRadius="30" />
                 </ui:Button.Effect>
+                <ui:Button.Style>
+                    <Style TargetType="ui:Button">
+                        <Setter Property="Background"
+                                Value="Orange" />
+                        <Setter Property="Foreground"
+                                Value="Black" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="15">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#FFB300" />
+                                        </Trigger>
+
+                                        <Trigger Property="IsPressed"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#CC7700" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ui:Button.Style>
                 <TextBlock Text="Registruj Se"
                            FontSize="30"
                            FontFamily="pack://application:,,,/Fonts/#Poppins Light"
@@ -56,26 +89,61 @@
                        VerticalAlignment="Top"
                        Height="70"
                        Width="470"
-                       Background="Orange"
                        BorderThickness="0"
                        FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                        FontSize="30"
                        Click="PrijaviSe"
                        CornerRadius="15"
                        Padding="10">
-                <ui:Button.Effect>
+                <Button.Effect>
                     <DropShadowEffect ShadowDepth="10"
                                       Direction="320"
                                       Color="Gray"
                                       Opacity="0.5"
                                       BlurRadius="30" />
-                </ui:Button.Effect>
+                </Button.Effect>
+                <ui:Button.Style>
+                    <Style TargetType="ui:Button">
+                        <Setter Property="Background"
+                                Value="Orange" />
+                        <Setter Property="Foreground"
+                                Value="Black" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="15">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#FFB300" />
+                                        </Trigger>
+
+                                        <Trigger Property="IsPressed"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#CC7700" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ui:Button.Style>
                 <TextBlock Text="Prijavi Se"
                            FontSize="30"
                            FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                            VerticalAlignment="Center"
-                           HorizontalAlignment="Center" />
+                           HorizontalAlignment="Center"
+                           Foreground="Black" />
             </ui:Button>
+
 
             <TextBlock Name="txtPasswordPlaceholder"
                        Text="Lozinka"
@@ -221,11 +289,14 @@
                    Width="120"
                    Height="120"
                    VerticalAlignment="Top" />
-            <TextBlock Text="Netačan email ili lozinka"
+            <TextBlock Name="greska"
+                       Text="Netačan email ili lozinka"
                        FontSize="18"
                        Foreground="Red"
                        Visibility="Collapsed"
-                       VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,155,0,0"></TextBlock>
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Margin="0,155,0,0" />
             <ui:Button Width="46"
                        Height="32"
                        Margin="447,294,52,239"
