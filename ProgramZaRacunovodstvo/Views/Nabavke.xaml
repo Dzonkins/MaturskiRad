@@ -272,22 +272,6 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
 
-                    <DataGridTextColumn Header="Tip fakture"
-                                        Binding="{Binding TipFakture}"
-                                        Width="*"
-                                        MinWidth="100">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextAlignment"
-                                        Value="Center" />
-                                <Setter Property="HorizontalAlignment"
-                                        Value="Center" />
-                                <Setter Property="Padding"
-                                        Value="10" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
-
                     <DataGridTextColumn Header="Status"
                                         Binding="{Binding Status}"
                                         Width="*"

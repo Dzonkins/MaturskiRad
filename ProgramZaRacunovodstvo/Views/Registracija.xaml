@@ -34,7 +34,7 @@
                     FontSize="30"
                     HorizontalAlignment="Center"
                     Width="470"
-                    Click="Button_Click">
+                    Click="KreirajNalog">
                 <Button.Effect>
                     <DropShadowEffect ShadowDepth="10"
                                       Direction="320"
@@ -228,7 +228,7 @@
                     VerticalAlignment="Top"
                     Background="{x:Null}"
                     BorderThickness="0"
-                    Click="Button_Click_1">
+                    Click="PrikaziSifru">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="Transparent"

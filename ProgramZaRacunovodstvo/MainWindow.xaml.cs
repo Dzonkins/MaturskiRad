@@ -106,6 +106,9 @@ namespace ProgramZaRacunovodstvo
                     case "Prodaja":
                         NavigateTo(new Views.Prodaja());
                         break;
+                    case "Pravna lica":
+                        NavigateTo(new Views.PravnaLica());
+                        break;
                     case "IzlogujSe":
                         OverlayContainer.Visibility = Visibility.Visible;
                         MainLayout.Visibility = Visibility.Collapsed;

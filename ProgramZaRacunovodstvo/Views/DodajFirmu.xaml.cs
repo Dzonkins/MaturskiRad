@@ -59,6 +59,21 @@ namespace ProgramZaRacunovodstvo.Views
 
         private void Nazad(object sender, RoutedEventArgs e)
         {
+            txtImeFirme.Text = "Ime firme";
+            txtPIB.Text = "PIB";
+            txtMaticni.Text = "Matični broj";
+            txtGrad.Text = "Grad";
+            txtAdresa.Text = "Adresa sedišta firme";
+            txtGrad.Text = "Grad";
+            txtBrojZiroRacuna.Text = "broj žiro računa";
+            txtZastupnik.Text = "Zastupnik";
+            txtImeFirme.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+            txtPIB.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+            txtMaticni.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+            txtGrad.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+            txtAdresa.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+            txtBrojZiroRacuna.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+            txtZastupnik.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
             _mainWindow.ShowIzborFirme();
         }
     }

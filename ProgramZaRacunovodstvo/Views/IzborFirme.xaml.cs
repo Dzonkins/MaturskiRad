@@ -167,7 +167,7 @@ namespace ProgramZaRacunovodstvo
 
 
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Nazad(object sender, RoutedEventArgs e)
         {
             _mainWindow.ShowPrijava();
 

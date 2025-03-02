@@ -261,18 +261,18 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Image Source="slike/pravnalica.png"
+                        <Image Source="slike/info.png"
                                Width="30"
                                Height="30"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Left"
-                               Margin="-25,0,0,0"
+                               Margin="-32,0,0,0"
                                Grid.Column="0" />
                         <TextBlock Text="O firmi"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Right"
                                    Grid.Column="1"
-                                   Margin="15,0,38,0"
+                                   Margin="10,0,33,0"
                                    FontSize="20"
                                    FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
                     </Grid>

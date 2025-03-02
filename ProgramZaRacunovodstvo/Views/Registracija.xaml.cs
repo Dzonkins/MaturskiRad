@@ -92,7 +92,7 @@ namespace ProgramZaRacunovodstvo.Views
             _mainWindow.ShowPrijava();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void PrikaziSifru(object sender, RoutedEventArgs e)
         {
             visibleText = !visibleText;
 
@@ -129,7 +129,7 @@ namespace ProgramZaRacunovodstvo.Views
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void KreirajNalog(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(txtEmail.Text) || txtEmail.Text == "Email" || string.IsNullOrEmpty(txtPassword.Password))
             {

@@ -8,9 +8,7 @@ namespace ProgramZaRacunovodstvo.Models
 {
     public class Nabavka
     {
-        public int ID { get; set; }
         public string BrojFakture { get; set; } = string.Empty;
-        public string TipFakture { get; set; } = string.Empty;
         public string Status { get; set; } = string.Empty;
         public string Dobavljac { get; set; } = string.Empty;
         public double Osnovica { get; set; }

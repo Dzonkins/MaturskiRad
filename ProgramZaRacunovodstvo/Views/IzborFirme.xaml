@@ -102,7 +102,7 @@
                        BorderThickness="0"
                        FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                        FontSize="30"
-                       Click="Button_Click_1"
+                       Click="Nazad"
                        CornerRadius="15">
                 <ui:Button.Effect>
                     <DropShadowEffect ShadowDepth="10"

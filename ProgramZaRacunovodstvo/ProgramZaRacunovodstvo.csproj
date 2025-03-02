@@ -31,6 +31,7 @@
     <None Remove="slike\detalji.png" />
     <None Remove="slike\firma.png" />
     <None Remove="slike\icons8-company-64.png" />
+    <None Remove="slike\info.png" />
     <None Remove="slike\izbrisi.png" />
     <None Remove="slike\izmeni.png" />
     <None Remove="slike\izvod.png" />
@@ -113,6 +114,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="slike\firma.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="slike\info.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="slike\izbrisi.png">
