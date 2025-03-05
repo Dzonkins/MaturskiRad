@@ -51,7 +51,7 @@ namespace ProgramZaRacunovodstvo.Views
             }
         }
 
-        private void BrojZiroRacuna(object sender, TextCompositionEventArgs e)
+        private void BrojCheck(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);

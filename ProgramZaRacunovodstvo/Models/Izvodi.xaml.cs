@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProgramZaRacunovodstvo.Models
 {
-    internal class Izvodi
+    internal class Izvod
     {
         public string BrojFakture { get; set; } = string.Empty;
+        public string TipFakture { get; set; } = string.Empty;
         public string Status { get; set; } = string.Empty;
         public string PravnoLice { get; set; } = string.Empty;
         public double Osnovica { get; set; }

@@ -27,10 +27,11 @@ namespace ProgramZaRacunovodstvo
 
         private MainWindow _mainWindow;
 
-        public IzborFirme(MainWindow mainWindow)
+        public IzborFirme(MainWindow mainWindow, string? ime = null)
         {
             InitializeComponent();
             _mainWindow = mainWindow;
+            _mainWindow.ImeKorisnika.Text = ime;
             UcitajFirme();
 
         }
@@ -42,7 +43,6 @@ namespace ProgramZaRacunovodstvo
             _mainWindow.MainLayout.Visibility = Visibility.Visible;
             _mainWindow.Title = "Početna";
             _mainWindow.NavigateTo(new GlavnaStrana(_mainWindow));
-
             var pocetnaButton = MainWindow.nadjiSveElemente<Button>(_mainWindow)
                               .FirstOrDefault(b => b.Tag as string == "Pocetna");
 

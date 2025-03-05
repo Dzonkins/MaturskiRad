@@ -13,6 +13,12 @@
     <Compile Update="Views\IzborFirme.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Izvodi.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\KreirajNabavku.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Nabavke.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -40,6 +46,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Izvodi.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\KreirajNabavku.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Nabavke.xaml">

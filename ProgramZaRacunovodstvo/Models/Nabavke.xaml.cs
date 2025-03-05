@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgramZaRacunovodstvo.Models
 {
-    public class Nabavka
+    internal class Nabavka
     {
         public string BrojFakture { get; set; } = string.Empty;
         public string Status { get; set; } = string.Empty;

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 
@@ -11,6 +13,8 @@ namespace ProgramZaRacunovodstvo.Views
         private MainWindow _mainWindow;
         bool visibleText = false;
         private bool sifraFokus = false;
+        private readonly DatabaseKomande _database = new DatabaseKomande();
+
 
         public Registracija(MainWindow mainWindow)
         {
@@ -129,8 +133,16 @@ namespace ProgramZaRacunovodstvo.Views
             }
         }
 
+
+
         private void KreirajNalog(object sender, RoutedEventArgs e)
         {
+            int jmbg;
+            if (!int.TryParse(txtJMBG.Text, out jmbg))
+            {
+                return;
+            }
+
             if (string.IsNullOrEmpty(txtEmail.Text) || txtEmail.Text == "Email" || string.IsNullOrEmpty(txtPassword.Password))
             {
                 greska.Visibility = Visibility.Visible;
@@ -138,6 +150,7 @@ namespace ProgramZaRacunovodstvo.Views
             }
             else
             {
+                _database.RegistrujSe(txtIme.Text, txtPrezime.Text, jmbg, txtGrad.Text, txtAdresa.Text, txtEmail.Text, txtPassword.Password);
                 txtIme.Text = "Ime";
                 txtPrezime.Text = "Prezime";
                 txtJMBG.Text = "JMBG";
@@ -159,7 +172,15 @@ namespace ProgramZaRacunovodstvo.Views
                 txtPasswordPlaceholder.Visibility = Visibility.Visible;
                 greska.Visibility = Visibility.Hidden;
                 _mainWindow.ShowPrijava();
+
+              
             }
+        }
+
+        private void BrojCheck(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

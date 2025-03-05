@@ -157,6 +157,10 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Database\" />
+  </ItemGroup>
+
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="xcopy &quot;$(ProjectDir)Fonts\*.*&quot; &quot;$(TargetDir)Fonts\&quot; /Y /E" />
   </Target>

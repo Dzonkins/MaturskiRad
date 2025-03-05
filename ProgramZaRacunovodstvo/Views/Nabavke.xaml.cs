@@ -22,8 +22,11 @@ namespace ProgramZaRacunovodstvo.Views
     /// </summary>
     public partial class Nabavke : UserControl
     {
-        public Nabavke()
+        private MainWindow _mainWindow;
+
+        public Nabavke(MainWindow mainWindow)
         {
+            _mainWindow = mainWindow;
             InitializeComponent();
         }
 
@@ -58,6 +61,11 @@ namespace ProgramZaRacunovodstvo.Views
 
 
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.NavigateTo(new Views.KreirajNabavku());
         }
     }
 }

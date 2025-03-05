@@ -72,6 +72,7 @@
                      BorderThickness="0"
                      HorizontalAlignment="Center"
                      Width="470"
+                     PreviewTextInput="BrojCheck"
                      GotFocus="TextBox_GotFocus"
                      LostFocus="TextBox_LostFocus">
                 <TextBox.Style>
@@ -113,6 +114,7 @@
                      BorderThickness="0"
                      HorizontalAlignment="Center"
                      Width="470"
+                     PreviewTextInput="BrojCheck"
                      GotFocus="TextBox_GotFocus"
                      LostFocus="TextBox_LostFocus">
                 <TextBox.Style>
@@ -238,7 +240,7 @@
                      Width="470"
                      GotFocus="TextBox_GotFocus"
                      LostFocus="TextBox_LostFocus"
-                     PreviewTextInput="BrojZiroRacuna">
+                     PreviewTextInput="BrojCheck">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="Effect">

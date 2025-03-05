@@ -372,51 +372,6 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal"
                                             HorizontalAlignment="Center">
-                                    <Button Command="{Binding Izmeni}"
-                                            Width="40"
-                                            Height="30"
-                                            BorderThickness="0"
-                                            Foreground="White"
-                                            Cursor="Hand"
-                                            Margin="0,0,10,0"
-                                            Padding="0">
-                                        <Button.Style>
-                                            <Style TargetType="Button">
-                                                <Setter Property="Background"
-                                                        Value="#4CAF50" />
-                                                <Setter Property="Template">
-                                                    <Setter.Value>
-                                                        <ControlTemplate TargetType="Button">
-                                                            <Border Background="{TemplateBinding Background}"
-                                                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                                                    CornerRadius="5">
-                                                                <ContentPresenter HorizontalAlignment="Center"
-                                                                                  VerticalAlignment="Center" />
-                                                            </Border>
-                                                            <ControlTemplate.Triggers>
-                                                                <Trigger Property="IsMouseOver"
-                                                                         Value="True">
-                                                                    <Setter Property="Background"
-                                                                            Value="#81C784" />
-                                                                </Trigger>
-                                                                <Trigger Property="IsPressed"
-                                                                         Value="True">
-                                                                    <Setter Property="Background"
-                                                                            Value="#388E3C" />
-                                                                </Trigger>
-                                                            </ControlTemplate.Triggers>
-                                                        </ControlTemplate>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </Style>
-                                        </Button.Style>
-                                        <Image Source="/slike/izmeni.png"
-                                               Width="25"
-                                               Height="20"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" />
-                                    </Button>
                                     <Button Command="{Binding Izbrisi}"
                                             Width="40"
                                             Height="30"

@@ -36,6 +36,9 @@ namespace ProgramZaRacunovodstvo
             _IzborFirme = new IzborFirme(this);
             _registracija = new Registracija(this);
             _dodajFirmu = new DodajFirmu(this);
+            var dbInitializer = new DatabaseInitialize();
+            dbInitializer.InitializeDatabase();
+
         }
 
         public void ShowPrijava()
@@ -44,10 +47,11 @@ namespace ProgramZaRacunovodstvo
             this.Title = "Prijava";
         }
 
-        public void ShowIzborFirme()
+        public void ShowIzborFirme(string? ime = null)
         {
             ShowOverlay(_IzborFirme);
             this.Title = "Izbor Firme";
+            MainContent.Content = new IzborFirme(this, ime);
         }
 
         public void ShowRegistracija()
@@ -101,10 +105,13 @@ namespace ProgramZaRacunovodstvo
                         break;
                    case "Nabavke":
                         this.Title = "Nabavke";
-                        NavigateTo(new Nabavke());
+                        NavigateTo(new Nabavke(this));
                         break;
                     case "Prodaja":
                         NavigateTo(new Views.Prodaja());
+                        break;
+                    case "Izvodi":
+                        NavigateTo(new Views.Izvodi());
                         break;
                     case "Pravna lica":
                         NavigateTo(new Views.PravnaLica());

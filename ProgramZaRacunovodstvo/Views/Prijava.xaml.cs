@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -11,6 +12,7 @@ namespace ProgramZaRacunovodstvo
         private MainWindow _mainWindow;
         bool visibleText = false;
         private bool sifraFokus = false;
+        private readonly DatabaseKomande _database = new DatabaseKomande();
 
         public Prijava(MainWindow mainWindow)
         {
@@ -23,6 +25,7 @@ namespace ProgramZaRacunovodstvo
             txtPassword.LostFocus += txtPassword_LostFocus;
         }
 
+        public string? ime { get; set; }
         private void PrijaviSe(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(txtEmail.Text) || txtEmail.Text == "Email" || string.IsNullOrEmpty(txtPassword.Password))
@@ -32,8 +35,21 @@ namespace ProgramZaRacunovodstvo
             }
             else
             {
-                greska.Visibility = Visibility.Hidden;
-                _mainWindow.ShowIzborFirme();
+                greska.Visibility= Visibility.Collapsed;
+                bool prijavljen = _database.ProveraPrijava(txtEmail.Text, txtPassword.Password);
+                if (prijavljen)
+                {
+                    ime = _database.NadjiIme(txtEmail.Text);
+                    greska.Visibility = Visibility.Hidden;
+                    _mainWindow.ShowIzborFirme(ime);
+                }
+                else
+                {
+                    greska.Text = "Netačan email ili lozinka";
+                    greska.Visibility = Visibility.Visible;
+
+                }
+
             }
         }
 

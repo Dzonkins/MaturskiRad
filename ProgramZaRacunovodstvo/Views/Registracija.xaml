@@ -334,6 +334,7 @@
                      BorderThickness="0"
                      HorizontalAlignment="Center"
                      Width="470"
+                     PreviewTextInput="BrojCheck"
                      GotFocus="TextBox_GotFocus"
                      LostFocus="TextBox_LostFocus">
                 <TextBox.Style>
