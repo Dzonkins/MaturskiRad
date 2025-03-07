@@ -323,6 +323,7 @@
                 </TextBox.Template>
             </TextBox>
             <TextBox x:Name="txtJMBG"
+                     MaxLength="13"
                      Margin="0,115,0,0"
                      VerticalAlignment="Top"
                      Height="70"

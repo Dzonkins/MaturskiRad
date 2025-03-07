@@ -4,9 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-             xmlns:local="clr-namespace:ProgramZaRacunovodstvo.Views"
+             xmlns:local="clr-namespace:ProgramZaRacunovodstvo.ViewModels"
              mc:Ignorable="d" 
+             
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <local:KreirajNabavkuViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <local:DatumConverter x:Key="DatumConverter" />
+    </UserControl.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
@@ -16,6 +23,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
+            
         </Grid.ColumnDefinitions>
         <TextBlock Text="Kreiraj dokument"
                    FontFamily="pack://application:,,,/Fonts/#Poppins Light"
@@ -48,7 +56,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Name="DatumTextbox"
-                           Text="Datum slanja"
+                           Text="{Binding Date, StringFormat='{}{0:d}', FallbackValue='Datum slanja', Converter={StaticResource DatumConverter}, ConverterParameter=start}"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Left"
                            Margin="0,0,5,0"
@@ -104,7 +112,9 @@
                 Foreground="White"
                 Content="Dodaj dokumente"
                 FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                FontSize="15">
+                FontSize="15"
+                Command="{Binding AddFilesCommand}"
+                Click="DodajDokument">
             <Button.Effect>
                 <DropShadowEffect ShadowDepth="10"
                                   Direction="320"
@@ -144,11 +154,108 @@
                 </Style>
             </Button.Style>
         </Button>
+        <DataGrid Name="fajlovi"
+                  Grid.ColumnSpan="2"
+                  Grid.Row="1"
+                  IsReadOnly="True"
+                  VerticalAlignment="Top"
+                  HorizontalAlignment="Left"
+                  AutoGenerateColumns="False"
+                  Height="150"
+                  ScrollViewer.CanContentScroll="False"
+                  ItemsSource="{Binding SelectedFiles}"
+                  Margin="580,00,20,20">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background"
+                            Value="#FF4F72FF" />
+                    <Setter Property="Foreground"
+                            Value="White" />
+                    <Setter Property="FontWeight"
+                            Value="Bold" />
+                    <Setter Property="Padding"
+                            Value="10" />
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Center" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="DataGridColumnHeader">
+                                <Border Background="{TemplateBinding Background}"
+                                        Padding="10"
+                                        BorderThickness="0">
+                                    <ContentPresenter HorizontalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Visibility"
+                            Value="Collapsed" />
+                </Style>
+
+                <Style TargetType="DataGridRow">
+                    <Setter Property="MinHeight"
+                            Value="50" />
+                    <Setter Property="Background"
+                            Value="White" />
+                    <Setter Property="BorderBrush"
+                            Value="Transparent" />
+                    <Setter Property="OverridesDefaultStyle"
+                            Value="False" />
+                </Style>
+
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Background"
+                            Value="Transparent" />
+                    <Setter Property="BorderBrush"
+                            Value="Transparent" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    Value="Transparent" />
+                            <Setter Property="Foreground"
+                                    Value="Black" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Slika"
+                                        Width="Auto"
+                                        MinWidth="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="/slike/file.png"
+                                   Width="50"
+                                   Height="50" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="Ime fajla"
+                                    Width="Auto"
+                                    MinWidth="50"
+                                    Binding="{Binding imeFajla}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment"
+                                    Value="Center" />
+                            <Setter Property="HorizontalAlignment"
+                                    Value="Center" />
+                            <Setter Property="Padding"
+                                    Value="10" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
         <Border CornerRadius="20"
                 Padding="0"
                 Background="White"
                 Grid.Row="1"
-                Margin="20,200,20,60"
+                Margin="20,170,20,60"
                 Grid.ColumnSpan="2">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="10"
@@ -157,9 +264,11 @@
                                   Opacity="0.5"
                                   BlurRadius="30" />
             </Border.Effect>
-            <DataGrid Name="NabavkeDataGrid"
+       
+            <DataGrid Name="StavkeDataGrid"
                       AutoGenerateColumns="False"
                       CanUserAddRows="False"
+                      SizeChanged="DataGrid_promenjeneDimenzije"
                       Background="Transparent"
                       CanUserResizeRows="False"
                       GridLinesVisibility="None"
@@ -171,20 +280,21 @@
                       FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                       HorizontalGridLinesBrush="Transparent"
                       VerticalGridLinesBrush="Transparent"
-                      ItemsSource="{Binding PagedNabavke}"
+                      ItemsSource="{Binding Stavke}"
                       Width="auto"
                       Grid.Row="1"
                       Grid.Column="0"
-                      HorizontalAlignment="Center"
+                      HorizontalAlignment="Stretch"
+                      ScrollViewer.CanContentScroll="False"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
 
                 <DataGrid.Resources>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="Background"
-                                Value="#FF4F72FF" />
-                        <Setter Property="Foreground"
                                 Value="White" />
+                        <Setter Property="Foreground"
+                                Value="Black" />
                         <Setter Property="FontWeight"
                                 Value="Bold" />
                         <Setter Property="Padding"
@@ -206,7 +316,7 @@
 
                     <Style TargetType="DataGridRow">
                         <Setter Property="MinHeight"
-                                Value="50" />
+                                Value="48" />
                         <Setter Property="Background"
                                 Value="White" />
                         <Setter Property="BorderBrush"
@@ -236,7 +346,7 @@
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Šifra"
-                                        Binding="{Binding BrojFakture}"
+                                        Binding="{Binding sifra}"
                                         Width="*"
                                         MinWidth="50">
                         <DataGridTextColumn.ElementStyle>
@@ -252,7 +362,7 @@
                     </DataGridTextColumn>
 
                     <DataGridTextColumn Header="Naziv"
-                                        Binding="{Binding Status}"
+                                        Binding="{Binding naziv}"
                                         Width="*"
                                         MinWidth="80">
                         <DataGridTextColumn.ElementStyle>
@@ -268,7 +378,7 @@
                     </DataGridTextColumn>
 
                     <DataGridTextColumn Header="Količina"
-                                        Binding="{Binding Dobavljac}"
+                                        Binding="{Binding kolicina}"
                                         Width="*"
                                         MinWidth="80">
                         <DataGridTextColumn.ElementStyle>
@@ -284,7 +394,7 @@
                     </DataGridTextColumn>
 
                     <DataGridTextColumn Header="Cena"
-                                        Binding="{Binding OsnovicaRSD}"
+                                        Binding="{Binding cenaRSD}"
                                         Width="*"
                                         MinWidth="80">
                         <DataGridTextColumn.ElementStyle>
@@ -300,7 +410,7 @@
                     </DataGridTextColumn>
 
                     <DataGridTextColumn Header="Iznos bez PDV"
-                                        Binding="{Binding PdvRSD}"
+                                        Binding="{Binding osnovicaRSD}"
                                         Width="*"
                                         MinWidth="80">
                         <DataGridTextColumn.ElementStyle>
@@ -316,7 +426,7 @@
                     </DataGridTextColumn>
 
                     <DataGridTextColumn Header="PDV %"
-                                        Binding="{Binding UkupnoRSD}"
+                                        Binding="{Binding pdvposto}"
                                         Width="*"
                                         MinWidth="100">
                         <DataGridTextColumn.ElementStyle>
@@ -332,7 +442,7 @@
                     </DataGridTextColumn>
 
                     <DataGridTextColumn Header="Iznos sa PDV"
-                                        Binding="{Binding DatumSlanja, StringFormat=\{0:dd.MM.yyyy\}}"
+                                        Binding="{Binding ukupnoRSD}"
                                         Width="*"
                                         MinWidth="100">
                         <DataGridTextColumn.ElementStyle>
@@ -347,18 +457,20 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTemplateColumn Header="Akcije"
+                                            MinWidth="120"
                                             Width="Auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal"
                                             HorizontalAlignment="Center">
-                                    <Button Command="{Binding Izbrisi}"
-                                            Width="40"
+                                    <Button Width="40"
                                             Height="30"
                                             BorderThickness="0"
                                             Foreground="White"
                                             Cursor="Hand"
-                                            Margin="0,0,10,0">
+                                            Margin="0,0,10,0"
+                                            Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}">
                                         <Button.Style>
                                             <Style TargetType="Button">
                                                 <Setter Property="Background"
@@ -423,7 +535,9 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     PlaceholderText="Šifra"
-                    Margin="20,0,0,0"></ui:TextBox>
+                    Margin="20,0,0,0"
+                    Text="{Binding Sifra}"
+                    PreviewTextInput="BrojCheck"></ui:TextBox>
         <ui:TextBox Grid.Row="2"
                     Grid.ColumnSpan="2"
                     MinHeight="40"
@@ -432,7 +546,8 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     PlaceholderText="Naziv"
-                    Margin="120,0,0,0"></ui:TextBox>
+                    Margin="120,0,0,0"
+                    Text="{Binding Naziv}"></ui:TextBox>
         <ui:TextBox Grid.Row="2"
                     Grid.ColumnSpan="2"
                     MinHeight="40"
@@ -441,7 +556,9 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     PlaceholderText="Količina"
-                    Margin="230,0,0,0"></ui:TextBox>
+                    Margin="230,0,0,0"
+                    Text="{Binding Kolicina}"
+                    PreviewTextInput="BrojCheck"></ui:TextBox>
         <ui:TextBox Grid.Row="2"
                     Grid.ColumnSpan="2"
                     MinHeight="40"
@@ -450,7 +567,9 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     PlaceholderText="Cena"
-                    Margin="310,0,0,0"></ui:TextBox>
+                    Margin="310,0,0,0"
+                    Text="{Binding Cena}"
+                    PreviewTextInput="BrojCheck"></ui:TextBox>
         <ui:TextBox Grid.Row="2"
                     Grid.ColumnSpan="2"
                     MinHeight="40"
@@ -460,7 +579,8 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     PlaceholderText="Iznos bez PDV"
-                    Margin="415,0,0,0"></ui:TextBox>
+                    Margin="415,0,0,0"
+                    Text="{Binding IznosbezPDV}"></ui:TextBox>
         <ui:TextBox Grid.Row="2"
                     Grid.ColumnSpan="2"
                     MinHeight="40"
@@ -469,7 +589,9 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     PlaceholderText="PDV %"
-                    Margin="540,0,0,0"></ui:TextBox>
+                    Margin="540,0,0,0"
+                    Text="{Binding PDVPosto}"
+                    PreviewTextInput="BrojCheck"></ui:TextBox>
         <ui:TextBox Grid.Row="2"
                     Grid.ColumnSpan="2"
                     MinHeight="40"
@@ -479,7 +601,8 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     PlaceholderText="Iznos sa PDV"
-                    Margin="615,0,0,0"></ui:TextBox>
+                    Margin="615,0,0,0"
+                    Text="{Binding Ukupno}"></ui:TextBox>
         <Button Grid.ColumnSpan="2"
                 Grid.Row="2"
                 Width="160"
@@ -491,7 +614,8 @@
                 Foreground="White"
                 Content="Dodaj novu stavku"
                 FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                FontSize="15">
+                FontSize="15"
+                Command="{Binding AddStavkaCommand}">
             <Button.Effect>
                 <DropShadowEffect ShadowDepth="10"
                                   Direction="320"
@@ -533,18 +657,122 @@
         </Button>
         <TextBlock FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                    FontSize="23"
-                   Text="Iznos pre PDV: 0 RSD" Grid.Row="2" Grid.ColumnSpan="2" Margin="20,80,0,0"></TextBlock>
+                   Text="{Binding UkupnoOsnovica, StringFormat= 'Iznos pre PDV: {0:F2} RSD'}" Grid.Row="2" Grid.ColumnSpan="2" Margin="20,80,0,0"></TextBlock>
         <TextBlock FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                    FontSize="23"
-                   Text="PDV iznos: 0 RSD"
+                   Text="{Binding ukupnoPDV, StringFormat= 'PDV iznos: {0:F2} RSD'}"
                    Grid.Row="2"
                    Grid.ColumnSpan="2"
                    Margin="20,130,0,0"></TextBlock>
         <TextBlock FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                    FontSize="23"
-                   Text="Ukupan iznos: 0 RSD"
+                   Text="{Binding UkupnoUkupno, StringFormat= 'Ukupan iznos: {0:F2} RSD'}"
                    Grid.Row="2"
                    Grid.ColumnSpan="2"
                    Margin="20,180,0,0"></TextBlock>
+        <Button Grid.ColumnSpan="2"
+                Grid.Column="0"
+                Grid.Row="2"
+                Width="220"
+                Height="40"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Margin="-260,180,20,20"
+                BorderThickness="0"
+                Foreground="White"
+                Content="Sačuvaj"
+                FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                FontSize="15">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="10"
+                                  Direction="320"
+                                  Color="Gray"
+                                  Opacity="0.5"
+                                  BlurRadius="30" />
+            </Button.Effect>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background"
+                            Value="#4CAF50" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="13">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver"
+                                             Value="True">
+                                        <Setter Property="Background"
+                                                Value="#81C784" />
+                                    </Trigger>
+                                    <Trigger Property="IsPressed"
+                                             Value="True">
+                                        <Setter Property="Background"
+                                                Value="#388E3C" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Grid.ColumnSpan="2"
+                Grid.Row="2"
+                Width="220"
+                Height="40"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Margin="240,180,20,20"
+                BorderThickness="0"
+                Foreground="White"
+                Content="Nazad"
+                FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                FontSize="15"
+                Click="Nazad">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="10"
+                                  Direction="320"
+                                  Color="Gray"
+                                  Opacity="0.5"
+                                  BlurRadius="30" />
+            </Button.Effect>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background"
+                            Value="#F44336" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="13">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver"
+                                             Value="True">
+                                        <Setter Property="Background"
+                                                Value="#F88780" />
+                                    </Trigger>
+                                    <Trigger Property="IsPressed"
+                                             Value="True">
+                                        <Setter Property="Background"
+                                                Value="#D32F2F" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </UserControl>

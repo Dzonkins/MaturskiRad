@@ -37,7 +37,7 @@
                 Content="Kreiraj novi dokument"
                 FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                 FontSize="15"
-                Click="Button_Click">
+                Click="KreirajNabavku">
             <Button.Effect>
                 <DropShadowEffect ShadowDepth="10"
                                   Direction="320"

@@ -13,8 +13,8 @@ namespace ProgramZaRacunovodstvo.Models
         public string Dobavljac { get; set; } = string.Empty;
         public double Osnovica { get; set; }
 
-        public double Pdv { get; set; }
-        public double Ukupno { get; set; }
+        public decimal Pdv { get; set; }
+        public decimal Ukupno { get; set; }
         public DateOnly DatumSlanja { get; set; }
 
         public string OsnovicaRSD => $"{Osnovica:N2} RSD";

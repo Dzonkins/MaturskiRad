@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace ProgramZaRacunovodstvo
 {
     public class RelayCommand : ICommand
     {
-        private readonly Action _execute;
-        private readonly Func<bool>? _canExecute;
+        private readonly Action<object> _execute;
+        private readonly Func<object, bool>? _canExecute;
 
-        public RelayCommand(Action execute) : this(execute, null)
+        public RelayCommand(Action<object> execute) : this(execute, null)
         {
         }
 
-        public RelayCommand(Action execute, Func<bool>? canExecute)
+        public RelayCommand(Action<object> execute, Func<object, bool>? canExecute)
         {
             _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
@@ -24,12 +20,12 @@ namespace ProgramZaRacunovodstvo
 
         public bool CanExecute(object? parameter)
         {
-            return _canExecute == null || _canExecute();
+            return _canExecute == null || _canExecute(parameter ?? new object());
         }
 
         public void Execute(object? parameter)
         {
-            _execute();
+            _execute(parameter ?? new object());
         }
 
         public event EventHandler? CanExecuteChanged

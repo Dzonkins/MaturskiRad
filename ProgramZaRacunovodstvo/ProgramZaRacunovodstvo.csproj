@@ -29,6 +29,7 @@
     <None Remove="Fonts\Poppins-ThinItalic.ttf" />
     <None Remove="Fonts\Segoe Fluent Icons.ttf" />
     <None Remove="slike\detalji.png" />
+    <None Remove="slike\file.png" />
     <None Remove="slike\firma.png" />
     <None Remove="slike\icons8-company-64.png" />
     <None Remove="slike\info.png" />
@@ -113,6 +114,9 @@
     <Resource Include="slike\detalji.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="slike\file.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="slike\firma.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -135,9 +139,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="slike\nabavke.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="slike\nazad.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="slike\pocetna.png">

@@ -95,13 +95,14 @@ namespace ProgramZaRacunovodstvo.Views
             txtPasswordPlaceholder.Visibility = Visibility.Visible;
             _mainWindow.ShowPrijava();
         }
-
+        bool passwordVisibilty = false;
         private void PrikaziSifru(object sender, RoutedEventArgs e)
         {
             visibleText = !visibleText;
 
             if (visibleText)
             {
+                passwordVisibilty = true;
                 txtPasswordVisible.Text = txtPassword.Password;
                 txtPasswordVisible.Visibility = Visibility.Visible;
                 txtPassword.Visibility = Visibility.Collapsed;
@@ -109,6 +110,7 @@ namespace ProgramZaRacunovodstvo.Views
             }
             else
             {
+                passwordVisibilty = false;
                 txtPassword.Password = txtPasswordVisible.Text;
                 txtPasswordVisible.Visibility = Visibility.Collapsed;
                 txtPassword.Visibility = Visibility.Visible;
@@ -137,20 +139,25 @@ namespace ProgramZaRacunovodstvo.Views
 
         private void KreirajNalog(object sender, RoutedEventArgs e)
         {
-            int jmbg;
-            if (!int.TryParse(txtJMBG.Text, out jmbg))
-            {
-                return;
-            }
 
-            if (string.IsNullOrEmpty(txtEmail.Text) || txtEmail.Text == "Email" || string.IsNullOrEmpty(txtPassword.Password))
+
+            if (string.IsNullOrEmpty(txtEmail.Text) || txtEmail.Text == "Email" || string.IsNullOrEmpty(txtPassword.Password) || string.IsNullOrEmpty(txtJMBG.Text) || string.IsNullOrEmpty(txtGrad.Text) || string.IsNullOrEmpty(txtAdresa.Text) || string.IsNullOrEmpty(txtIme.Text) || string.IsNullOrEmpty(txtPrezime.Text))
             {
                 greska.Visibility = Visibility.Visible;
                 greska.Text = "Molimo vas popunite sva polja";
             }
             else
             {
-                _database.RegistrujSe(txtIme.Text, txtPrezime.Text, jmbg, txtGrad.Text, txtAdresa.Text, txtEmail.Text, txtPassword.Password);
+                if (passwordVisibilty)
+                {
+                    _database.RegistrujSe(txtIme.Text, txtPrezime.Text, txtJMBG.Text, txtGrad.Text, txtAdresa.Text, txtEmail.Text, txtPasswordVisible.Text);
+
+                }
+                else
+                {
+                    _database.RegistrujSe(txtIme.Text, txtPrezime.Text, txtJMBG.Text, txtGrad.Text, txtAdresa.Text, txtEmail.Text, txtPassword.Password);
+
+                }
                 txtIme.Text = "Ime";
                 txtPrezime.Text = "Prezime";
                 txtJMBG.Text = "JMBG";

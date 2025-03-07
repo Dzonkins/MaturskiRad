@@ -63,9 +63,9 @@ namespace ProgramZaRacunovodstvo.Views
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void KreirajNabavku(object sender, RoutedEventArgs e)
         {
-            _mainWindow.NavigateTo(new Views.KreirajNabavku());
+            _mainWindow.NavigateTo(new Views.KreirajNabavku(_mainWindow));
         }
     }
 }

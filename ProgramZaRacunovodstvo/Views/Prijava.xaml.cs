@@ -28,6 +28,7 @@ namespace ProgramZaRacunovodstvo
         public string? ime { get; set; }
         private void PrijaviSe(object sender, RoutedEventArgs e)
         {
+            bool prijavljen = false;
             if (string.IsNullOrEmpty(txtEmail.Text) || txtEmail.Text == "Email" || string.IsNullOrEmpty(txtPassword.Password))
             {
                 greska.Visibility = Visibility.Visible;
@@ -36,10 +37,24 @@ namespace ProgramZaRacunovodstvo
             else
             {
                 greska.Visibility= Visibility.Collapsed;
-                bool prijavljen = _database.ProveraPrijava(txtEmail.Text, txtPassword.Password);
+                if (passwordVisibilty)
+                {
+                    prijavljen = _database.ProveraPrijava(txtEmail.Text, txtPasswordVisible.Text);
+
+                }
+                else {
+                    prijavljen = _database.ProveraPrijava(txtEmail.Text, txtPassword.Password);
+                }
                 if (prijavljen)
                 {
+                    
+                    txtPassword.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+                    txtPasswordVisible.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+                    txtEmail.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
                     ime = _database.NadjiIme(txtEmail.Text);
+                    txtEmail.Text = "Email";
+                    txtPassword.Password = "";
+                    txtPasswordVisible.Text = "";
                     greska.Visibility = Visibility.Hidden;
                     _mainWindow.ShowIzborFirme(ime);
                 }
@@ -101,13 +116,14 @@ namespace ProgramZaRacunovodstvo
                 textBox.Text = textBox.Name.Remove(0, 3);
             }
         }
-
+        bool passwordVisibilty = false;
         private void prikaziLozinku(object sender, RoutedEventArgs e)
         {
             visibleText = !visibleText;
 
             if (visibleText)
             {
+                passwordVisibilty = true;
                 txtPasswordVisible.Text = txtPassword.Password;
                 txtPasswordVisible.Visibility = Visibility.Visible;
                 txtPassword.Visibility = Visibility.Collapsed;
@@ -115,6 +131,7 @@ namespace ProgramZaRacunovodstvo
             }
             else
             {
+                passwordVisibilty = false;
                 txtPassword.Password = txtPasswordVisible.Text;
                 txtPasswordVisible.Visibility = Visibility.Collapsed;
                 txtPassword.Visibility = Visibility.Visible;

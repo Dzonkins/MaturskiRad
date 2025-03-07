@@ -15,7 +15,7 @@ namespace ProgramZaRacunovodstvo
                                 `Id` INTEGER PRIMARY KEY,
                                 `Ime` TEXT,
                                 `Prezime` TEXT,
-                                `JMBG` INTEGER,
+                                `JMBG` TEXT,
                                 `Grad` TEXT,
                                 `Adresa` TEXT,
                                 `Email` TEXT,

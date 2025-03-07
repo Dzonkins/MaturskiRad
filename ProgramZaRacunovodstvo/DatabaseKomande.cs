@@ -25,7 +25,7 @@ private readonly string _connectionString = "Data Source=baza.db";
             int count = Convert.ToInt32(command.ExecuteScalar());
             return count > 0;
         }
-        public void RegistrujSe(string ime, string prezime, int jmbg, string grad, string adresa, string email, string lozinka)
+        public void RegistrujSe(string ime, string prezime, string jmbg, string grad, string adresa, string email, string lozinka)
         {
             using var connection = new SqliteConnection(_connectionString);
             connection.Open();

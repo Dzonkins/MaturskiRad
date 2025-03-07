@@ -1,7 +1,13 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using ProgramZaRacunovodstvo.Models;
+using ProgramZaRacunovodstvo.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf.Ui.Controls;
 
 namespace ProgramZaRacunovodstvo.Views
 {
@@ -20,11 +27,47 @@ namespace ProgramZaRacunovodstvo.Views
     /// </summary>
     public partial class KreirajNabavku : UserControl
     {
-        public KreirajNabavku()
+        public ObservableCollection<Dokument> SelectedFiles { get; set; }
+        private MainWindow _mainWindow;
+
+        public KreirajNabavku(MainWindow mainWindow)
         {
+            _mainWindow = mainWindow;
             InitializeComponent();
+            SelectedFiles = new ObservableCollection<Dokument>();
         }
 
+        private void DodajDokument(object sender, RoutedEventArgs e)
+        {
+            var dialog = new Microsoft.Win32.OpenFileDialog
+            {
+                Multiselect = true,
+                Filter = "All files (*.*)|*.*"
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                var filePaths = dialog.FileNames;
+                ((KreirajNabavkuViewModel)DataContext).AddFilesCommand.Execute(filePaths);
+            }
+        }
+
+        private async void DataGrid_promenjeneDimenzije(object sender, SizeChangedEventArgs e)
+        {
+            await Task.Delay(200);
+            CollectionViewSource.GetDefaultView(StavkeDataGrid.ItemsSource)?.Refresh();
+        }
+
+        private void BrojCheck(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex(@"^[0-9]*(\.[0-9]*)?$");
+            e.Handled = !regex.IsMatch(e.Text);
+        }
+
+        private void Nazad(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.NavigateTo(new Views.Nabavke(_mainWindow));
+        }
 
     }
 }
