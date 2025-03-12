@@ -19,12 +19,15 @@ namespace ProgramZaRacunovodstvo
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Prijava _prijava;
-        private IzborFirme _IzborFirme;
-        private Registracija _registracija;
-        private DodajFirmu _dodajFirmu;
+        private Prijava? _prijava;
+        private IzborFirme? _IzborFirme;
+        private Registracija? _registracija;
+        private DodajFirmu? _dodajFirmu;
 
         public string? SelectedFirma { get; set; }
+        public int KorisnikId { get; set; }
+        public int FirmaId { get; set; }
+
 
         public MainWindow()
         {
@@ -32,23 +35,19 @@ namespace ProgramZaRacunovodstvo
             this.Title = "Prijava";
             ShowOverlay(new Prijava(this));
 
-            _prijava = new Prijava(this);
-            _IzborFirme = new IzborFirme(this);
-            _registracija = new Registracija(this);
-            _dodajFirmu = new DodajFirmu(this);
-            var dbInitializer = new DatabaseInitialize();
-            dbInitializer.InitializeDatabase();
 
         }
 
         public void ShowPrijava()
         {
+            _prijava = new Prijava(this);
             ShowOverlay(_prijava);
             this.Title = "Prijava";
         }
 
         public void ShowIzborFirme(string? ime = null)
         {
+            _IzborFirme = new IzborFirme(this);
             ShowOverlay(_IzborFirme);
             this.Title = "Izbor Firme";
             MainContent.Content = new IzborFirme(this, ime);
@@ -56,12 +55,14 @@ namespace ProgramZaRacunovodstvo
 
         public void ShowRegistracija()
         {
+            _registracija = new Registracija(this);
             ShowOverlay(_registracija);
             this.Title = "Resgistracija";
         }
 
         public void ShowDodajFirmu()
         {
+            _dodajFirmu = new DodajFirmu(this);
             ShowOverlay(_dodajFirmu);
             this.Title = "Dodaj firmu";
         }
@@ -119,6 +120,7 @@ namespace ProgramZaRacunovodstvo
                     case "IzlogujSe":
                         OverlayContainer.Visibility = Visibility.Visible;
                         MainLayout.Visibility = Visibility.Collapsed;
+                        KorisnikId = -1;
                         Title = "Prijava";
                         ShowPrijava();
                         break;

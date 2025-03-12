@@ -23,6 +23,8 @@ namespace ProgramZaRacunovodstvo.Views
     {
 
         private MainWindow _mainWindow;
+        private readonly DatabaseKomande _database = new DatabaseKomande();
+
         public DodajFirmu(MainWindow mainWindow)
         {
             InitializeComponent();
@@ -75,6 +77,35 @@ namespace ProgramZaRacunovodstvo.Views
             txtBrojZiroRacuna.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
             txtZastupnik.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
             _mainWindow.ShowIzborFirme();
+        }
+
+        private void dodajFirmu(object sender, RoutedEventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(txtImeFirme.Text) || string.IsNullOrEmpty(txtPIB.Text) || string.IsNullOrEmpty(txtMaticni.Text) || string.IsNullOrEmpty(txtGrad.Text) || string.IsNullOrEmpty(txtAdresa.Text) || string.IsNullOrEmpty(txtBrojZiroRacuna.Text) || string.IsNullOrEmpty(txtZastupnik.Text))
+            {
+                greska.Visibility = Visibility.Visible;
+            }
+            else {
+                _database.DodajFirmu(txtImeFirme.Text, txtPIB.Text, txtMaticni.Text, txtAdresa.Text, txtGrad.Text, txtBrojZiroRacuna.Text, txtZastupnik.Text, _mainWindow.KorisnikId);
+                greska.Visibility = Visibility.Collapsed;
+                txtImeFirme.Text = "Ime firme";
+                txtPIB.Text = "PIB";
+                txtMaticni.Text = "Matični broj";
+                txtGrad.Text = "Grad";
+                txtAdresa.Text = "Adresa sedišta firme";
+                txtGrad.Text = "Grad";
+                txtBrojZiroRacuna.Text = "broj žiro računa";
+                txtZastupnik.Text = "Zastupnik";
+                txtImeFirme.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+                txtPIB.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+                txtMaticni.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+                txtGrad.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+                txtAdresa.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+                txtBrojZiroRacuna.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+                txtZastupnik.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
+                _mainWindow.ShowIzborFirme();
+            }
         }
     }
 }

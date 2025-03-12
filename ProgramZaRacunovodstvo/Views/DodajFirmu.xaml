@@ -308,7 +308,7 @@
                     </ControlTemplate>
                 </TextBox.Template>
             </TextBox>
-            <Button Margin="0,588,0,0"
+            <Button Margin="0,608,0,0"
                     VerticalAlignment="Top"
                     Height="70"
                     Foreground="White"
@@ -365,14 +365,15 @@
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center" />
             </Button>
-            <Button Margin="0,588,0,0"
+            <Button Margin="0,608,0,0"
                     VerticalAlignment="Top"
                     Height="70"
                     BorderThickness="0"
                     FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                     FontSize="30"
                     HorizontalAlignment="Left"
-                    Width="226">
+                    Width="226"
+                    Click="dodajFirmu">
                 <Button.Effect>
                     <DropShadowEffect ShadowDepth="10"
                                       Direction="320"
@@ -420,6 +421,15 @@
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center" />
             </Button>
+
+            <TextBlock Name="greska"
+                       Text="Molimo vas popunite sva polja"
+                       FontSize="18"
+                       Foreground="Red"
+                       Visibility="Collapsed"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Margin="0,500,0,0" />
         </Grid>
     </Grid>
 </UserControl>

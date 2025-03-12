@@ -682,7 +682,8 @@
                 Foreground="White"
                 Content="Sačuvaj"
                 FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                FontSize="15">
+                FontSize="15"
+                Command="{Binding SacuvajCommand}">
             <Button.Effect>
                 <DropShadowEffect ShadowDepth="10"
                                   Direction="320"

@@ -19,6 +19,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Wpf.Ui.Controls;
+using System.Diagnostics;
+using System.Collections;
 
 namespace ProgramZaRacunovodstvo.Views
 {
@@ -69,5 +71,10 @@ namespace ProgramZaRacunovodstvo.Views
             _mainWindow.NavigateTo(new Views.Nabavke(_mainWindow));
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+           
+        }
     }
 }

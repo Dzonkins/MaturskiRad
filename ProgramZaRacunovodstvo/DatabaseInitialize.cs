@@ -21,6 +21,22 @@ namespace ProgramZaRacunovodstvo
                                 `Email` TEXT,
                                 `Lozinka` TEXT
                             );" },
+            {"Firme", @"CREATE TABLE IF NOT EXISTS `Firme`(
+                                `Id` INTEGER PRIMARY KEY,
+                                `ImeFirme` TEXT,
+                                `PIB` TEXT,
+                                `MaticniBroj` TEXT,
+                                `Adresa`TEXT,
+                                `Grad` TEXT,
+                                `BrojRacuna` TEXT,
+                                `Zastupnik` TEXT
+                            );"},
+            {"AdministratoriFirme", @"CREATE TABLE IF NOT EXISTS `AdministratoriFirme`(
+                                `Id` INTEGER PRIMARY KEY ,
+                                `KorisnikId` INTEGER,
+                                `FirmaId` INTEGER
+
+                            );"},
         };
 
         public void InitializeDatabase()

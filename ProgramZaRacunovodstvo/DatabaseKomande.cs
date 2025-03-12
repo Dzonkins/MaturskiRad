@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -55,6 +57,86 @@ private readonly string _connectionString = "Data Source=baza.db";
             else {
                 return "null";
             }
+        }
+
+        public int NadjiID(string email)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            var command = new SqliteCommand("SELECT Id FROM Korisnici WHERE Email = @Email", connection);
+            command.Parameters.AddWithValue("@Email", email);
+
+            var result = command.ExecuteScalar();
+            return result != null ? Convert.ToInt32(result) : -1;
+        }
+
+        public List<string> IzvuciFirmeIzBaze(int korisnikId)
+        {
+            List<string> firme = new List<string>();
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+            string query = $@"
+                SELECT Firme.ImeFirme 
+                FROM Firme
+                INNER JOIN AdministratoriFirme ON Firme.Id = AdministratoriFirme.FirmaId
+                WHERE AdministratoriFirme.KorisnikId = {korisnikId}";
+
+            var command = new SqliteCommand(query, connection);
+
+            using var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                firme.Add(reader.GetString(0));
+            }
+            return firme;
+        }
+
+        public void DodajFirmu(string imeFirme, string pib, string maticniBroj, string adresa, string grad, string brojRacuna, string zastupnik, int korisnikId)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = "INSERT INTO Firme (ImeFirme, PIB, MaticniBroj, Adresa, Grad, BrojRacuna, Zastupnik) VALUES (@ImeFirme, @PIB, @MaticniBroj, @Adresa, @Grad, @BrojRacuna, @Zastupnik)";
+            using (var command = new SqliteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@ImeFirme", imeFirme);
+                command.Parameters.AddWithValue("@PIB", pib);
+                command.Parameters.AddWithValue("@MaticniBroj", maticniBroj);
+                command.Parameters.AddWithValue("@Adresa", adresa);
+                command.Parameters.AddWithValue("@Grad", grad);
+                command.Parameters.AddWithValue("@BrojRacuna", brojRacuna);
+                command.Parameters.AddWithValue("@Zastupnik", zastupnik);
+                command.ExecuteNonQuery();
+            }
+
+            long firmaId;
+            using (var idCommand = new SqliteCommand("SELECT last_insert_rowid();", connection))
+            {
+                object? result = idCommand.ExecuteScalar();
+                firmaId = result != null ? Convert.ToInt64(result) : throw new Exception("Failed to retrieve last inserted ID.");
+            }
+
+            string query2 = "INSERT INTO AdministratoriFirme (KorisnikId, FirmaId) VALUES (@KorisnikId, @FirmaId)";
+            using (var command2 = new SqliteCommand(query2, connection))
+            {
+                command2.Parameters.AddWithValue("@KorisnikId", korisnikId);
+                command2.Parameters.AddWithValue("@FirmaId", firmaId);
+                command2.ExecuteNonQuery();
+            }
+        }
+
+        public int FirmaID(string Imefirme)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            var command = new SqliteCommand("SELECT Id FROM Firme WHERE ImeFirme = @ImeFirme", connection);
+            command.Parameters.AddWithValue("@ImeFirme", Imefirme);
+
+            var result = command.ExecuteScalar();
+            return result != null ? Convert.ToInt32(result) : -1;
         }
     }
 }

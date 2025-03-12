@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,15 +25,18 @@ namespace ProgramZaRacunovodstvo
     /// </summary>
     public partial class IzborFirme : UserControl
     {
-
         private MainWindow _mainWindow;
-
+        private readonly DatabaseKomande _database = new DatabaseKomande();
+        int korisnikId = 0;
         public IzborFirme(MainWindow mainWindow, string? ime = null)
         {
             InitializeComponent();
             _mainWindow = mainWindow;
+
+            korisnikId = Convert.ToInt32(_mainWindow.KorisnikId);
+
             _mainWindow.ImeKorisnika.Text = ime;
-            UcitajFirme();
+            UcitajFirme(korisnikId);
 
         }
 
@@ -42,6 +46,7 @@ namespace ProgramZaRacunovodstvo
             _mainWindow.OverlayContainer.Visibility = Visibility.Collapsed;
             _mainWindow.MainLayout.Visibility = Visibility.Visible;
             _mainWindow.Title = "Početna";
+            _mainWindow.FirmaId = _database.FirmaID(firma);
             _mainWindow.NavigateTo(new GlavnaStrana(_mainWindow));
             var pocetnaButton = MainWindow.nadjiSveElemente<Button>(_mainWindow)
                               .FirstOrDefault(b => b.Tag as string == "Pocetna");
@@ -55,9 +60,11 @@ namespace ProgramZaRacunovodstvo
 
 
 
-        private void UcitajFirme()
+        private void UcitajFirme(int id)
         {
-            List<string> firme = IzvuciFirmeIzBaze();
+            List<string> firme = _database.IzvuciFirmeIzBaze(id);
+
+
 
             FirmaPanel.Children.Clear();
 
@@ -66,7 +73,9 @@ namespace ProgramZaRacunovodstvo
                 Button btn = KreirajDugme(firma);
                 btn.Click += (s, e) => Otvorifirmu(firma);
                 FirmaPanel.Children.Add(btn);
+
             }
+
 
             int rowCount = (firme.Count + 1) / 2;
             FirmaPanel.Rows = rowCount > 4 ? 4 : rowCount;
@@ -76,7 +85,6 @@ namespace ProgramZaRacunovodstvo
         {
             var button = new Wpf.Ui.Controls.Button
             {
-                Content = content,
                 Width = 470,
                 Height = 70,
                 FontSize = 30,
@@ -85,7 +93,8 @@ namespace ProgramZaRacunovodstvo
                 BorderThickness = new Thickness(0),
                 Foreground = new SolidColorBrush(Colors.Black),
                 VerticalAlignment = VerticalAlignment.Center,
-                HorizontalAlignment = HorizontalAlignment.Center
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Visibility = Visibility.Visible,
             };
 
             button.Effect = new DropShadowEffect
@@ -160,10 +169,7 @@ namespace ProgramZaRacunovodstvo
         }
 
 
-        private List<string> IzvuciFirmeIzBaze()
-        {
-            return new List<string> { "Firma A", "Firma B", "Firma C", "Firma D", "Firma E", "Firma F", "Firma G", "Firma H" };
-        }
+       
 
 
 

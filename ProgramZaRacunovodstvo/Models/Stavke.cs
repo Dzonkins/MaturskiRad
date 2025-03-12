@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgramZaRacunovodstvo.Models
 {
-    class Stavka
+    public class Stavka
     {
         public string sifra { get; set; } = string.Empty;
         public string naziv { get; set; } = string.Empty;
@@ -19,7 +19,8 @@ namespace ProgramZaRacunovodstvo.Models
 
         public string cenaRSD => $"{cena:N2} RSD";
         public string osnovicaRSD => $"{osnovica:N2} RSD";
-        public string pdvposto => $"{PDVPosto:N2}%";
+        public string PDVRSD => $"{PDV:N2} RSD";
+        public string pdvposto => $"{PDVPosto}%";
         public string ukupnoRSD => $"{Ukupno:N2} RSD";
     }
 }
