@@ -29,7 +29,6 @@ namespace ProgramZaRacunovodstvo.ViewModel
         {
             InitializeComponent();
             _mainWindow = mainWindow;
-            //coment
             Naslovi();
         }
 
