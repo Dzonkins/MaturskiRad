@@ -82,7 +82,7 @@ namespace ProgramZaRacunovodstvo.Views
         private void dodajFirmu(object sender, RoutedEventArgs e)
         {
 
-            if (string.IsNullOrEmpty(txtImeFirme.Text) || string.IsNullOrEmpty(txtPIB.Text) || string.IsNullOrEmpty(txtMaticni.Text) || string.IsNullOrEmpty(txtGrad.Text) || string.IsNullOrEmpty(txtAdresa.Text) || string.IsNullOrEmpty(txtBrojZiroRacuna.Text) || string.IsNullOrEmpty(txtZastupnik.Text))
+            if (string.IsNullOrEmpty(txtImeFirme.Text) || txtImeFirme.Text == "Ime firme" || string.IsNullOrEmpty(txtPIB.Text) || txtPIB.Text == "PIB" || string.IsNullOrEmpty(txtMaticni.Text) || txtMaticni.Text == "Matični broj" || string.IsNullOrEmpty(txtGrad.Text) || txtGrad.Text == "Grad" || string.IsNullOrEmpty(txtAdresa.Text) || txtAdresa.Text == "Adresa sedišta firme" || string.IsNullOrEmpty(txtBrojZiroRacuna.Text) || txtBrojZiroRacuna.Text == "Broj žiro računa" || string.IsNullOrEmpty(txtZastupnik.Text) || txtZastupnik.Text == "Zastupnik")
             {
                 greska.Visibility = Visibility.Visible;
             }
@@ -95,7 +95,7 @@ namespace ProgramZaRacunovodstvo.Views
                 txtGrad.Text = "Grad";
                 txtAdresa.Text = "Adresa sedišta firme";
                 txtGrad.Text = "Grad";
-                txtBrojZiroRacuna.Text = "broj žiro računa";
+                txtBrojZiroRacuna.Text = "Broj žiro računa";
                 txtZastupnik.Text = "Zastupnik";
                 txtImeFirme.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
                 txtPIB.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));

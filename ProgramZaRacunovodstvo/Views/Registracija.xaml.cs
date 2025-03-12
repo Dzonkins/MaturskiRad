@@ -140,24 +140,17 @@ namespace ProgramZaRacunovodstvo.Views
         private void KreirajNalog(object sender, RoutedEventArgs e)
         {
 
+            string upisanaLozinka = passwordVisibilty ? txtPasswordVisible.Text : txtPassword.Password;
 
-            if (string.IsNullOrEmpty(txtEmail.Text) || txtEmail.Text == "Email" || string.IsNullOrEmpty(txtPassword.Password) || string.IsNullOrEmpty(txtJMBG.Text) || string.IsNullOrEmpty(txtGrad.Text) || string.IsNullOrEmpty(txtAdresa.Text) || string.IsNullOrEmpty(txtIme.Text) || string.IsNullOrEmpty(txtPrezime.Text))
+            if (string.IsNullOrEmpty(txtEmail.Text) || txtEmail.Text == "Email" || string.IsNullOrEmpty(upisanaLozinka) || string.IsNullOrEmpty(txtJMBG.Text) || txtJMBG.Text == "JMBG" || string.IsNullOrEmpty(txtGrad.Text) || txtGrad.Text == "Grad" || string.IsNullOrEmpty(txtAdresa.Text) || txtAdresa.Text == "Adresa" || string.IsNullOrEmpty(txtIme.Text) || txtIme.Text == "Ime" || string.IsNullOrEmpty(txtPrezime.Text) || txtPrezime.Text == "Prezime")
             {
                 greska.Visibility = Visibility.Visible;
                 greska.Text = "Molimo vas popunite sva polja";
             }
             else
             {
-                if (passwordVisibilty)
-                {
-                    _database.RegistrujSe(txtIme.Text, txtPrezime.Text, txtJMBG.Text, txtGrad.Text, txtAdresa.Text, txtEmail.Text, txtPasswordVisible.Text);
-
-                }
-                else
-                {
-                    _database.RegistrujSe(txtIme.Text, txtPrezime.Text, txtJMBG.Text, txtGrad.Text, txtAdresa.Text, txtEmail.Text, txtPassword.Password);
-
-                }
+                greska.Visibility = Visibility.Collapsed;
+                _database.RegistrujSe(txtIme.Text, txtPrezime.Text, txtJMBG.Text, txtGrad.Text, txtAdresa.Text, txtEmail.Text, upisanaLozinka);
                 txtIme.Text = "Ime";
                 txtPrezime.Text = "Prezime";
                 txtJMBG.Text = "JMBG";

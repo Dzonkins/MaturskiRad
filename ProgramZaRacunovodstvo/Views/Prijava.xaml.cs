@@ -29,22 +29,19 @@ namespace ProgramZaRacunovodstvo
         private void PrijaviSe(object sender, RoutedEventArgs e)
         {
             bool prijavljen = false;
-            if (string.IsNullOrEmpty(txtEmail.Text) || txtEmail.Text == "Email" || string.IsNullOrEmpty(txtPassword.Password))
+            string upisanaLozinka = passwordVisibilty ? txtPasswordVisible.Text : txtPassword.Password;
+
+            if (string.IsNullOrEmpty(txtEmail.Text) || txtEmail.Text == "Email" || string.IsNullOrEmpty(upisanaLozinka))
             {
                 greska.Visibility = Visibility.Visible;
                 greska.Text = "Molimo vas popunite sva polja";
             }
             else
             {
-                greska.Visibility= Visibility.Collapsed;
-                if (passwordVisibilty)
-                {
-                    prijavljen = _database.ProveraPrijava(txtEmail.Text, txtPasswordVisible.Text);
+                greska.Visibility = Visibility.Collapsed;
 
-                }
-                else {
-                    prijavljen = _database.ProveraPrijava(txtEmail.Text, txtPassword.Password);
-                }
+                prijavljen = _database.ProveraPrijava(txtEmail.Text, upisanaLozinka);
+
                 if (prijavljen)
                 {
                     
