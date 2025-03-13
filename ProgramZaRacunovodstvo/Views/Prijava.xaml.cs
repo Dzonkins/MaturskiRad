@@ -48,13 +48,13 @@ namespace ProgramZaRacunovodstvo
                     txtPassword.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
                     txtPasswordVisible.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
                     txtEmail.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
-                    ime = _database.NadjiIme(txtEmail.Text);
+                    _mainWindow.imeKorisnika = _database.NadjiIme(txtEmail.Text);
                     _mainWindow.KorisnikId = _database.NadjiID(txtEmail.Text);
                     txtEmail.Text = "Email";
                     txtPassword.Password = "";
                     txtPasswordVisible.Text = "";
                     greska.Visibility = Visibility.Hidden;
-                    _mainWindow.ShowIzborFirme(ime);                    
+                    _mainWindow.ShowIzborFirme();                    
                 }
                 else
                 {

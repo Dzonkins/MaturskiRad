@@ -28,14 +28,13 @@ namespace ProgramZaRacunovodstvo
         private MainWindow _mainWindow;
         private readonly DatabaseKomande _database = new DatabaseKomande();
         int korisnikId = 0;
-        public IzborFirme(MainWindow mainWindow, string? ime = null)
+        public IzborFirme(MainWindow mainWindow)
         {
             InitializeComponent();
             _mainWindow = mainWindow;
 
             korisnikId = Convert.ToInt32(_mainWindow.KorisnikId);
 
-            _mainWindow.ImeKorisnika.Text = ime;
             UcitajFirme(korisnikId);
 
         }

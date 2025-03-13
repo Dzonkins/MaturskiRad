@@ -27,6 +27,7 @@ namespace ProgramZaRacunovodstvo
         public string? SelectedFirma { get; set; }
         public int KorisnikId { get; set; }
         public int FirmaId { get; set; }
+        public string? imeKorisnika { get; set; }
 
 
         public MainWindow()
@@ -45,12 +46,12 @@ namespace ProgramZaRacunovodstvo
             this.Title = "Prijava";
         }
 
-        public void ShowIzborFirme(string? ime = null)
+        public void ShowIzborFirme()
         {
             _IzborFirme = new IzborFirme(this);
             ShowOverlay(_IzborFirme);
             this.Title = "Izbor Firme";
-            MainContent.Content = new IzborFirme(this, ime);
+            MainContent.Content = new IzborFirme(this);
         }
 
         public void ShowRegistracija()
@@ -101,6 +102,7 @@ namespace ProgramZaRacunovodstvo
                 switch (controlName)
                 {
                     case "Pocetna":
+                        this.ImeKorisnika.Text = imeKorisnika;
                         this.Title = "Početna";
                         NavigateTo(new GlavnaStrana(this));
                         break;
@@ -115,7 +117,7 @@ namespace ProgramZaRacunovodstvo
                         NavigateTo(new Views.Izvodi());
                         break;
                     case "Pravna lica":
-                        NavigateTo(new Views.PravnaLica());
+                        NavigateTo(new Views.PravnaLica(this));
                         break;
                     case "IzlogujSe":
                         OverlayContainer.Visibility = Visibility.Visible;
@@ -150,6 +152,7 @@ namespace ProgramZaRacunovodstvo
 
         public void NavigateTo(UserControl control)
         {
+            MainContent.Content = null;
             MainContent.Content = control;
         }
     }

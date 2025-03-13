@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\App.xaml
-112124066484
+12336542056
 
-301951944502
+311071810883
 239-909399942
-MainWindow.xaml;Views\DodajFirmu.xaml;Views\GlavnaStrana.xaml;Views\IzborFirme.xaml;Views\Izvodi.xaml;Views\KreirajNabavku.xaml;Views\Nabavke.xaml;Views\PravnaLica.xaml;Views\Prijava.xaml;Views\Prodaja.xaml;Views\Registracija.xaml;
+MainWindow.xaml;Views\DodajFirmu.xaml;Views\DodajPravnoLice.xaml;Views\GlavnaStrana.xaml;Views\IzborFirme.xaml;Views\Izvodi.xaml;Views\KreirajNabavku.xaml;Views\Nabavke.xaml;Views\PravnaLica.xaml;Views\Prijava.xaml;Views\Prodaja.xaml;Views\Registracija.xaml;
 
 False
 

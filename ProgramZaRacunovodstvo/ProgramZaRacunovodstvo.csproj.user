@@ -10,6 +10,9 @@
     <Compile Update="Views\DodajFirmu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\DodajPravnoLice.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\IzborFirme.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -40,6 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\DodajFirmu.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\DodajPravnoLice.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\IzborFirme.xaml">
