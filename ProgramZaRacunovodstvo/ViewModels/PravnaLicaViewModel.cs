@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using ProgramZaRacunovodstvo.Services;
 
 namespace ProgramZaRacunovodstvo.ViewModels
 {
@@ -18,7 +19,9 @@ namespace ProgramZaRacunovodstvo.ViewModels
         private int _stavkiPoStranici = 9;
         private int _totalPages;
         private string _pretragaText = string.Empty;
+        private readonly DatabaseKomande _database = new DatabaseKomande();
         private ObservableCollection<PravnaLica> _originalPravnaLica = new();
+        public ICommand Izbrisi { get; }
 
 
         public string PretragaText
@@ -80,6 +83,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
         public ICommand SledecaStranica { get; }
 
 
+
         private ObservableCollection<PravnaLica> _pravnaLica = new();
 
         public ObservableCollection<PravnaLica> PravnaLica1
@@ -94,6 +98,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         public PravnaLicaViewModel()
         {
+            Izbrisi = new RelayCommand(IzbrisiPravnoLice);
             PrethodnaStranica = new RelayCommand<object>(_ => PrethodnaStrana(), _ => _trenutnaStranica > 1);
             SledecaStranica = new RelayCommand<object>(_ => SledecaStrana(), _ => _trenutnaStranica < TotalPages);
             ucitajPodatke();
@@ -103,6 +108,17 @@ namespace ProgramZaRacunovodstvo.ViewModels
             _timer.Elapsed += (s, e) => Pretraga();
 
 
+        }
+
+        private void IzbrisiPravnoLice(object parameter)
+        {
+            if (parameter is PravnaLica pravnoLice && PagedPravnaLica.Contains(pravnoLice))
+            {
+                PagedPravnaLica.Remove(pravnoLice);
+                PravnaLica1.Remove(pravnoLice);
+                _database.IzbrisiPravnoLice(pravnoLice.Id);
+                OsveziStavke();
+            }
         }
 
         private void Pretraga()
@@ -142,25 +158,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         private void ucitajPodatke()
         {
-            _originalPravnaLica = new ObservableCollection<PravnaLica>
-            {
-                new PravnaLica { Naziv = "F1234", PIB = 123456789, Maticnibroj = 12345678, Grad = "Beograd", Adresa = "Ulica 1, 10", Racun = 1234567890123456, Zastupnik = "Petar Petrović" },
-                new PravnaLica { Naziv = "F5678", PIB = 987654321, Maticnibroj = 87654321, Grad = "Novi Sad", Adresa = "Ulica 2, 20", Racun = 9876543210987654, Zastupnik = "Ana Anić" },
-                new PravnaLica { Naziv = "F9012", PIB = 112233445, Maticnibroj = 55667788, Grad = "Niš", Adresa = "Ulica 3, 30", Racun = 1122334455667788, Zastupnik = "Marko Marković" },
-                new PravnaLica { Naziv = "F3456", PIB = 543216789, Maticnibroj = 98761234, Grad = "Subotica", Adresa = "Ulica 4, 40", Racun = 5432167890543216, Zastupnik = "Jelena Jelić" },
-                new PravnaLica { Naziv = "F7890", PIB = 678901234, Maticnibroj = 43218765, Grad = "Kragujevac", Adresa = "Ulica 5, 50", Racun = 6789012345678901, Zastupnik = "Stefan Stefanović" },
-                new PravnaLica { Naziv = "F2345", PIB = 234567890, Maticnibroj = 65432198, Grad = "Beograd", Adresa = "Ulica 6, 60", Racun = 2345678901234567, Zastupnik = "Milica Milić" },
-                new PravnaLica { Naziv = "F6789", PIB = 890123456, Maticnibroj = 89012345, Grad = "Novi Sad", Adresa = "Ulica 7, 70", Racun = 8901234567890123, Zastupnik = "Nikola Nikolić" },
-                new PravnaLica { Naziv = "F0123", PIB = 345678901, Maticnibroj = 12345987, Grad = "Niš", Adresa = "Ulica 8, 80", Racun = 3456789012345678, Zastupnik = "Ivana Ivanović" },
-                new PravnaLica { Naziv = "F4567", PIB = 789012345, Maticnibroj = 56789012, Grad = "Subotica", Adresa = "Ulica 9, 90", Racun = 7890123456789012, Zastupnik = "Dejan Dejić" },
-                new PravnaLica { Naziv = "F8901", PIB = 456789012, Maticnibroj = 90123456, Grad = "Kragujevac", Adresa = "Ulica 10, 100", Racun = 4567890123456789, Zastupnik = "Sanja Sanjić" },
-                new PravnaLica { Naziv = "F1122", PIB = 121212121, Maticnibroj = 21212121, Grad = "Zrenjanin", Adresa = "Ulica 11, 110", Racun = 1212121212121212, Zastupnik = "Goran Goranić" },
-                new PravnaLica { Naziv = "F3344", PIB = 343434343, Maticnibroj = 43434343, Grad = "Pančevo", Adresa = "Ulica 12, 120", Racun = 3434343434343434, Zastupnik = "Marija Marić" },
-                new PravnaLica { Naziv = "F5566", PIB = 565656565, Maticnibroj = 65656565, Grad = "Kraljevo", Adresa = "Ulica 13, 130", Racun = 5656565656565656, Zastupnik = "Dragan Dragić" },
-                new PravnaLica { Naziv = "F7788", PIB = 787878787, Maticnibroj = 87878787, Grad = "Čačak", Adresa = "Ulica 14, 140", Racun = 7878787878787878, Zastupnik = "Tamara Tamarić" },
-                new PravnaLica { Naziv = "F9900", PIB = 909090909, Maticnibroj = 90909090, Grad = "Leskovac", Adresa = "Ulica 15, 150", Racun = 9090909090909090, Zastupnik = "Aleksandar Aleksandrić" },
-                new PravnaLica { Naziv = "F2233", PIB = 232323232, Maticnibroj = 32323232, Grad = "Vranje", Adresa = "Ulica 16, 160", Racun = 2323232323232323, Zastupnik = "Sofija Sofić" }
-            };
+            _originalPravnaLica = new ObservableCollection<PravnaLica>(_database.IzvuciPravnaLica(Id.Instance.firmaid));
             PravnaLica1 = new ObservableCollection<PravnaLica>(_originalPravnaLica);
 
             OsveziStavke();

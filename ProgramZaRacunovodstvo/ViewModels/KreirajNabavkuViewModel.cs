@@ -186,39 +186,42 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         private void AddStavka(object parameter)
         {
-            var stavka = new Stavka
-            {
-                sifra = Sifra,
-                naziv = Naziv,
-                kolicina = Kolicina,
-                cena = Cena,
-                osnovica = IznosbezPDV,
-                PDV = PDV,
-                PDVPosto = PDVPosto,
-                Ukupno = Ukupno
-                
-            };
+            if(!string.IsNullOrWhiteSpace(Sifra) && !string.IsNullOrWhiteSpace(Naziv) && Kolicina > 0 && Cena > 0 && PDVPosto >= 0) {
+                var stavka = new Stavka
+                {
+                    sifra = Sifra,
+                    naziv = Naziv,
+                    kolicina = Kolicina,
+                    cena = Cena,
+                    osnovica = IznosbezPDV,
+                    PDV = PDV,
+                    PDVPosto = PDVPosto,
+                    Ukupno = Ukupno
 
-            Stavke.Add(stavka);
+                };
 
-            Sifra = string.Empty;
-            Naziv = string.Empty;
-            PDVPosto = null;
-            Kolicina = null;
-            Cena = null;
-            IznosbezPDV = null;
-            PDV = null;
-            Ukupno = null;
+                Stavke.Add(stavka);
 
-            OnPropertyChanged(nameof(Sifra));
-            OnPropertyChanged(nameof(Naziv));
-            OnPropertyChanged(nameof(PDVPosto));
-            OnPropertyChanged(nameof(Kolicina));
-            OnPropertyChanged(nameof(Cena));
+                Sifra = string.Empty;
+                Naziv = string.Empty;
+                PDVPosto = null;
+                Kolicina = null;
+                Cena = null;
+                IznosbezPDV = null;
+                PDV = null;
+                Ukupno = null;
 
-            OnPropertyChanged(nameof(UkupnoUkupno));
-            OnPropertyChanged(nameof(UkupnoOsnovica));
-            OnPropertyChanged(nameof(ukupnoPDV));
+                OnPropertyChanged(nameof(Sifra));
+                OnPropertyChanged(nameof(Naziv));
+                OnPropertyChanged(nameof(PDVPosto));
+                OnPropertyChanged(nameof(Kolicina));
+                OnPropertyChanged(nameof(Cena));
+
+                OnPropertyChanged(nameof(UkupnoUkupno));
+                OnPropertyChanged(nameof(UkupnoOsnovica));
+                OnPropertyChanged(nameof(ukupnoPDV));
+            }
+           
 
 
         }

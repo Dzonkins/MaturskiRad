@@ -25,6 +25,7 @@ namespace ProgramZaRacunovodstvo.Views
 
         public PravnaLica(MainWindow mainWindow)
         {
+            DataContext = new PravnaLicaViewModel();
             _mainWindow = mainWindow;
             InitializeComponent();
         }
@@ -62,7 +63,7 @@ namespace ProgramZaRacunovodstvo.Views
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void DodajPravnoLice(object sender, RoutedEventArgs e)
         {
             _mainWindow.NavigateTo(new Views.DodajPravnoLice(_mainWindow));
         }

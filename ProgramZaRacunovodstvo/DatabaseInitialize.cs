@@ -37,6 +37,17 @@ namespace ProgramZaRacunovodstvo
                                 `FirmaId` INTEGER
 
                             );"},
+            {"PravnaLica" , @"CREATE TABLE IF NOT EXISTS `PravnaLica`(
+                                `Id` INTEGER PRIMARY KEY,
+                                `FirmaId` INTEGER,
+                                `Naziv` TEXT,
+                                `PIB` TEXT,
+                                `MaticniBroj` TEXT,
+                                `Grad` TEXT,
+                                `Adresa` TEXT,
+                                `BrojRacuna`TEXT,
+                                `Zastupnik` TEXT
+                            );"}
         };
 
         public void InitializeDatabase()

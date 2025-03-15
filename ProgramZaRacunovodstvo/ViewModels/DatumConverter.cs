@@ -13,7 +13,6 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 return date.ToString("dd.MM.yyyy");
             }
 
-            // Use the parameter to determine the placeholder text
             if (parameter is string param && param == "end")
             {
                 return "Odaberite krajnji datum";
@@ -31,7 +30,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
                     return parsedDate;
                 }
             }
-            return null;
+            return Binding.DoNothing;
         }
     }
 }

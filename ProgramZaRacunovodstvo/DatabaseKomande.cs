@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.Sqlite;
+using ProgramZaRacunovodstvo.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Net.NetworkInformation;
 using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace ProgramZaRacunovodstvo
 {
@@ -137,6 +139,67 @@ private readonly string _connectionString = "Data Source=baza.db";
 
             var result = command.ExecuteScalar();
             return result != null ? Convert.ToInt32(result) : -1;
+        }
+
+        public void DodajPravnoLice(string Naziv, string PIB, string MaticniBroj, string Grad, string Adresa, string BrojRacuna, string Zastupnik, int FirmaId)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = "INSERT INTO PravnaLica (FirmaId, Naziv, PIB, MaticniBroj, Grad, Adresa, BrojRacuna, Zastupnik) VALUES (@FirmaId, @Naziv, @PIB, @MaticniBroj, @Grad, @Adresa, @BrojRacuna, @Zastupnik)";
+            using (var command = new SqliteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@FirmaId", FirmaId);
+                command.Parameters.AddWithValue("@Naziv", Naziv);
+                command.Parameters.AddWithValue("@PIB", PIB);
+                command.Parameters.AddWithValue("@MaticniBroj", MaticniBroj);
+                command.Parameters.AddWithValue("@Adresa", Adresa);
+                command.Parameters.AddWithValue("@Grad", Grad);
+                command.Parameters.AddWithValue("@BrojRacuna", BrojRacuna);
+                command.Parameters.AddWithValue("@Zastupnik", Zastupnik);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public List<PravnaLica> IzvuciPravnaLica(int firmaId)
+        {
+            List<PravnaLica> PravnaLica = new List<PravnaLica>();
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+            string query = @"SELECT Id, Naziv, PIB, MaticniBroj, Grad, Adresa, brojRacuna, Zastupnik FROM PravnaLica WHERE FirmaId = @FirmaId";
+
+            using var command = new SqliteCommand(query, connection);
+            command.Parameters.AddWithValue("@FirmaId", firmaId);
+
+            using var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                PravnaLica.Add(new PravnaLica {
+                    Id = reader.GetInt32("Id"),
+                    Naziv = reader.GetString(1),
+                    PIB = reader.GetString(2),
+                    Maticnibroj = reader.GetString(3),
+                    Grad = reader.GetString(4),
+                    Adresa = reader.GetString(5),
+                    Racun = reader.GetString(6),
+                    Zastupnik = reader.GetString(7)
+                });
+            }
+            return PravnaLica;
+        }
+
+        public void IzbrisiPravnoLice(int id)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = "DELETE FROM PravnaLica WHERE Id = @Id";
+            using (var command = new SqliteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Id", id);
+                command.ExecuteNonQuery();
+            }
         }
     }
 }

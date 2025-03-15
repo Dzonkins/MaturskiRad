@@ -1,4 +1,5 @@
-﻿using ProgramZaRacunovodstvo.ViewModel;
+﻿using ProgramZaRacunovodstvo.Services;
+using ProgramZaRacunovodstvo.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -46,6 +47,7 @@ namespace ProgramZaRacunovodstvo
             _mainWindow.MainLayout.Visibility = Visibility.Visible;
             _mainWindow.Title = "Početna";
             _mainWindow.FirmaId = _database.FirmaID(firma);
+            Id.Instance.firmaid = _database.FirmaID(firma);
             _mainWindow.NavigateTo(new GlavnaStrana(_mainWindow));
             var pocetnaButton = MainWindow.nadjiSveElemente<Button>(_mainWindow)
                               .FirstOrDefault(b => b.Tag as string == "Pocetna");

@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System;
+using ProgramZaRacunovodstvo.Services;
 
 namespace ProgramZaRacunovodstvo
 {
@@ -33,10 +34,9 @@ namespace ProgramZaRacunovodstvo
         public MainWindow()
         {
             InitializeComponent();
+            Navigation.Instance.Initialize(this);
             this.Title = "Prijava";
             ShowOverlay(new Prijava(this));
-
-
         }
 
         public void ShowPrijava()

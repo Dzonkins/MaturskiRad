@@ -80,6 +80,7 @@ C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\D
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\ProgramZaRacunovodstvo.csproj.AssemblyReference.cache
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\MainWindow.g.cs
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\DodajFirmu.g.cs
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\DodajPravnoLice.g.cs
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\GlavnaStrana.g.cs
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\IzborFirme.g.cs
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\Izvodi.g.cs
@@ -96,6 +97,7 @@ C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\D
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\App.baml
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\MainWindow.baml
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\DodajFirmu.baml
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\DodajPravnoLice.baml
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\GlavnaStrana.baml
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\IzborFirme.baml
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\Izvodi.baml
@@ -117,5 +119,3 @@ C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\D
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\ProgramZaRacunovodstvo.pdb
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\ProgramZaRacunovodstvo.genruntimeconfig.cache
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\ref\ProgramZaRacunovodstvo.dll
-C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\DodajPravnoLice.g.cs
-C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\DodajPravnoLice.baml

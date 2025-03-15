@@ -3,11 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:ProgramZaRacunovodstvo.Views"
+             xmlns:local="clr-namespace:ProgramZaRacunovodstvo.ViewModels"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
+    <UserControl.DataContext>
+        <local:DodajPravnoLiceViewModel/>
+    </UserControl.DataContext>
     <ScrollViewer VerticalScrollBarVisibility="Auto"
                   Grid.Row="1">
 
@@ -28,7 +31,7 @@
                     Background="#ebeced"
                     HorizontalAlignment="Center"
                     Padding="60"
-                    Height="660"
+                    Height="700"
                     VerticalAlignment="Top"
                     Margin="0,50,0,50"
                     CornerRadius="20">
@@ -45,7 +48,7 @@
                                     VerticalAlignment="Top"
                                     Margin="0,0,0,20"
                                     PlaceholderText="Naziv"
-                                    Text=""
+                                    Text="{Binding Naziv}"
                                     VerticalContentAlignment="Center"></ui:TextBox>
                         <ui:TextBox MinHeight="50"
                                     MinWidth="1000"
@@ -54,7 +57,8 @@
                                     VerticalAlignment="Top"
                                     Margin="0,0,0,20"
                                     PlaceholderText="PIB"
-                                    Text=""
+                                    Text="{Binding Pib}"
+                                    PreviewTextInput="BrojCheck"
                                     VerticalContentAlignment="Center"></ui:TextBox>
                         <ui:TextBox MinHeight="50"
                                     MinWidth="1000"
@@ -63,7 +67,8 @@
                                     VerticalAlignment="Top"
                                     Margin="0,0,0,20"
                                     PlaceholderText="Matični broj"
-                                    Text=""
+                                    Text="{Binding MaticniBroj}"
+                                    PreviewTextInput="BrojCheck"
                                     VerticalContentAlignment="Center"></ui:TextBox>
                         <ui:TextBox MinHeight="50"
                                     MinWidth="1000"
@@ -72,7 +77,7 @@
                                     VerticalAlignment="Top"
                                     Margin="0,0,0,20"
                                     PlaceholderText="Grad"
-                                    Text=""
+                                    Text="{Binding Grad}"
                                     VerticalContentAlignment="Center"></ui:TextBox>
                         <ui:TextBox MinHeight="50"
                                     MinWidth="1000"
@@ -81,7 +86,7 @@
                                     VerticalAlignment="Top"
                                     Margin="0,0,0,20"
                                     PlaceholderText="Adresa"
-                                    Text=""
+                                    Text="{Binding Adresa}"
                                     VerticalContentAlignment="Center"></ui:TextBox>
                         <ui:TextBox MinHeight="50"
                                     MinWidth="1000"
@@ -90,7 +95,8 @@
                                     VerticalAlignment="Top"
                                     Margin="0,0,0,20"
                                     PlaceholderText="Broj računa"
-                                    Text=""
+                                    Text="{Binding Racun}"
+                                    PreviewTextInput="BrojCheck"
                                     VerticalContentAlignment="Center"></ui:TextBox>
                         <ui:TextBox MinHeight="50"
                                     MinWidth="1000"
@@ -99,8 +105,9 @@
                                     VerticalAlignment="Top"
                                     Margin="0,0,0,0"
                                     PlaceholderText="Zastupnik"
-                                    Text=""
+                                    Text="{Binding Zastupnik}"
                                     VerticalContentAlignment="Center"></ui:TextBox>
+                        <ui:TextBlock Text="{Binding Greska}" Margin="0,20,0,0" Foreground="Red" HorizontalAlignment="Center"></ui:TextBlock>
                     </StackPanel>
                     <Grid Grid.Row="1">
                         <ui:Button Grid.ColumnSpan="2"
@@ -114,7 +121,8 @@
                                    BorderThickness="0"
                                    Foreground="White"
                                    FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                                   FontSize="15">
+                                   FontSize="15"
+                                   Command="{Binding Sacuvaj}">
                             <ui:Button.Effect>
                                 <DropShadowEffect ShadowDepth="10"
                                                   Direction="320"
