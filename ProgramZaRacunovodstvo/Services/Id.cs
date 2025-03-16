@@ -12,6 +12,7 @@ namespace ProgramZaRacunovodstvo.Services
         public static Id Instance => _instance ??= new Id();
 
         public int firmaid { get; set; }
+        public int pravnoLiceId { get; set; }
 
         private Id() { }
     }

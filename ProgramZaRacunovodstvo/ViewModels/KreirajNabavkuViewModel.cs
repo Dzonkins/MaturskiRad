@@ -13,13 +13,19 @@ using System.Threading.Tasks;
 using PdfSharp.Pdf;
 using PdfSharp.Fonts;
 using System.Windows.Input;
+using ProgramZaRacunovodstvo.Services;
+using ProgramZaRacunovodstvo.Views;
+using System.Windows.Controls;
 
 namespace ProgramZaRacunovodstvo.ViewModels
 {
     class KreirajNabavkuViewModel : INotifyPropertyChanged
     {
+        private readonly DatabaseKomande _database = new DatabaseKomande();
         public ObservableCollection<Dokument> SelectedFiles { get; set; } = new ObservableCollection<Dokument>();
         public ObservableCollection<Stavka> Stavke { get; set; } = new ObservableCollection<Stavka>();
+        public ObservableCollection<string> ListaPravnihLica { get; set; } = new ObservableCollection<string>();
+
 
         private string _sifra = String.Empty;
         private string _naziv = String.Empty;
@@ -29,6 +35,23 @@ namespace ProgramZaRacunovodstvo.ViewModels
         private decimal? _PDV;
         private int? _PDVPosto;
         private decimal? _ukupno;
+        private string _selectedPravnoLice = String.Empty;
+        public string SelectedPravnoLice
+        {
+            get => _selectedPravnoLice;
+            set
+            {
+                if (value == "Izaberite kupca")
+                {
+                    return;
+                }
+                else
+                {
+                    _selectedPravnoLice = value;
+                }
+                OnPropertyChanged(SelectedPravnoLice);
+            }
+        }
 
         public string Sifra
         {
@@ -140,6 +163,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
             AddStavkaCommand = new RelayCommand(AddStavka);
             DeleteCommand = new RelayCommand(DeleteStavka, CanDeleteStavka);
             SacuvajCommand = new RelayCommand(GenerisiPDF);
+            UcitajImenaPravnihLica();
         }
 
         private void Osnovica()
@@ -335,5 +359,20 @@ namespace ProgramZaRacunovodstvo.ViewModels
             document.Save(outputPath);
             Process.Start(new ProcessStartInfo(outputPath) { UseShellExecute = true });
         }
+
+        private void UcitajImenaPravnihLica()
+        {
+            var items = _database.ImenaPravnihLica(Id.Instance.firmaid);
+            ListaPravnihLica.Clear();
+
+
+            foreach (var item in items)
+            {
+                ListaPravnihLica.Add(item);
+            }
+
+            SelectedPravnoLice = "Kupac";
+        }
+
     }
 }

@@ -119,3 +119,5 @@ C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\D
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\ProgramZaRacunovodstvo.pdb
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\ProgramZaRacunovodstvo.genruntimeconfig.cache
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\ref\ProgramZaRacunovodstvo.dll
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\IzmeniPravnoLice.g.cs
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\IzmeniPravnoLice.baml

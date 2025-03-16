@@ -34,6 +34,7 @@ namespace ProgramZaRacunovodstvo.Views
 
         public KreirajNabavku(MainWindow mainWindow)
         {
+            DataContext = new KreirajNabavkuViewModel();
             _mainWindow = mainWindow;
             InitializeComponent();
             SelectedFiles = new ObservableCollection<Dokument>();
@@ -75,6 +76,11 @@ namespace ProgramZaRacunovodstvo.Views
         {
 
            
+        }
+
+        private void UkloniPlaceholder(object sender, SelectionChangedEventArgs e)
+        {
+            ComboboxTekst.Visibility = Visibility.Collapsed;
         }
     }
 }

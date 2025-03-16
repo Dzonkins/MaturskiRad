@@ -8,9 +8,7 @@
              mc:Ignorable="d" 
              
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <local:KreirajNabavkuViewModel />
-    </UserControl.DataContext>
+    
     <UserControl.Resources>
         <local:DatumConverter x:Key="DatumConverter" />
     </UserControl.Resources>
@@ -59,7 +57,9 @@
                            Text="{Binding Date, StringFormat='{}{0:d}', FallbackValue='Datum slanja', Converter={StaticResource DatumConverter}, ConverterParameter=start}"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Left"
-                           Margin="0,0,5,0"
+                           FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                           FontSize="12"
+                           Margin="0,2,5,0"
                            Grid.Column="0" />
 
                 <ui:CalendarDatePicker Name="DatumPocetni"
@@ -87,20 +87,30 @@
             </Grid>
         </Border>
         <CheckBox Grid.Row="1" Margin="9,120,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">Plaćeno</CheckBox>
-        <ComboBox Text="Kupac"
-                  Grid.Column="0" Grid.Row="1"
+        <ComboBox ItemsSource="{Binding ListaPravnihLica}"
+                  SelectedItem="{Binding SelectedPravnoLice, Mode=TwoWay}"
+                  Grid.Column="0"
+                  Grid.Row="1"
+                  Text="Kupac"
                   Height="40"
                   MinWidth="220"
                   VerticalAlignment="Top"
                   HorizontalAlignment="Left"
-                  Margin="280,20,0,0">
-            <ComboBoxItem IsSelected="True"
-                          IsEnabled="False"
-                          Content="Kupac" />
-            <ComboBoxItem Content="Option 1" />
-            <ComboBoxItem Content="Option 2" />
-            <ComboBoxItem Content="Option 3" />
+                  Margin="280,20,0,0"
+                  SelectionChanged="UkloniPlaceholder">
         </ComboBox>
+        <TextBlock Name="ComboboxTekst"
+                   Grid.Column="0"
+                   Grid.Row="1"
+                   Panel.ZIndex="10000"
+                   Margin="-150,-378,0,0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Text="Izaberite kupca"
+                   Width="120"
+                   Height="20"
+                   FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                   FontSize="12"></TextBlock>
         <Button Grid.Column="0"
                 Grid.Row="1"
                 Width="220"

@@ -201,5 +201,74 @@ private readonly string _connectionString = "Data Source=baza.db";
                 command.ExecuteNonQuery();
             }
         }
+
+        public List<string> PodaciOPravnomLicu(int PravnoLiceId)
+        {
+            List<string> Podaci = new List<string>();
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+            string query = @"SELECT Naziv, PIB, MaticniBroj, Grad, Adresa, BrojRacuna, Zastupnik FROM PravnaLica WHERE Id = @Id";
+
+            using var command = new SqliteCommand(query, connection);
+            command.Parameters.AddWithValue("@Id", PravnoLiceId);
+
+            using var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    Podaci.Add(reader.GetString(i));
+                }
+            }
+            return Podaci;
+        }
+
+        public void IzmeniPravnoLice(string Naziv, string PIB, string MaticniBroj, string Grad, string Adresa, string BrojRacuna, string Zastupnik, int PravnoLiceId)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = @"UPDATE PravnaLica 
+                     SET Naziv = @Naziv, PIB = @PIB, MaticniBroj = @MaticniBroj, Grad = @Grad, 
+                         Adresa = @Adresa, BrojRacuna = @BrojRacuna, Zastupnik = @Zastupnik
+                     WHERE Id = @Id";
+            using (var command = new SqliteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Id", PravnoLiceId);
+                command.Parameters.AddWithValue("@Naziv", Naziv);
+                command.Parameters.AddWithValue("@PIB", PIB);
+                command.Parameters.AddWithValue("@MaticniBroj", MaticniBroj);
+                command.Parameters.AddWithValue("@Adresa", Adresa);
+                command.Parameters.AddWithValue("@Grad", Grad);
+                command.Parameters.AddWithValue("@BrojRacuna", BrojRacuna);
+                command.Parameters.AddWithValue("@Zastupnik", Zastupnik);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public List<string> ImenaPravnihLica(int FirmaId)
+        {
+            List<string> pravnaLica = new List<string>();
+
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = "SELECT Naziv FROM PravnaLica WHERE FirmaId = @FirmaId";
+
+            using (var command = new SqliteCommand(query, connection))
+            {
+               
+                command.Parameters.AddWithValue("@FirmaId", FirmaId);
+                using var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    pravnaLica.Add(reader.GetString(0));
+                }
+            }
+
+
+            return pravnaLica;
+        }
     }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ProgramZaRacunovodstvo.Services;
+using ProgramZaRacunovodstvo.Views;
 
 namespace ProgramZaRacunovodstvo.ViewModels
 {
@@ -20,8 +21,10 @@ namespace ProgramZaRacunovodstvo.ViewModels
         private int _totalPages;
         private string _pretragaText = string.Empty;
         private readonly DatabaseKomande _database = new DatabaseKomande();
-        private ObservableCollection<PravnaLica> _originalPravnaLica = new();
+        private ObservableCollection<Models.PravnaLica> _originalPravnaLica = new();
         public ICommand Izbrisi { get; }
+        public ICommand Izmeni { get; }
+
 
 
         public string PretragaText
@@ -67,9 +70,9 @@ namespace ProgramZaRacunovodstvo.ViewModels
             }
         }
 
-        private ObservableCollection<PravnaLica> _pagedPravnaLica = new();
+        private ObservableCollection<Models.PravnaLica> _pagedPravnaLica = new();
 
-        public ObservableCollection<PravnaLica> PagedPravnaLica
+        public ObservableCollection<Models.PravnaLica> PagedPravnaLica
         {
             get => _pagedPravnaLica;
             set
@@ -84,9 +87,9 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
 
 
-        private ObservableCollection<PravnaLica> _pravnaLica = new();
+        private ObservableCollection<Models.PravnaLica> _pravnaLica = new();
 
-        public ObservableCollection<PravnaLica> PravnaLica1
+        public ObservableCollection<Models.PravnaLica> PravnaLica1
         {
             get => _pravnaLica;
             set
@@ -98,6 +101,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         public PravnaLicaViewModel()
         {
+            Izmeni = new RelayCommand(IzmeniPravnoLice);
             Izbrisi = new RelayCommand(IzbrisiPravnoLice);
             PrethodnaStranica = new RelayCommand<object>(_ => PrethodnaStrana(), _ => _trenutnaStranica > 1);
             SledecaStranica = new RelayCommand<object>(_ => SledecaStrana(), _ => _trenutnaStranica < TotalPages);
@@ -112,12 +116,21 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         private void IzbrisiPravnoLice(object parameter)
         {
-            if (parameter is PravnaLica pravnoLice && PagedPravnaLica.Contains(pravnoLice))
+            if (parameter is Models.PravnaLica pravnoLice && PagedPravnaLica.Contains(pravnoLice))
             {
                 PagedPravnaLica.Remove(pravnoLice);
                 PravnaLica1.Remove(pravnoLice);
                 _database.IzbrisiPravnoLice(pravnoLice.Id);
                 OsveziStavke();
+            }
+        }
+
+        private void IzmeniPravnoLice(object parameter)
+        {
+            if (parameter is Models.PravnaLica pravnoLice && PagedPravnaLica.Contains(pravnoLice))
+            {
+                Id.Instance.pravnoLiceId = pravnoLice.Id;
+                Navigation.Instance.NavigateTo(new IzmeniPravnoLice(Navigation.Instance.GetMainWindow()));
             }
         }
 
@@ -143,7 +156,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 }
 
 
-                PravnaLica1 = new ObservableCollection<PravnaLica>(filter);
+                PravnaLica1 = new ObservableCollection<Models.PravnaLica>(filter);
                 OsveziStavke();
             });
         }
@@ -158,8 +171,8 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         private void ucitajPodatke()
         {
-            _originalPravnaLica = new ObservableCollection<PravnaLica>(_database.IzvuciPravnaLica(Id.Instance.firmaid));
-            PravnaLica1 = new ObservableCollection<PravnaLica>(_originalPravnaLica);
+            _originalPravnaLica = new ObservableCollection<Models.PravnaLica>(_database.IzvuciPravnaLica(Id.Instance.firmaid));
+            PravnaLica1 = new ObservableCollection<Models.PravnaLica>(_originalPravnaLica);
 
             OsveziStavke();
 
@@ -173,7 +186,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
             if (_trenutnaStranica > TotalPages) _trenutnaStranica = TotalPages;
 
-            PagedPravnaLica = new ObservableCollection<PravnaLica>(
+            PagedPravnaLica = new ObservableCollection<Models.PravnaLica>(
                 PravnaLica1.Skip((_trenutnaStranica - 1) * stavkiPoStranici).Take(stavkiPoStranici)
             );
 
