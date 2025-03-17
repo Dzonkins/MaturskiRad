@@ -11,7 +11,7 @@ namespace ProgramZaRacunovodstvo.Models
         public string BrojFakture { get; set; } = string.Empty;
         public string Status { get; set; } = string.Empty;
         public string Dobavljac { get; set; } = string.Empty;
-        public double Osnovica { get; set; }
+        public decimal Osnovica { get; set; }
 
         public decimal Pdv { get; set; }
         public decimal Ukupno { get; set; }

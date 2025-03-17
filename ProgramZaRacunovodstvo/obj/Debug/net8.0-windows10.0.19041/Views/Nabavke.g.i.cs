@@ -97,7 +97,7 @@ namespace ProgramZaRacunovodstvo.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ProgramZaRacunovodstvo;V1.0.0.0;component/views/nabavke.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ProgramZaRacunovodstvo;component/views/nabavke.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\Nabavke.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

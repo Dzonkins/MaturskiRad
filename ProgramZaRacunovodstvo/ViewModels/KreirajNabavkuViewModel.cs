@@ -16,6 +16,9 @@ using System.Windows.Input;
 using ProgramZaRacunovodstvo.Services;
 using ProgramZaRacunovodstvo.Views;
 using System.Windows.Controls;
+using System.Windows.Documents;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Globalization;
 
 namespace ProgramZaRacunovodstvo.ViewModels
 {
@@ -26,29 +29,39 @@ namespace ProgramZaRacunovodstvo.ViewModels
         public ObservableCollection<Stavka> Stavke { get; set; } = new ObservableCollection<Stavka>();
         public ObservableCollection<string> ListaPravnihLica { get; set; } = new ObservableCollection<string>();
 
+        public List<string> PodaciKupac { get; set; }
+        public List<string>? PodaciDobavljac { get; set; }
 
-        private string _sifra = String.Empty;
-        private string _naziv = String.Empty;
+        private string _greska = string.Empty;
+        private bool _placenoProvera;
+        private string status = string.Empty;
+        private string _sifra = string.Empty;
+        private string _naziv = string.Empty;
         private double? _kolicina;
         private decimal? _cena;
         private decimal? _IznosBezPDV;
         private decimal? _PDV;
         private int? _PDVPosto;
         private decimal? _ukupno;
-        private string _selectedPravnoLice = String.Empty;
+        private string _selectedPravnoLice = string.Empty;
+        private string _brojFakture = string.Empty;
+
+        public string BrojFakture
+        {
+            get => _brojFakture;
+            set
+            {
+                _brojFakture = value;
+                OnPropertyChanged(BrojFakture);
+            }
+        }
         public string SelectedPravnoLice
         {
             get => _selectedPravnoLice;
             set
             {
-                if (value == "Izaberite kupca")
-                {
-                    return;
-                }
-                else
-                {
-                    _selectedPravnoLice = value;
-                }
+
+                _selectedPravnoLice = value;
                 OnPropertyChanged(SelectedPravnoLice);
             }
         }
@@ -138,6 +151,16 @@ namespace ProgramZaRacunovodstvo.ViewModels
             }
         }
 
+        public bool Placeno
+        {
+            get => _placenoProvera;
+            set
+            {
+                _placenoProvera = value;
+                OnPropertyChanged(nameof(Placeno));
+            }
+        }
+
         public ICommand AddFilesCommand { get; set; }
         public ICommand AddStavkaCommand { get; set; }
         public ICommand DeleteCommand { get; }
@@ -152,10 +175,20 @@ namespace ProgramZaRacunovodstvo.ViewModels
             set
             {    
                 _date = value;
+                OnPropertyChanged(nameof(Date));
             }
         }
 
-        
+        public string Greska
+        {
+            get => _greska;
+            set
+            {
+                _greska = value;
+                OnPropertyChanged(nameof(Greska));
+            }
+        }
+
 
         public KreirajNabavkuViewModel()
         {
@@ -163,8 +196,11 @@ namespace ProgramZaRacunovodstvo.ViewModels
             AddStavkaCommand = new RelayCommand(AddStavka);
             DeleteCommand = new RelayCommand(DeleteStavka, CanDeleteStavka);
             SacuvajCommand = new RelayCommand(GenerisiPDF);
+            PodaciKupac = new List<string>(_database.PodaciOFirmi(Id.Instance.firmaid));
             UcitajImenaPravnihLica();
         }
+
+     
 
         private void Osnovica()
         {
@@ -296,68 +332,98 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         private void GenerisiPDF(object parameter)
         {
-            string templateFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "template");
-            Directory.CreateDirectory(templateFolder);
-
-            string outputPath = System.IO.Path.Combine(templateFolder, "template.pdf");
-
-            PdfDocument document = new PdfDocument();
-            document.Info.Title = "NabavkeTemplate";
-
-            PdfPage page = document.AddPage();
-            XGraphics gfx = XGraphics.FromPdfPage(page);
-
-            XFont titleFont = new XFont("Arial", 20, XFontStyleEx.Bold);
-            XFont headerFont = new XFont("Arial", 10, XFontStyleEx.Bold);
-            XFont contentFont = new XFont("Arial", 8);
-
-            gfx.DrawString("Faktura:", titleFont, XBrushes.Black, new XPoint(200, 50));
-
-            gfx.DrawString("Name: _______________________", contentFont, XBrushes.Black, new XPoint(50, 100));
-            gfx.DrawString("Address: ____________________", contentFont, XBrushes.Black, new XPoint(50, 130));
-            gfx.DrawString("Amount: _____________________", contentFont, XBrushes.Black, new XPoint(50, 160));
-
-            double tableX = 15;
-            double tableY = 200;
-            double tableWidth = 565;
-            double rowHeight = 30;
-
-            gfx.DrawRectangle(XPens.Black, tableX, tableY, tableWidth, rowHeight);
-            gfx.DrawString("Naziv", headerFont, XBrushes.Black, new XPoint(tableX + 10, tableY + 20));
-            gfx.DrawString("Količina", headerFont, XBrushes.Black, new XPoint(tableX + 80, tableY + 20));
-            gfx.DrawString("Jedinična cena", headerFont, XBrushes.Black, new XPoint(tableX + 140, tableY + 20));
-            gfx.DrawString("Iznos bez PDV", headerFont, XBrushes.Black, new XPoint(tableX + 230, tableY + 20));
-            gfx.DrawString("Stopa PDV", headerFont, XBrushes.Black, new XPoint(tableX + 310, tableY + 20));
-            gfx.DrawString("PDV", headerFont, XBrushes.Black, new XPoint(tableX + 380, tableY + 20));
-            gfx.DrawString("Iznos sa PDV", headerFont, XBrushes.Black, new XPoint(tableX + 470, tableY + 20));
-
-
-
-            double currentY = tableY + rowHeight;
-            foreach (var stavke in Stavke)
+            if (Placeno)
             {
-                gfx.DrawRectangle(XPens.Black, tableX, currentY, tableWidth, rowHeight);
-                gfx.DrawString(stavke.naziv, contentFont, XBrushes.Black, new XPoint(tableX + 10, currentY + 20));
-                gfx.DrawString(stavke.kolicina?.ToString() ?? "-", contentFont, XBrushes.Black, new XPoint(tableX + 80, currentY + 20));
-                gfx.DrawString(stavke.cenaRSD, contentFont, XBrushes.Black, new XPoint(tableX + 140, currentY + 20));
-                gfx.DrawString(stavke.osnovicaRSD, contentFont, XBrushes.Black, new XPoint(tableX + 230, currentY + 20));
-                gfx.DrawString(stavke.pdvposto?.ToString() ?? "-", contentFont, XBrushes.Black, new XPoint(tableX + 310, currentY + 20));
-                gfx.DrawString(stavke.PDVRSD?.ToString() ?? "-", contentFont, XBrushes.Black, new XPoint(tableX + 380, currentY + 20));
-                gfx.DrawString(stavke.ukupnoRSD?.ToString() ?? "-", contentFont, XBrushes.Black, new XPoint(tableX + 470, currentY + 20));
-                currentY += rowHeight;
+                status = "Plaćeno";
+            }
+            else
+            {
+                status = "Neplaćeno";
             }
 
-            gfx.DrawString("Iznos bez PDV", headerFont, XBrushes.Black, new XPoint(tableX + 320, currentY + 20));
-            gfx.DrawString(UkupnoOsnovica.ToString("N2") + " RSD", headerFont, XBrushes.Black, new XPoint(tableX + 420, currentY + 20));
-            gfx.DrawString("Ukupan PDV", headerFont, XBrushes.Black, new XPoint(tableX + 320, currentY + 40));
-            gfx.DrawString(ukupnoPDV.ToString("N2") + " RSD", headerFont, XBrushes.Black, new XPoint(tableX + 420, currentY + 40));
-            gfx.DrawString("Ukupan iznos", headerFont, XBrushes.Black, new XPoint(tableX + 320, currentY + 60));
-            gfx.DrawString(UkupnoUkupno.ToString("N2") + " RSD", headerFont, XBrushes.Black, new XPoint(tableX + 420, currentY + 60));
+            if(!string.IsNullOrWhiteSpace(BrojFakture) && !string.IsNullOrWhiteSpace(SelectedPravnoLice) && SelectedFiles.Count>0 && Stavke.Count>0 && Date!=null)
+            {
+                PodaciDobavljac = new List<string>(_database.PodaciPravnoLice(SelectedPravnoLice));
+                string templateFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "temp");
+                Directory.CreateDirectory(templateFolder);
 
-            currentY += rowHeight + 20;
+                string outputPath = System.IO.Path.Combine(templateFolder, BrojFakture + ".pdf");
 
-            document.Save(outputPath);
-            Process.Start(new ProcessStartInfo(outputPath) { UseShellExecute = true });
+                PdfDocument document = new PdfDocument();
+                document.Info.Title = "Nabavke";
+
+                PdfPage page = document.AddPage();
+                XGraphics gfx = XGraphics.FromPdfPage(page);
+
+                XFont titleFont = new XFont("Arial", 20, XFontStyleEx.Bold);
+                XFont headerFont = new XFont("Arial", 10, XFontStyleEx.Bold);
+                XFont contentFont = new XFont("Arial", 10);
+
+                gfx.DrawString("Faktura: " + BrojFakture, titleFont, XBrushes.Black, new XPoint(200, 50));
+                gfx.DrawString("Datuma slanja: " + (Date?.Date.ToString("dd.MM.yyyy") ?? "N/A"), contentFont, XBrushes.Black, new XPoint(350, 220));
+
+
+                gfx.DrawString("Ime dobavljača: " + SelectedPravnoLice, contentFont, XBrushes.Black, new XPoint(50, 100));
+                gfx.DrawString("PIB: " + PodaciDobavljac[0], contentFont, XBrushes.Black, new XPoint(50, 120));
+                gfx.DrawString("Matični broj: " + PodaciDobavljac[1], contentFont, XBrushes.Black, new XPoint(50, 140));
+                gfx.DrawString("Adresa: " + PodaciDobavljac[3], contentFont, XBrushes.Black, new XPoint(50, 160));
+                gfx.DrawString("Grad: " + PodaciDobavljac[2], contentFont, XBrushes.Black, new XPoint(50, 180));
+                gfx.DrawString("Žiro račun: " + PodaciDobavljac[4], contentFont, XBrushes.Black, new XPoint(50, 200));
+
+                gfx.DrawString("Ime kupca: " + PodaciKupac[0], contentFont, XBrushes.Black, new XPoint(350, 100));
+                gfx.DrawString("PIB: " + PodaciKupac[1], contentFont, XBrushes.Black, new XPoint(350, 120));
+                gfx.DrawString("Matični broj: " + PodaciKupac[2], contentFont, XBrushes.Black, new XPoint(350, 140));
+                gfx.DrawString("Adresa: " + PodaciKupac[3], contentFont, XBrushes.Black, new XPoint(350, 160));
+                gfx.DrawString("Grad: " + PodaciKupac[4], contentFont, XBrushes.Black, new XPoint(350, 180));
+
+
+                double tableX = 15;
+                double tableY = 240;
+                double tableWidth = 565;
+                double rowHeight = 30;
+
+                gfx.DrawRectangle(XPens.Black, tableX, tableY, tableWidth, rowHeight);
+                gfx.DrawString("Naziv", headerFont, XBrushes.Black, new XPoint(tableX + 10, tableY + 20));
+                gfx.DrawString("Količina", headerFont, XBrushes.Black, new XPoint(tableX + 80, tableY + 20));
+                gfx.DrawString("Jedinična cena", headerFont, XBrushes.Black, new XPoint(tableX + 140, tableY + 20));
+                gfx.DrawString("Iznos bez PDV", headerFont, XBrushes.Black, new XPoint(tableX + 220, tableY + 20));
+                gfx.DrawString("Stopa PDV", headerFont, XBrushes.Black, new XPoint(tableX + 320, tableY + 20));
+                gfx.DrawString("PDV", headerFont, XBrushes.Black, new XPoint(tableX + 380, tableY + 20));
+                gfx.DrawString("Iznos sa PDV", headerFont, XBrushes.Black, new XPoint(tableX + 470, tableY + 20));
+
+
+
+                double currentY = tableY + rowHeight;
+                foreach (var stavke in Stavke)
+                {
+                    gfx.DrawRectangle(XPens.Black, tableX, currentY, tableWidth, rowHeight);
+                    gfx.DrawString(stavke.naziv, contentFont, XBrushes.Black, new XPoint(tableX + 10, currentY + 20));
+                    gfx.DrawString(stavke.kolicina?.ToString() ?? "-", contentFont, XBrushes.Black, new XPoint(tableX + 80, currentY + 20));
+                    gfx.DrawString(stavke.cenaRSD, contentFont, XBrushes.Black, new XPoint(tableX + 140, currentY + 20));
+                    gfx.DrawString(stavke.osnovicaRSD, contentFont, XBrushes.Black, new XPoint(tableX + 220, currentY + 20));
+                    gfx.DrawString(stavke.pdvposto?.ToString() ?? "-", contentFont, XBrushes.Black, new XPoint(tableX + 320, currentY + 20));
+                    gfx.DrawString(stavke.PDVRSD?.ToString() ?? "-", contentFont, XBrushes.Black, new XPoint(tableX + 380, currentY + 20));
+                    gfx.DrawString(stavke.ukupnoRSD?.ToString() ?? "-", contentFont, XBrushes.Black, new XPoint(tableX + 470, currentY + 20));
+                    currentY += rowHeight;
+                }
+
+                gfx.DrawString("Iznos bez PDV", headerFont, XBrushes.Black, new XPoint(tableX + 320, currentY + 20));
+                gfx.DrawString(UkupnoOsnovica.ToString("N2") + " RSD", headerFont, XBrushes.Black, new XPoint(tableX + 420, currentY + 20));
+                gfx.DrawString("Ukupan PDV", headerFont, XBrushes.Black, new XPoint(tableX + 320, currentY + 40));
+                gfx.DrawString(ukupnoPDV.ToString("N2") + " RSD", headerFont, XBrushes.Black, new XPoint(tableX + 420, currentY + 40));
+                gfx.DrawString("Ukupan iznos", headerFont, XBrushes.Black, new XPoint(tableX + 320, currentY + 60));
+                gfx.DrawString(UkupnoUkupno.ToString("N2") + " RSD", headerFont, XBrushes.Black, new XPoint(tableX + 420, currentY + 60));
+
+                currentY += rowHeight + 20;
+
+                document.Save(outputPath);
+
+                byte[] GenerisanPdf = File.ReadAllBytes(outputPath);
+                string formattedDate = Date.HasValue ? Date.Value.Date.ToString("dd-MM-yyyy") : "01-01-0001";
+                DateTime datum = Date.HasValue ? new DateTime(Date.Value.Year, Date.Value.Month, Date.Value.Day, 0, 0, 0) : DateTime.MinValue;
+
+                _database.KreirajFakturu("Nabavka", status, Stavke, SelectedFiles, Id.Instance.firmaid, BrojFakture, UkupnoOsnovica, ukupnoPDV, UkupnoUkupno, datum, GenerisanPdf);
+            }
         }
 
         private void UcitajImenaPravnihLica()

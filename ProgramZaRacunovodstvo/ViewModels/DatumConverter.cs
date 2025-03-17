@@ -13,9 +13,16 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 return date.ToString("dd.MM.yyyy");
             }
 
-            if (parameter is string param && param == "end")
+            if (parameter is string param)
             {
-                return "Odaberite krajnji datum";
+                if (param == "end")
+                {
+                    return "Odaberite krajnji datum";
+                }
+                else if (param == "slanje")
+                {
+                    return "Odaberite datum slanja";
+                }
             }
 
             return "Odaberite početni datum";

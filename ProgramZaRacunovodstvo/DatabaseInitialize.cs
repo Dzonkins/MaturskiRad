@@ -47,6 +47,36 @@ namespace ProgramZaRacunovodstvo
                                 `Adresa` TEXT,
                                 `BrojRacuna`TEXT,
                                 `Zastupnik` TEXT
+                            );"},
+            {"Fakture", @"CREATE TABLE IF NOT EXISTS `Fakture`(
+                                `Id` INTEGER PRIMARY KEY,
+                                `TipFakture` TEXT,
+                                `StatusFakture` TEXT,
+                                `BrojFakture` TEXT,
+                                `Osnovica` DECIMAL(30, 2),
+                                `PDV` DECIMAL(30, 2),
+                                `Ukupno` DECIMAL(30, 2),
+                                `Datum` date,
+                                `FirmaId` integer,
+                                `Fajl` BLOB
+                            );"},
+            {"ElementiFakture", @"CREATE TABLE IF NOT EXISTS `ElementiFakture`(
+                                `Id` INTEGER PRIMARY KEY,
+                                `FakturaId` INTEGER,
+                                `Sifra` TEXT,
+                                `Naziv` TEXT,
+                                `Kolicina` INTEGER,
+                                `Cena` DECIMAL(30, 2),
+                                `Osnovica` DECIMAL(30, 2),
+                                `PDVPosto` INTEGER,
+                                `PDV` DECIMAL(30, 2),
+                                `Ukupno` DECIMAL(30, 2)
+                            );"},
+            {"FajloviFaktura", @"CREATE TABLE IF NOT EXISTS `FajloviFaktura`(
+                                `Id` integer PRIMARY KEY ,
+                                `FakturaId` INTEGER,
+                                `NazivFajla` TEXT,
+                                `Fajl` BLOB                           
                             );"}
         };
 
