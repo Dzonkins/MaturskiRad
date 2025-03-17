@@ -422,7 +422,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 string formattedDate = Date.HasValue ? Date.Value.Date.ToString("dd-MM-yyyy") : "01-01-0001";
                 DateTime datum = Date.HasValue ? new DateTime(Date.Value.Year, Date.Value.Month, Date.Value.Day, 0, 0, 0) : DateTime.MinValue;
 
-                _database.KreirajFakturu("Nabavka", status, Stavke, SelectedFiles, Id.Instance.firmaid, BrojFakture, UkupnoOsnovica, ukupnoPDV, UkupnoUkupno, datum, GenerisanPdf);
+                _database.KreirajFakturu("Nabavka", status, SelectedPravnoLice, Stavke, SelectedFiles, Id.Instance.firmaid, BrojFakture, UkupnoOsnovica, ukupnoPDV, UkupnoUkupno, datum, GenerisanPdf);
             }
         }
 

@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Wpf.Ui.Input;
 using System.Timers;
+using ProgramZaRacunovodstvo.Services;
 
 namespace ProgramZaRacunovodstvo.ViewModels
 {
     class NabavkeViewModel : INotifyPropertyChanged
     {
+        private readonly DatabaseKomande _database = new DatabaseKomande();
         private System.Timers.Timer _timer;
         private int _trenutnaStranica = 1;
         private int _stavkiPoStranici = 9;
@@ -205,10 +207,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         private void ucitajPodatke()
         {
-            _originalNabavke = new ObservableCollection<Nabavka>
-            {
-
-            };
+            _originalNabavke = new ObservableCollection<Nabavka>(_database.IzvuciNabavke(Id.Instance.firmaid));
             Nabavke = new ObservableCollection<Nabavka>(_originalNabavke);
 
             OsveziStavke();

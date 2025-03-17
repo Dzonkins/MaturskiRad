@@ -8,6 +8,7 @@ namespace ProgramZaRacunovodstvo.Models
 {
     internal class Nabavka
     {
+        public int Id { get; set; }
         public string BrojFakture { get; set; } = string.Empty;
         public string Status { get; set; } = string.Empty;
         public string Dobavljac { get; set; } = string.Empty;

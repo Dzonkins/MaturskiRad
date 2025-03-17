@@ -324,17 +324,18 @@ private readonly string _connectionString = "Data Source=baza.db";
             return Podaci;
         }
 
-        public void KreirajFakturu(string tipFakture, string statusFakture , ObservableCollection<Stavka> Stavke, ObservableCollection<Dokument> Dokumenti, int firmaId,string brojFakture , decimal osnovica, decimal pdv, decimal ukupno, DateTime datum, byte[] fajl)
+        public void KreirajFakturu(string tipFakture, string statusFakture, string dobavljac, ObservableCollection<Stavka> Stavke, ObservableCollection<Dokument> Dokumenti, int firmaId,string brojFakture , decimal osnovica, decimal pdv, decimal ukupno, DateTime datum, byte[] fajl)
         {
             using var connection = new SqliteConnection(_connectionString);
             connection.Open();
 
-            string query = "INSERT INTO Fakture (TipFakture, StatusFakture, BrojFakture, Osnovica, PDV, Ukupno, Datum, FirmaId, Fajl) VALUES (@TipFakture, @StatusFakture, @BrojFakture, @Osnovica, @PDV, @Ukupno, @Datum, @FirmaId, @Fajl)";
+            string query = "INSERT INTO Fakture (TipFakture, StatusFakture, BrojFakture, Dobavljac, Osnovica, PDV, Ukupno, Datum, FirmaId, Fajl) VALUES (@TipFakture, @StatusFakture, @BrojFakture, @Dobavljac, @Osnovica, @PDV, @Ukupno, @Datum, @FirmaId, @Fajl)";
             using (var command = new SqliteCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@TipFakture", tipFakture);
                 command.Parameters.AddWithValue("@StatusFakture", statusFakture);
                 command.Parameters.AddWithValue("@BrojFakture", brojFakture);
+                command.Parameters.AddWithValue("@Dobavljac", dobavljac);
                 command.Parameters.AddWithValue("@Osnovica", osnovica);
                 command.Parameters.AddWithValue("@PDV", pdv);
                 command.Parameters.AddWithValue("@Ukupno", ukupno);
@@ -388,6 +389,37 @@ private readonly string _connectionString = "Data Source=baza.db";
                     fajlCommand.ExecuteNonQuery();
                 }   
             }
+        }
+
+        public List<Nabavka> IzvuciNabavke(int firmaid)
+        {
+            List<Nabavka> Nabavke = new List<Nabavka>();
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = @"SELECT Id, BrojFakture, StatusFakture, Dobavljac, Osnovica, PDV, Ukupno, Datum FROM Fakture WHERE FirmaId = @FirmaId";
+
+            using var command = new SqliteCommand(query, connection);
+            command.Parameters.AddWithValue("@FirmaId", firmaid);
+
+            using var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Nabavke.Add(new Nabavka
+                {
+                    Id = reader.GetInt32("Id"),
+                    BrojFakture = reader.GetString(1),
+                    Status = reader.GetString(2),
+                    Dobavljac = reader.GetString(3),
+                    Osnovica = reader.GetDecimal(4),
+                    Pdv = reader.GetDecimal(5),
+                    Ukupno = reader.GetDecimal(6),
+                    DatumSlanja = DateOnly.FromDateTime(reader.GetDateTime(7))
+                });
+            }
+
+            return Nabavke;
         }
     }
 }
