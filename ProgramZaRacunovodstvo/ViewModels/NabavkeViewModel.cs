@@ -10,6 +10,7 @@ using System.Windows.Input;
 using Wpf.Ui.Input;
 using System.Timers;
 using ProgramZaRacunovodstvo.Services;
+using ProgramZaRacunovodstvo.Views;
 
 namespace ProgramZaRacunovodstvo.ViewModels
 {
@@ -22,6 +23,8 @@ namespace ProgramZaRacunovodstvo.ViewModels
         private int _totalPages;
         private string _pretragaText = string.Empty;
         private ObservableCollection<Nabavka> _originalNabavke = new();
+        public ICommand Izbrisi { get; }
+
 
 
         public string PretragaText
@@ -154,15 +157,27 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         public NabavkeViewModel()
         {
+            Izbrisi = new RelayCommand(IzbrisiNabavku);
             PrethodnaStranica = new RelayCommand<object>(_ => PrethodnaStrana(), _ => _trenutnaStranica > 1);
             SledecaStranica = new RelayCommand<object>(_ => SledecaStrana(), _ => _trenutnaStranica < TotalPages);
             ucitajPodatke();
-
+            
             _timer = new System.Timers.Timer(300);
             _timer.AutoReset = false;
             _timer.Elapsed += (s, e) => Pretraga();
 
 
+        }
+
+        private void IzbrisiNabavku(object parameter)
+        {
+            if (parameter is Models.Nabavka nabavka && PagedNabavke.Contains(nabavka))
+            {
+                PagedNabavke.Remove(nabavka);
+                Nabavke.Remove(nabavka);
+                _database.IzbrisiFakturu(nabavka.Id);
+                OsveziStavke();
+            }
         }
 
         private void Pretraga()
@@ -207,7 +222,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         private void ucitajPodatke()
         {
-            _originalNabavke = new ObservableCollection<Nabavka>(_database.IzvuciNabavke(Id.Instance.firmaid));
+            _originalNabavke = new ObservableCollection<Nabavka>(_database.IzvuciNabavke(Id.Instance.firmaid).OrderByDescending(n => n.Id));
             Nabavke = new ObservableCollection<Nabavka>(_originalNabavke);
 
             OsveziStavke();

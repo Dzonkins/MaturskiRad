@@ -92,29 +92,37 @@
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top"
                   IsChecked="{Binding Placeno}">Plaćeno</CheckBox>
-        <ComboBox ItemsSource="{Binding ListaPravnihLica}"
-                  SelectedItem="{Binding SelectedPravnoLice, Mode=TwoWay}"
-                  Grid.Column="0"
-                  Grid.Row="1"
-                  Height="40"
-                  MinWidth="220"
-                  VerticalAlignment="Top"
-                  HorizontalAlignment="Left"
-                  Margin="280,20,0,0"
-                  SelectionChanged="UkloniPlaceholder">
-        </ComboBox>
-        <TextBlock Name="ComboboxTekst"
-                   Grid.Column="0"
-                   Grid.Row="1"
-                   Panel.ZIndex="10000"
-                   Margin="-150,-378,0,0"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Text="Izaberite dobavljača"
-                   Width="125"
-                   Height="20"
-                   FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                   FontSize="12"></TextBlock>
+        <Border VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Margin="280,20,0,0"
+                Grid.Column="0"
+                Grid.Row="1">
+            <Grid>
+                <ComboBox ItemsSource="{Binding ListaPravnihLica}"
+                          SelectedItem="{Binding SelectedPravnoLice, Mode=TwoWay}"
+                          Height="40"
+                          MinWidth="220"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Left"
+                          SelectionChanged="UkloniPlaceholder">
+                </ComboBox>
+
+                <TextBlock Name="ComboboxTekst"
+                           Text="Izaberite dobavljača"
+                           FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                           FontSize="12"
+                           Foreground="Gray"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="10,0,0,0"
+                           Panel.ZIndex="1">
+                   
+                </TextBlock>
+            </Grid>
+        </Border>
+
+
+
         <Button Grid.Column="0"
                 Grid.Row="1"
                 Width="220"
@@ -264,6 +272,16 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <ui:TextBlock Text="{Binding Greska}"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Grid.Row="0"
+                      Margin="0,0,0,0"
+                      VerticalAlignment="Bottom"
+                      FontSize="20"
+                      FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                      Foreground="Red"
+                      HorizontalAlignment="Center"></ui:TextBlock>
 
         <Border CornerRadius="20"
                 Padding="0"

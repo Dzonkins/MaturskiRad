@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using LiveChartsCore.Themes;
+using Microsoft.Data.Sqlite;
 using ProgramZaRacunovodstvo.Models;
 using System;
 using System.Collections.Generic;
@@ -389,6 +390,37 @@ private readonly string _connectionString = "Data Source=baza.db";
                     fajlCommand.ExecuteNonQuery();
                 }   
             }
+        }
+
+        public void IzbrisiFakturu(int fakturaid)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = "DELETE FROM Fakture WHERE Id = @Id";
+            using (var command = new SqliteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Id", fakturaid);
+                command.ExecuteNonQuery();
+            }
+
+            string query2 = @"DELETE FROM ElementiFakture WHERE FakturaId = @FakturaId";
+            using (var command = new SqliteCommand(query2, connection))
+            {
+                command.Parameters.AddWithValue("@FakturaId", fakturaid);
+                command.ExecuteNonQuery();
+            }
+
+
+
+
+            string query3 = "DELETE FROM FajloviFaktura WHERE FakturaId = @FakturaId";
+            using (var command = new SqliteCommand(query3, connection))
+            {
+                command.Parameters.AddWithValue("@FakturaId", fakturaid);
+                command.ExecuteNonQuery();
+            }
+
         }
 
         public List<Nabavka> IzvuciNabavke(int firmaid)

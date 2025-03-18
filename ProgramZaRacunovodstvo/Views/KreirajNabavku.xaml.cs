@@ -45,7 +45,8 @@ namespace ProgramZaRacunovodstvo.Views
             var dialog = new Microsoft.Win32.OpenFileDialog
             {
                 Multiselect = true,
-                Filter = "All files (*.*)|*.*"
+                Filter = "PDF Files (*.pdf)|*.pdf",
+                Title = "Izaberite PDF dokumente"
             };
 
             if (dialog.ShowDialog() == true)

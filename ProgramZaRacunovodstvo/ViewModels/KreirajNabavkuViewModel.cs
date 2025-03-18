@@ -343,6 +343,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
             if(!string.IsNullOrWhiteSpace(BrojFakture) && !string.IsNullOrWhiteSpace(SelectedPravnoLice) && SelectedFiles.Count>0 && Stavke.Count>0 && Date!=null)
             {
+                Greska = "";
                 PodaciDobavljac = new List<string>(_database.PodaciPravnoLice(SelectedPravnoLice));
                 string templateFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "temp");
                 Directory.CreateDirectory(templateFolder);
@@ -357,7 +358,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
                 XFont titleFont = new XFont("Arial", 20, XFontStyleEx.Bold);
                 XFont headerFont = new XFont("Arial", 10, XFontStyleEx.Bold);
-                XFont contentFont = new XFont("Arial", 10);
+                XFont contentFont = new XFont("Arial", 8);
 
                 gfx.DrawString("Faktura: " + BrojFakture, titleFont, XBrushes.Black, new XPoint(200, 50));
                 gfx.DrawString("Datuma slanja: " + (Date?.Date.ToString("dd.MM.yyyy") ?? "N/A"), contentFont, XBrushes.Black, new XPoint(350, 220));
@@ -423,6 +424,12 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 DateTime datum = Date.HasValue ? new DateTime(Date.Value.Year, Date.Value.Month, Date.Value.Day, 0, 0, 0) : DateTime.MinValue;
 
                 _database.KreirajFakturu("Nabavka", status, SelectedPravnoLice, Stavke, SelectedFiles, Id.Instance.firmaid, BrojFakture, UkupnoOsnovica, ukupnoPDV, UkupnoUkupno, datum, GenerisanPdf);
+                Navigation.Instance.NavigateTo(new Nabavke(Navigation.Instance.GetMainWindow()));
+
+            }
+            else
+            {
+                Greska = "Molimo vas unesite sve podatke i dodajte potrebne dokumente";
             }
         }
 

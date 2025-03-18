@@ -26,6 +26,7 @@ namespace ProgramZaRacunovodstvo.Views
 
         public Nabavke(MainWindow mainWindow)
         {
+            DataContext = new NabavkeViewModel();
             _mainWindow = mainWindow;
             InitializeComponent();
         }
