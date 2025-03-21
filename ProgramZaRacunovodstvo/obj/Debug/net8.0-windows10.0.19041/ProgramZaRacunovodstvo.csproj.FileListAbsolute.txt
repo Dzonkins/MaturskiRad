@@ -121,3 +121,15 @@ C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\D
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\ProgramZaRacunovodstvo.pdb
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\ProgramZaRacunovodstvo.genruntimeconfig.cache
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\ref\ProgramZaRacunovodstvo.dll
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\DetaljiFakture.g.cs
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\DetaljiFakture.baml
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\runtimes\win-x86\native\WebView2Loader.dll
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\runtimes\win-x64\native\WebView2Loader.dll
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\runtimes\win-arm64\native\WebView2Loader.dll
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\Microsoft.Web.WebView2.Core.dll
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\Microsoft.Web.WebView2.WinForms.dll
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\Microsoft.Web.WebView2.Wpf.dll
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\Microsoft.Web.WebView2.Core.xml
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\Microsoft.Web.WebView2.WinForms.xml
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\Microsoft.Web.WebView2.Wpf.xml
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\ProgramZaRacunovodstvo_Content.g.cs

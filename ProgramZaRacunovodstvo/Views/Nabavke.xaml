@@ -432,7 +432,8 @@
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center" />
                                     </Button>
-                                    <Button Command="{Binding Detalji}"
+                                    <Button Command="{Binding DataContext.Detalji, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"
                                             Width="40"
                                             Height="30"
                                             BorderThickness="0"

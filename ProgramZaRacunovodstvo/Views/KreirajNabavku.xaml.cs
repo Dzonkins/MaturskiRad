@@ -73,10 +73,45 @@ namespace ProgramZaRacunovodstvo.Views
             _mainWindow.NavigateTo(new Views.Nabavke(_mainWindow));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        
 
-           
+        private void ScrollCheck(object sender, MouseWheelEventArgs e)
+        {
+            if (sender is System.Windows.Controls.DataGrid dataGrid)
+            {
+                var scrollViewer = FindVisualChild<ScrollViewer>(dataGrid);
+
+                if (scrollViewer != null)
+                {
+                    bool canScrollUp = e.Delta > 0 && scrollViewer.VerticalOffset > 0;
+                    bool canScrollDown = e.Delta < 0 && scrollViewer.VerticalOffset < scrollViewer.ScrollableHeight;
+
+                    if (canScrollUp || canScrollDown)
+                    {
+                        scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - e.Delta);
+                        e.Handled = true;
+                    }
+                    else
+                    {
+                        e.Handled = true;
+                    }
+                }
+            }
+        }
+
+        private static T FindVisualChild<T>(DependencyObject parent) where T : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                if (child is T typedChild)
+                    return typedChild;
+
+                var subChild = FindVisualChild<T>(child);
+                if (subChild != null)
+                    return subChild;
+            }
+            return null!;
         }
 
         private void UkloniPlaceholder(object sender, SelectionChangedEventArgs e)

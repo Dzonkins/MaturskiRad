@@ -10,7 +10,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
         {
             if (value is DateTime date)
             {
-                return date.ToString("dd.MM.yyyy");
+                return date.ToString("dd.MM.yyyy.");
             }
 
             if (parameter is string param)
@@ -32,7 +32,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
         {
             if (value is string str && !string.IsNullOrWhiteSpace(str))
             {
-                if (DateTime.TryParseExact(str, "dd.MM.yyyy", culture, DateTimeStyles.None, out var parsedDate))
+                if (DateTime.TryParseExact(str, "dd.MM.yyyy.", culture, DateTimeStyles.None, out var parsedDate))
                 {
                     return parsedDate;
                 }

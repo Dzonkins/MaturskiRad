@@ -54,6 +54,7 @@ namespace ProgramZaRacunovodstvo
                                 `StatusFakture` TEXT,
                                 `BrojFakture` TEXT,
                                 `Dobavljac` TEXT,
+                                `Kupac` TEXT,
                                 `Osnovica` DECIMAL(30, 2),
                                 `PDV` DECIMAL(30, 2),
                                 `Ukupno` DECIMAL(30, 2),

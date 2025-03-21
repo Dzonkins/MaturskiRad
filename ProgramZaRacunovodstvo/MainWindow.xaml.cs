@@ -34,9 +34,11 @@ namespace ProgramZaRacunovodstvo
         public MainWindow()
         {
             InitializeComponent();
+            OcistiTemp();
             Navigation.Instance.Initialize(this);
             this.Title = "Prijava";
             ShowOverlay(new Prijava(this));
+            //NavigateTo(new DetaljiFakture(this));
         }
 
         public void ShowPrijava()
@@ -154,6 +156,27 @@ namespace ProgramZaRacunovodstvo
         {
             MainContent.Content = null;
             MainContent.Content = control;
+        }
+
+        private void OcistiTemp()
+        {
+            try
+            {
+                string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string tempFolderPath = System.IO.Path.Combine(appDirectory, "Temp");
+
+                if (System.IO.Directory.Exists(tempFolderPath))
+                {
+                    foreach (var file in System.IO.Directory.GetFiles(tempFolderPath))
+                    {
+                        System.IO.File.Delete(file);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error cleaning temp folder: " + ex.Message);
+            }
         }
     }
 }

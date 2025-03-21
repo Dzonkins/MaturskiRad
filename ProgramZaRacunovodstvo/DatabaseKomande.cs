@@ -18,7 +18,7 @@ namespace ProgramZaRacunovodstvo
 {
     internal class DatabaseKomande
     {
-private readonly string _connectionString = "Data Source=baza.db";
+        private readonly string _connectionString = "Data Source=baza.db";
 
         public bool ProveraPrijava(string email, string lozinka)
         {
@@ -56,10 +56,12 @@ private readonly string _connectionString = "Data Source=baza.db";
             command.Parameters.AddWithValue("@Email", email);
 
             string? ime = Convert.ToString(command.ExecuteScalar());
-            if (ime != null) {
+            if (ime != null)
+            {
                 return ime;
             }
-            else {
+            else
+            {
                 return "null";
             }
         }
@@ -178,7 +180,8 @@ private readonly string _connectionString = "Data Source=baza.db";
 
             while (reader.Read())
             {
-                PravnaLica.Add(new PravnaLica {
+                PravnaLica.Add(new PravnaLica
+                {
                     Id = reader.GetInt32("Id"),
                     Naziv = reader.GetString(1),
                     PIB = reader.GetString(2),
@@ -261,7 +264,7 @@ private readonly string _connectionString = "Data Source=baza.db";
 
             using (var command = new SqliteCommand(query, connection))
             {
-               
+
                 command.Parameters.AddWithValue("@FirmaId", FirmaId);
                 using var reader = command.ExecuteReader();
                 while (reader.Read())
@@ -302,7 +305,7 @@ private readonly string _connectionString = "Data Source=baza.db";
             return Firma;
         }
 
-        public List<string> PodaciPravnoLice (string ime)
+        public List<string> PodaciPravnoLice(string ime)
         {
             List<string> Podaci = new List<string>();
             using var connection = new SqliteConnection(_connectionString);
@@ -325,18 +328,19 @@ private readonly string _connectionString = "Data Source=baza.db";
             return Podaci;
         }
 
-        public void KreirajFakturu(string tipFakture, string statusFakture, string dobavljac, ObservableCollection<Stavka> Stavke, ObservableCollection<Dokument> Dokumenti, int firmaId,string brojFakture , decimal osnovica, decimal pdv, decimal ukupno, DateTime datum, byte[] fajl)
+        public void KreirajFakturu(string tipFakture, string statusFakture, string dobavljac, string kupac, ObservableCollection<Stavka> Stavke, ObservableCollection<Dokument> Dokumenti, int firmaId, string brojFakture, decimal osnovica, decimal pdv, decimal ukupno, DateTime datum, byte[] fajl)
         {
             using var connection = new SqliteConnection(_connectionString);
             connection.Open();
 
-            string query = "INSERT INTO Fakture (TipFakture, StatusFakture, BrojFakture, Dobavljac, Osnovica, PDV, Ukupno, Datum, FirmaId, Fajl) VALUES (@TipFakture, @StatusFakture, @BrojFakture, @Dobavljac, @Osnovica, @PDV, @Ukupno, @Datum, @FirmaId, @Fajl)";
+            string query = "INSERT INTO Fakture (TipFakture, StatusFakture, BrojFakture, Dobavljac, Kupac, Osnovica, PDV, Ukupno, Datum, FirmaId, Fajl) VALUES (@TipFakture, @StatusFakture, @BrojFakture, @Dobavljac, @Kupac, @Osnovica, @PDV, @Ukupno, @Datum, @FirmaId, @Fajl)";
             using (var command = new SqliteCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@TipFakture", tipFakture);
                 command.Parameters.AddWithValue("@StatusFakture", statusFakture);
                 command.Parameters.AddWithValue("@BrojFakture", brojFakture);
                 command.Parameters.AddWithValue("@Dobavljac", dobavljac);
+                command.Parameters.AddWithValue("@Kupac", kupac);
                 command.Parameters.AddWithValue("@Osnovica", osnovica);
                 command.Parameters.AddWithValue("@PDV", pdv);
                 command.Parameters.AddWithValue("@Ukupno", ukupno);
@@ -388,7 +392,7 @@ private readonly string _connectionString = "Data Source=baza.db";
                     fajlCommand.Parameters.AddWithValue("@Fajl", SqliteType.Blob).Value = dokument.fajl;
 
                     fajlCommand.ExecuteNonQuery();
-                }   
+                }
             }
         }
 
@@ -452,6 +456,81 @@ private readonly string _connectionString = "Data Source=baza.db";
             }
 
             return Nabavke;
+        }
+
+        public DetaljiFakture PodaciOFakturi(int fakturaId)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = @"SELECT Brojfakture, TipFakture, StatusFakture, Ukupno, Dobavljac, Kupac, Datum, Fajl 
+                     FROM Fakture WHERE Id = @Id";
+
+            using var command = new SqliteCommand(query, connection);
+            command.Parameters.AddWithValue("@Id", fakturaId);
+
+            using var reader = command.ExecuteReader();
+
+            if (!reader.Read()) return null!;
+
+            var faktura = new DetaljiFakture
+            {
+                BrojFakture = reader["Brojfakture"] as string ?? string.Empty,
+                TipFakture = reader["TipFakture"] as string ?? string.Empty,
+                StatusFakture = reader["StatusFakture"] as string ?? string.Empty,
+                Ukupno = reader.IsDBNull(reader.GetOrdinal("Ukupno")) ? 0 : reader.GetDecimal(reader.GetOrdinal("Ukupno")),
+                Dobavljac = reader["Dobavljac"] as string ?? string.Empty,
+                Kupac = reader["Kupac"] as string ?? string.Empty,
+                Datum = reader.IsDBNull(reader.GetOrdinal("Datum")) ? null : DateOnly.FromDateTime(reader.GetDateTime(reader.GetOrdinal("Datum"))),
+                Fajl = reader["Fajl"] as byte[]
+            };
+
+            faktura.Fajlovi = LoadFajlovi(fakturaId);
+
+            return faktura;
+        }
+
+        private List<FajlFakture> LoadFajlovi(int fakturaId)
+        {
+            var fajlovi = new List<FajlFakture>();
+
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = "SELECT Id, FakturaId, NazivFajla, Fajl FROM FajloviFaktura WHERE FakturaId = @FakturaId";
+
+            using var command = new SqliteCommand(query, connection);
+            command.Parameters.AddWithValue("@FakturaId", fakturaId);
+
+            using var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Debug.WriteLine(reader.GetString(2));
+                fajlovi.Add(new FajlFakture
+                {
+                    Id = reader.GetInt32(0),
+                    FakturaId = reader.GetInt32(1),
+                    NazivFajla = reader.GetString(2),
+                    Fajl = (byte[])reader["Fajl"]
+                });
+            }
+
+            return fajlovi;
+        }
+
+        public void AzurirajStatus(int fakturaId, string statusFakture)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = "UPDATE Fakture SET StatusFakture = @StatusFakture WHERE Id = @Id";
+            using (var command = new SqliteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Id", fakturaId);
+                command.Parameters.AddWithValue("@StatusFakture", statusFakture);
+                command.ExecuteNonQuery();
+            }
         }
     }
 }

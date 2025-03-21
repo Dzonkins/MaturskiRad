@@ -151,6 +151,25 @@
           }
         }
       },
+      "Microsoft.Web.WebView2/1.0.3124.44": {
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/WebView2Loader.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "1.0.3124.44"
+          },
+          "runtimes/win-x64/native/WebView2Loader.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "1.0.3124.44"
+          },
+          "runtimes/win-x86/native/WebView2Loader.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "1.0.3124.44"
+          }
+        }
+      },
       "OpenTK/4.3.0": {
         "dependencies": {
           "OpenTK.Compute": "4.3.0",
@@ -676,6 +695,13 @@
       "sha512": "sha512-bXJEZrW9ny8vjMF1JV253WeLhpEVzFo1lyaZu1vQ4ZxWUlVvknZ/+ftFgVheLubb4eZPSwwxBeqS1JkCOjxd8g==",
       "path": "microsoft.extensions.primitives/8.0.0",
       "hashPath": "microsoft.extensions.primitives.8.0.0.nupkg.sha512"
+    },
+    "Microsoft.Web.WebView2/1.0.3124.44": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sQb+ACD3ILvHxztxqCWLbhYmFNf5dH0HPhVKFYg020rpeQPkadH0nkVOSsgfSyBDMLypI9iMBeD6uVcVxsKLkg==",
+      "path": "microsoft.web.webview2/1.0.3124.44",
+      "hashPath": "microsoft.web.webview2.1.0.3124.44.nupkg.sha512"
     },
     "OpenTK/4.3.0": {
       "type": "package",

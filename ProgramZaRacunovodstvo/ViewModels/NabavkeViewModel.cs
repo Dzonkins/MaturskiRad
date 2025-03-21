@@ -24,6 +24,8 @@ namespace ProgramZaRacunovodstvo.ViewModels
         private string _pretragaText = string.Empty;
         private ObservableCollection<Nabavka> _originalNabavke = new();
         public ICommand Izbrisi { get; }
+        public ICommand Detalji { get; }
+
 
 
 
@@ -158,6 +160,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
         public NabavkeViewModel()
         {
             Izbrisi = new RelayCommand(IzbrisiNabavku);
+            Detalji = new RelayCommand(DetaljiNabavke);
             PrethodnaStranica = new RelayCommand<object>(_ => PrethodnaStrana(), _ => _trenutnaStranica > 1);
             SledecaStranica = new RelayCommand<object>(_ => SledecaStrana(), _ => _trenutnaStranica < TotalPages);
             ucitajPodatke();
@@ -177,6 +180,15 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 Nabavke.Remove(nabavka);
                 _database.IzbrisiFakturu(nabavka.Id);
                 OsveziStavke();
+            }
+        }
+
+        private void DetaljiNabavke(object parameter)
+        {
+            if (parameter is Models.Nabavka nabavka && PagedNabavke.Contains(nabavka))
+            {
+                Id.Instance.NabavkaId = nabavka.Id;
+                Navigation.Instance.NavigateTo(new Views.DetaljiFakture(Navigation.Instance.GetMainWindow()));
             }
         }
 

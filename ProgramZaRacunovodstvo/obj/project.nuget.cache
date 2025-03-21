@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZtF7V6S4b88=",
+  "dgSpecHash": "0w/x/vb2NyY=",
   "success": true,
   "projectFilePath": "C:\\Users\\Nikola\\source\\repos\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo\\ProgramZaRacunovodstvo.csproj",
   "expectedPackageFiles": [
@@ -17,6 +17,7 @@
     "C:\\Users\\Nikola\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.2\\microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
     "C:\\Users\\Nikola\\.nuget\\packages\\microsoft.extensions.options\\8.0.2\\microsoft.extensions.options.8.0.2.nupkg.sha512",
     "C:\\Users\\Nikola\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "C:\\Users\\Nikola\\.nuget\\packages\\microsoft.web.webview2\\1.0.3124.44\\microsoft.web.webview2.1.0.3124.44.nupkg.sha512",
     "C:\\Users\\Nikola\\.nuget\\packages\\opentk\\4.3.0\\opentk.4.3.0.nupkg.sha512",
     "C:\\Users\\Nikola\\.nuget\\packages\\opentk.compute\\4.3.0\\opentk.compute.4.3.0.nupkg.sha512",
     "C:\\Users\\Nikola\\.nuget\\packages\\opentk.core\\4.3.0\\opentk.core.4.3.0.nupkg.sha512",

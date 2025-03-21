@@ -13,6 +13,8 @@ namespace ProgramZaRacunovodstvo.Services
 
         public int firmaid { get; set; }
         public int pravnoLiceId { get; set; }
+        public int NabavkaId { get; set; }
+
 
         private Id() { }
     }

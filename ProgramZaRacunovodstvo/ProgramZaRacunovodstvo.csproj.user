@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\DetaljiFakture.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\DodajFirmu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -45,6 +48,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\DetaljiFakture.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\DodajFirmu.xaml">
       <SubType>Designer</SubType>
     </Page>

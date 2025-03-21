@@ -12,321 +12,187 @@
     <UserControl.Resources>
         <local:DatumConverter x:Key="DatumConverter" />
     </UserControl.Resources>
-    <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            
-        </Grid.ColumnDefinitions>
-        <TextBlock Text="Kreiraj dokument"
-                   FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                   FontSize="28"
-                   Margin="20,40,0,20"
-                   Width="759"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Top" />
-        <ui:TextBox Grid.Row="1"
-                    MinHeight="40"
-                    MinWidth="220"
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Kreiraj dokument"
+                       FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                       FontSize="28"
+                       Margin="20,40,0,20"
+                       Width="759"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top" />
+            <ui:TextBox Grid.Row="1"
+                        MinHeight="40"
+                        MinWidth="220"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Margin="20"
+                        Text="{Binding BrojFakture}"
+                        PlaceholderText="Broj fakture"></ui:TextBox>
+            <Border BorderBrush="LightGray"
+                    BorderThickness="1"
+                    Height="40"
+                    Width="220"
+                    CornerRadius="10"
+                    Padding="5"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Margin="20"
-                    Text="{Binding BrojFakture}"
-                    PlaceholderText="Broj fakture"></ui:TextBox>
-        <Border BorderBrush="LightGray"
-                BorderThickness="1"
-                Height="40"
-                Width="220"
-                CornerRadius="10"
-                Padding="5"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Grid.Row="1"
-                Margin="20,70,0,0">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                    Grid.Row="1"
+                    Margin="20,70,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <TextBlock Name="DatumTextbox"
-                           Text="{Binding Date, StringFormat='{}{0:d}', FallbackValue='Datum slanja', Converter={StaticResource DatumConverter}, ConverterParameter=slanje}"
+                    <TextBlock Name="DatumTextbox"
+                               Text="{Binding Date, StringFormat='{}{0:d}', FallbackValue='Datum slanja', Converter={StaticResource DatumConverter}, ConverterParameter=slanje}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                               FontSize="12"
+                               Margin="0,2,5,0"
+                               Grid.Column="0" />
+
+                    <ui:CalendarDatePicker Name="DatumPocetni"
+                                           Height="40"
+                                           Width="40"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           Margin="0"
+                                           Grid.Column="1"
+                                           Date="{Binding Date, Mode=TwoWay}">
+                    </ui:CalendarDatePicker>
+                    <Image Source="/slike/kalendar.png"
+                           HorizontalAlignment="Right"
+                           Width="12"
+                           Height="12"
                            VerticalAlignment="Center"
-                           HorizontalAlignment="Left"
-                           FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                           FontSize="12"
-                           Margin="0,2,5,0"
-                           Grid.Column="0" />
+                           IsHitTestVisible="False"
+                           Grid.Column="1"
+                           Panel.ZIndex="10"
+                           Margin="2">
+                        <Image.RenderTransform>
+                            <ScaleTransform ScaleX="-1" />
+                        </Image.RenderTransform>
+                    </Image>
+                </Grid>
+            </Border>
+            <CheckBox Grid.Row="1"
+                      Margin="9,120,0,0"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      IsChecked="{Binding Placeno}">Plaćeno</CheckBox>
+            <Border VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Margin="280,20,0,0"
+                    Grid.Column="0"
+                    Grid.Row="1">
+                <Grid>
+                    <ComboBox ItemsSource="{Binding ListaPravnihLica}"
+                              SelectedItem="{Binding SelectedPravnoLice, Mode=TwoWay}"
+                              Height="40"
+                              MinWidth="220"
+                              VerticalAlignment="Top"
+                              HorizontalAlignment="Left"
+                              SelectionChanged="UkloniPlaceholder">
+                    </ComboBox>
 
-                <ui:CalendarDatePicker Name="DatumPocetni"
-                                       Height="40"
-                                       Width="40"
-                                       HorizontalAlignment="Right"
-                                       VerticalAlignment="Center"
-                                       Margin="0"
-                                       Grid.Column="1"
-                                       Date="{Binding Date, Mode=TwoWay}">
-                </ui:CalendarDatePicker>
-                <Image Source="/slike/kalendar.png"
-                       HorizontalAlignment="Right"
-                       Width="12"
-                       Height="12"
-                       VerticalAlignment="Center"
-                       IsHitTestVisible="False"
-                       Grid.Column="1"
-                       Panel.ZIndex="10"
-                       Margin="2">
-                    <Image.RenderTransform>
-                        <ScaleTransform ScaleX="-1" />
-                    </Image.RenderTransform>
-                </Image>
-            </Grid>
-        </Border>
-        <CheckBox Grid.Row="1"
-                  Margin="9,120,0,0"
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Top"
-                  IsChecked="{Binding Placeno}">Plaćeno</CheckBox>
-        <Border VerticalAlignment="Top"
-                HorizontalAlignment="Left"
-                Margin="280,20,0,0"
-                Grid.Column="0"
-                Grid.Row="1">
-            <Grid>
-                <ComboBox ItemsSource="{Binding ListaPravnihLica}"
-                          SelectedItem="{Binding SelectedPravnoLice, Mode=TwoWay}"
-                          Height="40"
-                          MinWidth="220"
-                          VerticalAlignment="Top"
-                          HorizontalAlignment="Left"
-                          SelectionChanged="UkloniPlaceholder">
-                </ComboBox>
+                    <TextBlock Name="ComboboxTekst"
+                               Text="Izaberite dobavljača"
+                               FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                               FontSize="12"
+                               Foreground="Gray"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="10,0,0,0"
+                               Panel.ZIndex="1">
 
-                <TextBlock Name="ComboboxTekst"
-                           Text="Izaberite dobavljača"
-                           FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                           FontSize="12"
-                           Foreground="Gray"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Left"
-                           Margin="10,0,0,0"
-                           Panel.ZIndex="1">
-                   
-                </TextBlock>
-            </Grid>
-        </Border>
+                    </TextBlock>
+                </Grid>
+            </Border>
 
 
 
-        <Button Grid.Column="0"
-                Grid.Row="1"
-                Width="220"
-                Height="40"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Left"
-                Margin="280,70,20,20"
-                BorderThickness="0"
-                Foreground="White"
-                Content="Dodaj dokumente"
-                FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                FontSize="15"
-                Command="{Binding AddFilesCommand}"
-                Click="DodajDokument">
-            <Button.Effect>
-                <DropShadowEffect ShadowDepth="10"
-                                  Direction="320"
-                                  Color="Gray"
-                                  Opacity="0.5"
-                                  BlurRadius="30" />
-            </Button.Effect>
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background"
-                            Value="#FF4F72FF" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        CornerRadius="13">
-                                    <ContentPresenter HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center" />
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver"
-                                             Value="True">
-                                        <Setter Property="Background"
-                                                Value="#82A6FF" />
-                                    </Trigger>
-                                    <Trigger Property="IsPressed"
-                                             Value="True">
-                                        <Setter Property="Background"
-                                                Value="#3D64C2" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Button.Style>
-        </Button>
-        <DataGrid Name="fajlovi"
-                  Grid.ColumnSpan="2"
-                  Grid.Row="1"
-                  IsReadOnly="True"
-                  VerticalAlignment="Top"
-                  HorizontalAlignment="Left"
-                  AutoGenerateColumns="False"
-                  Height="150"
-                  ScrollViewer.CanContentScroll="False"
-                  ItemsSource="{Binding SelectedFiles}"
-                  Margin="580,00,20,20">
-            <DataGrid.Resources>
-                <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="Background"
-                            Value="#FF4F72FF" />
-                    <Setter Property="Foreground"
-                            Value="White" />
-                    <Setter Property="FontWeight"
-                            Value="Bold" />
-                    <Setter Property="Padding"
-                            Value="10" />
-                    <Setter Property="HorizontalContentAlignment"
-                            Value="Center" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="DataGridColumnHeader">
-                                <Border Background="{TemplateBinding Background}"
-                                        Padding="10"
-                                        BorderThickness="0">
-                                    <ContentPresenter HorizontalAlignment="Center" />
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Setter Property="Visibility"
-                            Value="Collapsed" />
-                </Style>
-
-                <Style TargetType="DataGridRow">
-                    <Setter Property="MinHeight"
-                            Value="50" />
-                    <Setter Property="Background"
-                            Value="White" />
-                    <Setter Property="BorderBrush"
-                            Value="Transparent" />
-                    <Setter Property="OverridesDefaultStyle"
-                            Value="False" />
-                </Style>
-
-                <Style TargetType="DataGridCell">
-                    <Setter Property="Background"
-                            Value="Transparent" />
-                    <Setter Property="BorderBrush"
-                            Value="Transparent" />
-                    <Style.Triggers>
-                        <Trigger Property="IsSelected"
-                                 Value="True">
-                            <Setter Property="Background"
-                                    Value="Transparent" />
-                            <Setter Property="Foreground"
-                                    Value="Black" />
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.Resources>
-
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Slika"
-                                        Width="Auto"
-                                        MinWidth="50">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Image Source="/slike/file.png"
-                                   Width="50"
-                                   Height="50" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-                <DataGridTextColumn Header="Ime fajla"
-                                    Width="Auto"
-                                    MinWidth="50"
-                                    Binding="{Binding imeFajla}">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="TextAlignment"
-                                    Value="Center" />
-                            <Setter Property="HorizontalAlignment"
-                                    Value="Center" />
-                            <Setter Property="Padding"
-                                    Value="10" />
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        <ui:TextBlock Text="{Binding Greska}"
-                      Grid.Column="0"
+            <Button Grid.Column="0"
+                    Grid.Row="1"
+                    Width="220"
+                    Height="40"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Margin="280,70,20,20"
+                    BorderThickness="0"
+                    Foreground="White"
+                    Content="Dodaj dokumente"
+                    FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                    FontSize="15"
+                    Command="{Binding AddFilesCommand}"
+                    Click="DodajDokument">
+                <Button.Effect>
+                    <DropShadowEffect ShadowDepth="10"
+                                      Direction="320"
+                                      Color="Gray"
+                                      Opacity="0.5"
+                                      BlurRadius="30" />
+                </Button.Effect>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background"
+                                Value="#FF4F72FF" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="13">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#82A6FF" />
+                                        </Trigger>
+                                        <Trigger Property="IsPressed"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#3D64C2" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <DataGrid Name="fajlovi"
                       Grid.ColumnSpan="2"
-                      Grid.Row="0"
-                      Margin="0,0,0,0"
-                      VerticalAlignment="Bottom"
-                      FontSize="20"
-                      FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                      Foreground="Red"
-                      HorizontalAlignment="Center"></ui:TextBlock>
-
-        <Border CornerRadius="20"
-                Padding="0"
-                Background="White"
-                Grid.Row="1"
-                Margin="20,170,20,60"
-                Grid.ColumnSpan="2">
-            <Border.Effect>
-                <DropShadowEffect ShadowDepth="10"
-                                  Direction="320"
-                                  Color="Gray"
-                                  Opacity="0.5"
-                                  BlurRadius="30" />
-            </Border.Effect>
-       
-            <DataGrid Name="StavkeDataGrid"
-                      AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      SizeChanged="DataGrid_promenjeneDimenzije"
-                      Background="Transparent"
-                      CanUserResizeRows="False"
-                      GridLinesVisibility="None"
-                      HeadersVisibility="Column"
-                      BorderBrush="Transparent"
-                      BorderThickness="0"
-                      FontSize="16"
-                      IsReadOnly="True"
-                      FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                      HorizontalGridLinesBrush="Transparent"
-                      VerticalGridLinesBrush="Transparent"
-                      ItemsSource="{Binding Stavke}"
-                      Width="auto"
                       Grid.Row="1"
-                      Grid.Column="0"
-                      HorizontalAlignment="Stretch"
+                      IsReadOnly="True"
+                      VerticalAlignment="Top"
+                      HorizontalAlignment="Left"
+                      AutoGenerateColumns="False"
                       ScrollViewer.CanContentScroll="False"
-                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto">
-
+                      ItemsSource="{Binding SelectedFiles}"
+                      Margin="580,00,20,20">
                 <DataGrid.Resources>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="Background"
-                                Value="White" />
+                                Value="#FF4F72FF" />
                         <Setter Property="Foreground"
-                                Value="Black" />
+                                Value="White" />
                         <Setter Property="FontWeight"
                                 Value="Bold" />
                         <Setter Property="Padding"
@@ -344,18 +210,19 @@
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
+                        <Setter Property="Visibility"
+                                Value="Collapsed" />
                     </Style>
 
                     <Style TargetType="DataGridRow">
                         <Setter Property="MinHeight"
-                                Value="48" />
+                                Value="50" />
                         <Setter Property="Background"
                                 Value="White" />
                         <Setter Property="BorderBrush"
                                 Value="Transparent" />
                         <Setter Property="OverridesDefaultStyle"
                                 Value="False" />
-
                     </Style>
 
                     <Style TargetType="DataGridCell">
@@ -373,442 +240,584 @@
                             </Trigger>
                         </Style.Triggers>
                     </Style>
-
                 </DataGrid.Resources>
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Šifra"
-                                        Binding="{Binding sifra}"
-                                        Width="*"
-                                        MinWidth="50">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextAlignment"
-                                        Value="Center" />
-                                <Setter Property="HorizontalAlignment"
-                                        Value="Center" />
-                                <Setter Property="Padding"
-                                        Value="10" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
-
-                    <DataGridTextColumn Header="Naziv"
-                                        Binding="{Binding naziv}"
-                                        Width="*"
-                                        MinWidth="80">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextAlignment"
-                                        Value="Center" />
-                                <Setter Property="HorizontalAlignment"
-                                        Value="Center" />
-                                <Setter Property="Padding"
-                                        Value="10" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
-
-                    <DataGridTextColumn Header="Količina"
-                                        Binding="{Binding kolicina}"
-                                        Width="*"
-                                        MinWidth="80">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextAlignment"
-                                        Value="Center" />
-                                <Setter Property="HorizontalAlignment"
-                                        Value="Center" />
-                                <Setter Property="Padding"
-                                        Value="10" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
-
-                    <DataGridTextColumn Header="Cena"
-                                        Binding="{Binding cenaRSD}"
-                                        Width="*"
-                                        MinWidth="80">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextAlignment"
-                                        Value="Center" />
-                                <Setter Property="HorizontalAlignment"
-                                        Value="Center" />
-                                <Setter Property="Padding"
-                                        Value="10" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
-
-                    <DataGridTextColumn Header="Iznos bez PDV"
-                                        Binding="{Binding osnovicaRSD}"
-                                        Width="*"
-                                        MinWidth="80">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextAlignment"
-                                        Value="Center" />
-                                <Setter Property="HorizontalAlignment"
-                                        Value="Center" />
-                                <Setter Property="Padding"
-                                        Value="10" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
-
-                    <DataGridTextColumn Header="PDV %"
-                                        Binding="{Binding pdvposto}"
-                                        Width="*"
-                                        MinWidth="100">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextAlignment"
-                                        Value="Center" />
-                                <Setter Property="HorizontalAlignment"
-                                        Value="Center" />
-                                <Setter Property="Padding"
-                                        Value="10" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
-
-                    <DataGridTextColumn Header="Iznos sa PDV"
-                                        Binding="{Binding ukupnoRSD}"
-                                        Width="*"
-                                        MinWidth="100">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="TextAlignment"
-                                        Value="Center" />
-                                <Setter Property="HorizontalAlignment"
-                                        Value="Center" />
-                                <Setter Property="Padding"
-                                        Value="10" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </DataGridTextColumn>
-                    <DataGridTemplateColumn Header="Akcije"
-                                            MinWidth="120"
-                                            Width="Auto">
+                    <DataGridTemplateColumn Header="Slika"
+                                            Width="Auto"
+                                            MinWidth="50">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal"
-                                            HorizontalAlignment="Center">
-                                    <Button Width="40"
-                                            Height="30"
-                                            BorderThickness="0"
-                                            Foreground="White"
-                                            Cursor="Hand"
-                                            Margin="0,0,10,0"
-                                            Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                            CommandParameter="{Binding}">
-                                        <Button.Style>
-                                            <Style TargetType="Button">
-                                                <Setter Property="Background"
-                                                        Value="#F44336" />
-                                                <Setter Property="Template">
-                                                    <Setter.Value>
-                                                        <ControlTemplate TargetType="Button">
-                                                            <Border Background="{TemplateBinding Background}"
-                                                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                                                    CornerRadius="5">
-                                                                <ContentPresenter HorizontalAlignment="Center"
-                                                                                  VerticalAlignment="Center" />
-                                                            </Border>
-                                                            <ControlTemplate.Triggers>
-                                                                <Trigger Property="IsMouseOver"
-                                                                         Value="True">
-                                                                    <Setter Property="Background"
-                                                                            Value="#F88780" />
-                                                                </Trigger>
-                                                                <Trigger Property="IsPressed"
-                                                                         Value="True">
-                                                                    <Setter Property="Background"
-                                                                            Value="#D32F2F" />
-                                                                </Trigger>
-                                                            </ControlTemplate.Triggers>
-                                                        </ControlTemplate>
-                                                    </Setter.Value>
-                                                </Setter>
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver"
-                                                             Value="True">
-                                                        <Setter Property="Background"
-                                                                Value="#F88780" />
-                                                    </Trigger>
-                                                    <Trigger Property="IsPressed"
-                                                             Value="True">
-                                                        <Setter Property="Background"
-                                                                Value="#D32F2F" />
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
-                                        <Image Source="/slike/izbrisi.png"
-                                               Width="25"
-                                               Height="20"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" />
-                                    </Button>
-                                </StackPanel>
+                                <Image Source="/slike/file.png"
+                                       Width="50"
+                                       Height="50" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Header="Ime fajla"
+                                        Width="Auto"
+                                        MinWidth="50"
+                                        Binding="{Binding imeFajla}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextAlignment"
+                                        Value="Center" />
+                                <Setter Property="HorizontalAlignment"
+                                        Value="Center" />
+                                <Setter Property="Padding"
+                                        Value="10" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-        </Border>
-        <ui:TextBox Grid.Row="2"
-                    Grid.ColumnSpan="2"
-                    MinHeight="40"
-                    MinWidth="90"
-                    Width="90"
-                    HorizontalAlignment="Left"
+            <ui:TextBlock Text="{Binding Greska}"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2"
+                          Grid.Row="0"
+                          Margin="0,0,0,0"
+                          VerticalAlignment="Bottom"
+                          FontSize="20"
+                          FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                          Foreground="Red"
+                          HorizontalAlignment="Center"></ui:TextBlock>
+
+            <Border CornerRadius="20"
+                    Padding="0"
+                    Background="White"
+                    Grid.Row="1"
+                    MinHeight="228"
+                    MaxHeight="228"
+                    Margin="20,170,20,60"
+                    Grid.ColumnSpan="2">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="10"
+                                      Direction="320"
+                                      Color="Gray"
+                                      Opacity="0.5"
+                                      BlurRadius="30" />
+                </Border.Effect>
+
+                <DataGrid Name="StavkeDataGrid"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          SizeChanged="DataGrid_promenjeneDimenzije"
+                          Background="Transparent"
+                          CanUserResizeRows="False"
+                          GridLinesVisibility="None"
+                          HeadersVisibility="Column"
+                          BorderBrush="Transparent"
+                          BorderThickness="0"
+                          FontSize="16"
+                          IsReadOnly="True"
+                          PreviewMouseWheel="ScrollCheck"
+                          FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                          HorizontalGridLinesBrush="Transparent"
+                          VerticalGridLinesBrush="Transparent"
+                          ItemsSource="{Binding Stavke}"
+                          Width="auto"
+                          MinHeight="228"
+                          MaxHeight="228"
+                          Grid.Row="1"
+                          Grid.Column="0"
+                          HorizontalAlignment="Stretch"
+                          ScrollViewer.CanContentScroll="False"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background"
+                                    Value="White" />
+                            <Setter Property="Foreground"
+                                    Value="Black" />
+                            <Setter Property="FontWeight"
+                                    Value="Bold" />
+                            <Setter Property="Padding"
+                                    Value="10" />
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Center" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridColumnHeader">
+                                        <Border Background="{TemplateBinding Background}"
+                                                Padding="10"
+                                                BorderThickness="0">
+                                            <ContentPresenter HorizontalAlignment="Center" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="MinHeight"
+                                    Value="48" />
+                            <Setter Property="Background"
+                                    Value="White" />
+                            <Setter Property="BorderBrush"
+                                    Value="Transparent" />
+                            <Setter Property="OverridesDefaultStyle"
+                                    Value="False" />
+
+                        </Style>
+
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background"
+                                    Value="Transparent" />
+                            <Setter Property="BorderBrush"
+                                    Value="Transparent" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected"
+                                         Value="True">
+                                    <Setter Property="Background"
+                                            Value="Transparent" />
+                                    <Setter Property="Foreground"
+                                            Value="Black" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                    </DataGrid.Resources>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Šifra"
+                                            Binding="{Binding sifra}"
+                                            Width="*"
+                                            MinWidth="50">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextAlignment"
+                                            Value="Center" />
+                                    <Setter Property="HorizontalAlignment"
+                                            Value="Center" />
+                                    <Setter Property="Padding"
+                                            Value="10" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Naziv"
+                                            Binding="{Binding naziv}"
+                                            Width="*"
+                                            MinWidth="80">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextAlignment"
+                                            Value="Center" />
+                                    <Setter Property="HorizontalAlignment"
+                                            Value="Center" />
+                                    <Setter Property="Padding"
+                                            Value="10" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Količina"
+                                            Binding="{Binding kolicina}"
+                                            Width="*"
+                                            MinWidth="80">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextAlignment"
+                                            Value="Center" />
+                                    <Setter Property="HorizontalAlignment"
+                                            Value="Center" />
+                                    <Setter Property="Padding"
+                                            Value="10" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Cena"
+                                            Binding="{Binding cenaRSD}"
+                                            Width="*"
+                                            MinWidth="80">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextAlignment"
+                                            Value="Center" />
+                                    <Setter Property="HorizontalAlignment"
+                                            Value="Center" />
+                                    <Setter Property="Padding"
+                                            Value="10" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Iznos bez PDV"
+                                            Binding="{Binding osnovicaRSD}"
+                                            Width="*"
+                                            MinWidth="80">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextAlignment"
+                                            Value="Center" />
+                                    <Setter Property="HorizontalAlignment"
+                                            Value="Center" />
+                                    <Setter Property="Padding"
+                                            Value="10" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="PDV %"
+                                            Binding="{Binding pdvposto}"
+                                            Width="*"
+                                            MinWidth="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextAlignment"
+                                            Value="Center" />
+                                    <Setter Property="HorizontalAlignment"
+                                            Value="Center" />
+                                    <Setter Property="Padding"
+                                            Value="10" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Iznos sa PDV"
+                                            Binding="{Binding ukupnoRSD}"
+                                            Width="*"
+                                            MinWidth="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextAlignment"
+                                            Value="Center" />
+                                    <Setter Property="HorizontalAlignment"
+                                            Value="Center" />
+                                    <Setter Property="Padding"
+                                            Value="10" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Akcije"
+                                                MinWidth="120"
+                                                Width="Auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal"
+                                                HorizontalAlignment="Center">
+                                        <Button Width="40"
+                                                Height="30"
+                                                BorderThickness="0"
+                                                Foreground="White"
+                                                Cursor="Hand"
+                                                Margin="0,0,10,0"
+                                                Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                CommandParameter="{Binding}">
+                                            <Button.Style>
+                                                <Style TargetType="Button">
+                                                    <Setter Property="Background"
+                                                            Value="#F44336" />
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="Button">
+                                                                <Border Background="{TemplateBinding Background}"
+                                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                                        CornerRadius="5">
+                                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                                      VerticalAlignment="Center" />
+                                                                </Border>
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="IsMouseOver"
+                                                                             Value="True">
+                                                                        <Setter Property="Background"
+                                                                                Value="#F88780" />
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsPressed"
+                                                                             Value="True">
+                                                                        <Setter Property="Background"
+                                                                                Value="#D32F2F" />
+                                                                    </Trigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver"
+                                                                 Value="True">
+                                                            <Setter Property="Background"
+                                                                    Value="#F88780" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsPressed"
+                                                                 Value="True">
+                                                            <Setter Property="Background"
+                                                                    Value="#D32F2F" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                            <Image Source="/slike/izbrisi.png"
+                                                   Width="25"
+                                                   Height="20"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center" />
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+            <ui:TextBox Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        MinHeight="40"
+                        MinWidth="90"
+                        Width="90"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        PlaceholderText="Šifra"
+                        Margin="20,0,0,0"
+                        Text="{Binding Sifra}"
+                        PreviewTextInput="BrojCheck"></ui:TextBox>
+            <ui:TextBox Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        MinHeight="40"
+                        MinWidth="100"
+                        Width="100"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        PlaceholderText="Naziv"
+                        Margin="120,0,0,0"
+                        Text="{Binding Naziv}"></ui:TextBox>
+            <ui:TextBox Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        MinHeight="40"
+                        MinWidth="71"
+                        Width="71"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        PlaceholderText="Količina"
+                        Margin="230,0,0,0"
+                        Text="{Binding Kolicina}"
+                        PreviewTextInput="BrojCheck"></ui:TextBox>
+            <ui:TextBox Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        MinHeight="40"
+                        MinWidth="90"
+                        Width="90"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        PlaceholderText="Cena"
+                        Margin="310,0,0,0"
+                        Text="{Binding Cena}"
+                        PreviewTextInput="BrojCheck"></ui:TextBox>
+            <ui:TextBox Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        MinHeight="40"
+                        MinWidth="111"
+                        Width="111"
+                        IsEnabled="False"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        PlaceholderText="Iznos bez PDV"
+                        Margin="415,0,0,0"
+                        Text="{Binding IznosbezPDV}"></ui:TextBox>
+            <ui:TextBox Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        MinHeight="40"
+                        MinWidth="66"
+                        Width="66"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        PlaceholderText="PDV %"
+                        Margin="540,0,0,0"
+                        Text="{Binding PDVPosto}"
+                        PreviewTextInput="BrojCheck"></ui:TextBox>
+            <ui:TextBox Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        MinHeight="40"
+                        MinWidth="103"
+                        Width="103"
+                        IsEnabled="False"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        PlaceholderText="Iznos sa PDV"
+                        Margin="615,0,0,0"
+                        Text="{Binding Ukupno}"></ui:TextBox>
+            <Button Grid.ColumnSpan="2"
+                    Grid.Row="2"
+                    Width="160"
+                    Height="40"
                     VerticalAlignment="Top"
-                    PlaceholderText="Šifra"
-                    Margin="20,0,0,0"
-                    Text="{Binding Sifra}"
-                    PreviewTextInput="BrojCheck"></ui:TextBox>
-        <ui:TextBox Grid.Row="2"
-                    Grid.ColumnSpan="2"
-                    MinHeight="40"
-                    MinWidth="100"
-                    Width="100"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    PlaceholderText="Naziv"
-                    Margin="120,0,0,0"
-                    Text="{Binding Naziv}"></ui:TextBox>
-        <ui:TextBox Grid.Row="2"
-                    Grid.ColumnSpan="2"
-                    MinHeight="40"
-                    MinWidth="71"
-                    Width="71"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    PlaceholderText="Količina"
-                    Margin="230,0,0,0"
-                    Text="{Binding Kolicina}"
-                    PreviewTextInput="BrojCheck"></ui:TextBox>
-        <ui:TextBox Grid.Row="2"
-                    Grid.ColumnSpan="2"
-                    MinHeight="40"
-                    MinWidth="90"
-                    Width="90"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    PlaceholderText="Cena"
-                    Margin="310,0,0,0"
-                    Text="{Binding Cena}"
-                    PreviewTextInput="BrojCheck"></ui:TextBox>
-        <ui:TextBox Grid.Row="2"
-                    Grid.ColumnSpan="2"
-                    MinHeight="40"
-                    MinWidth="111"
-                    Width="111"
-                    IsEnabled="False"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    PlaceholderText="Iznos bez PDV"
-                    Margin="415,0,0,0"
-                    Text="{Binding IznosbezPDV}"></ui:TextBox>
-        <ui:TextBox Grid.Row="2"
-                    Grid.ColumnSpan="2"
-                    MinHeight="40"
-                    MinWidth="66"
-                    Width="66"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    PlaceholderText="PDV %"
-                    Margin="540,0,0,0"
-                    Text="{Binding PDVPosto}"
-                    PreviewTextInput="BrojCheck"></ui:TextBox>
-        <ui:TextBox Grid.Row="2"
-                    Grid.ColumnSpan="2"
-                    MinHeight="40"
-                    MinWidth="103"
-                    Width="103"
-                    IsEnabled="False"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    PlaceholderText="Iznos sa PDV"
-                    Margin="615,0,0,0"
-                    Text="{Binding Ukupno}"></ui:TextBox>
-        <Button Grid.ColumnSpan="2"
-                Grid.Row="2"
-                Width="160"
-                Height="40"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Left"
-                Margin="730,0,20,0"
-                BorderThickness="0"
-                Foreground="White"
-                Content="Dodaj novu stavku"
-                FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                FontSize="15"
-                Command="{Binding AddStavkaCommand}">
-            <Button.Effect>
-                <DropShadowEffect ShadowDepth="10"
-                                  Direction="320"
-                                  Color="Gray"
-                                  Opacity="0.5"
-                                  BlurRadius="30" />
-            </Button.Effect>
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background"
-                            Value="#FF4F72FF" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        CornerRadius="13">
-                                    <ContentPresenter HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center" />
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver"
-                                             Value="True">
-                                        <Setter Property="Background"
-                                                Value="#82A6FF" />
-                                    </Trigger>
-                                    <Trigger Property="IsPressed"
-                                             Value="True">
-                                        <Setter Property="Background"
-                                                Value="#3D64C2" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Button.Style>
-        </Button>
-        <TextBlock FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                   FontSize="23"
-                   Language="sr-Latn-RS"
-                   Text="{Binding UkupnoOsnovica, StringFormat= 'Iznos pre PDV: {0:N2} RSD'}" Grid.Row="2" Grid.ColumnSpan="2" Margin="20,80,0,0"></TextBlock>
-        <TextBlock FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                   FontSize="23"
-                   Language="sr-Latn-RS"
-                   Text="{Binding ukupnoPDV, StringFormat= 'PDV iznos: {0:N2} RSD'}"
-                   Grid.Row="2"
-                   Grid.ColumnSpan="2"
-                   Margin="20,130,0,0"></TextBlock>
-        <TextBlock FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                   FontSize="23"
-                   Language="sr-Latn-RS"
-                   Text="{Binding UkupnoUkupno, StringFormat= 'Ukupan iznos: {0:N2} RSD'}"
-                   Grid.Row="2"
-                   Grid.ColumnSpan="2"
-                   Margin="20,180,0,0"></TextBlock>
-        <Button Grid.ColumnSpan="2"
-                Grid.Column="0"
-                Grid.Row="2"
-                Width="220"
-                Height="40"
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Center"
-                Margin="-260,180,20,20"
-                BorderThickness="0"
-                Foreground="White"
-                Content="Sačuvaj"
-                FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                FontSize="15"
-                Command="{Binding SacuvajCommand}">
-            <Button.Effect>
-                <DropShadowEffect ShadowDepth="10"
-                                  Direction="320"
-                                  Color="Gray"
-                                  Opacity="0.5"
-                                  BlurRadius="30" />
-            </Button.Effect>
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background"
-                            Value="#4CAF50" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        CornerRadius="13">
-                                    <ContentPresenter HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center" />
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver"
-                                             Value="True">
-                                        <Setter Property="Background"
-                                                Value="#81C784" />
-                                    </Trigger>
-                                    <Trigger Property="IsPressed"
-                                             Value="True">
-                                        <Setter Property="Background"
-                                                Value="#388E3C" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button Grid.ColumnSpan="2"
-                Grid.Row="2"
-                Width="220"
-                Height="40"
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Center"
-                Margin="240,180,20,20"
-                BorderThickness="0"
-                Foreground="White"
-                Content="Nazad"
-                FontFamily="pack://application:,,,/Fonts/#Poppins Light"
-                FontSize="15"
-                Click="Nazad">
-            <Button.Effect>
-                <DropShadowEffect ShadowDepth="10"
-                                  Direction="320"
-                                  Color="Gray"
-                                  Opacity="0.5"
-                                  BlurRadius="30" />
-            </Button.Effect>
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Background"
-                            Value="#F44336" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        CornerRadius="13">
-                                    <ContentPresenter HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center" />
-                                </Border>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver"
-                                             Value="True">
-                                        <Setter Property="Background"
-                                                Value="#F88780" />
-                                    </Trigger>
-                                    <Trigger Property="IsPressed"
-                                             Value="True">
-                                        <Setter Property="Background"
-                                                Value="#D32F2F" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Button.Style>
-        </Button>
-    </Grid>
+                    Margin="730,0,20,0"
+                    BorderThickness="0"
+                    Foreground="White"
+                    Content="Dodaj novu stavku"
+                    FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                    FontSize="15"
+                    Command="{Binding AddStavkaCommand}">
+                <Button.Effect>
+                    <DropShadowEffect ShadowDepth="10"
+                                      Direction="320"
+                                      Color="Gray"
+                                      Opacity="0.5"
+                                      BlurRadius="30" />
+                </Button.Effect>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background"
+                                Value="#FF4F72FF" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="13">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#82A6FF" />
+                                        </Trigger>
+                                        <Trigger Property="IsPressed"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#3D64C2" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <TextBlock FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                       FontSize="23"
+                       Language="sr-Latn-RS"
+                       Text="{Binding UkupnoOsnovica, StringFormat= 'Iznos pre PDV: {0:N2} RSD'}"
+                       Grid.Row="2"
+                       Grid.ColumnSpan="2"
+                       Margin="20,80,0,0"></TextBlock>
+            <TextBlock FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                       FontSize="23"
+                       Language="sr-Latn-RS"
+                       Text="{Binding ukupnoPDV, StringFormat= 'PDV iznos: {0:N2} RSD'}"
+                       Grid.Row="2"
+                       Grid.ColumnSpan="2"
+                       Margin="20,130,0,0"></TextBlock>
+            <TextBlock FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                       FontSize="23"
+                       Language="sr-Latn-RS"
+                       Text="{Binding UkupnoUkupno, StringFormat= 'Ukupan iznos: {0:N2} RSD'}"
+                       Grid.Row="2"
+                       Grid.ColumnSpan="2"
+                       Margin="20,180,0,0"></TextBlock>
+            <Button Grid.ColumnSpan="2"
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Width="220"
+                    Height="40"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center"
+                    Margin="-260,180,20,20"
+                    BorderThickness="0"
+                    Foreground="White"
+                    Content="Sačuvaj"
+                    FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                    FontSize="15"
+                    Command="{Binding SacuvajCommand}">
+                <Button.Effect>
+                    <DropShadowEffect ShadowDepth="10"
+                                      Direction="320"
+                                      Color="Gray"
+                                      Opacity="0.5"
+                                      BlurRadius="30" />
+                </Button.Effect>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background"
+                                Value="#4CAF50" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="13">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#81C784" />
+                                        </Trigger>
+                                        <Trigger Property="IsPressed"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#388E3C" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Grid.ColumnSpan="2"
+                    Grid.Row="2"
+                    Width="220"
+                    Height="40"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center"
+                    Margin="240,180,20,20"
+                    BorderThickness="0"
+                    Foreground="White"
+                    Content="Nazad"
+                    FontFamily="pack://application:,,,/Fonts/#Poppins Light"
+                    FontSize="15"
+                    Click="Nazad">
+                <Button.Effect>
+                    <DropShadowEffect ShadowDepth="10"
+                                      Direction="320"
+                                      Color="Gray"
+                                      Opacity="0.5"
+                                      BlurRadius="30" />
+                </Button.Effect>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background"
+                                Value="#F44336" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="13">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#F88780" />
+                                        </Trigger>
+                                        <Trigger Property="IsPressed"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#D32F2F" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

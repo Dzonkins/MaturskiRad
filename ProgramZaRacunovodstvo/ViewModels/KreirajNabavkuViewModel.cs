@@ -361,7 +361,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 XFont contentFont = new XFont("Arial", 8);
 
                 gfx.DrawString("Faktura: " + BrojFakture, titleFont, XBrushes.Black, new XPoint(200, 50));
-                gfx.DrawString("Datuma slanja: " + (Date?.Date.ToString("dd.MM.yyyy") ?? "N/A"), contentFont, XBrushes.Black, new XPoint(350, 220));
+                gfx.DrawString("Datuma slanja: " + (Date?.Date.ToString("dd.MM.yyyy.") ?? "N/A"), contentFont, XBrushes.Black, new XPoint(350, 220));
 
 
                 gfx.DrawString("Ime dobavljača: " + SelectedPravnoLice, contentFont, XBrushes.Black, new XPoint(50, 100));
@@ -408,22 +408,20 @@ namespace ProgramZaRacunovodstvo.ViewModels
                     currentY += rowHeight;
                 }
 
-                gfx.DrawString("Iznos bez PDV", headerFont, XBrushes.Black, new XPoint(tableX + 320, currentY + 20));
+                gfx.DrawString("Iznos bez PDV:", headerFont, XBrushes.Black, new XPoint(tableX + 320, currentY + 20));
                 gfx.DrawString(UkupnoOsnovica.ToString("N2") + " RSD", headerFont, XBrushes.Black, new XPoint(tableX + 420, currentY + 20));
-                gfx.DrawString("Ukupan PDV", headerFont, XBrushes.Black, new XPoint(tableX + 320, currentY + 40));
+                gfx.DrawString("Ukupan PDV:", headerFont, XBrushes.Black, new XPoint(tableX + 320, currentY + 40));
                 gfx.DrawString(ukupnoPDV.ToString("N2") + " RSD", headerFont, XBrushes.Black, new XPoint(tableX + 420, currentY + 40));
-                gfx.DrawString("Ukupan iznos", headerFont, XBrushes.Black, new XPoint(tableX + 320, currentY + 60));
+                gfx.DrawString("Ukupan iznos:", headerFont, XBrushes.Black, new XPoint(tableX + 320, currentY + 60));
                 gfx.DrawString(UkupnoUkupno.ToString("N2") + " RSD", headerFont, XBrushes.Black, new XPoint(tableX + 420, currentY + 60));
 
                 currentY += rowHeight + 20;
-
-                document.Save(outputPath);
 
                 byte[] GenerisanPdf = File.ReadAllBytes(outputPath);
                 string formattedDate = Date.HasValue ? Date.Value.Date.ToString("dd-MM-yyyy") : "01-01-0001";
                 DateTime datum = Date.HasValue ? new DateTime(Date.Value.Year, Date.Value.Month, Date.Value.Day, 0, 0, 0) : DateTime.MinValue;
 
-                _database.KreirajFakturu("Nabavka", status, SelectedPravnoLice, Stavke, SelectedFiles, Id.Instance.firmaid, BrojFakture, UkupnoOsnovica, ukupnoPDV, UkupnoUkupno, datum, GenerisanPdf);
+                _database.KreirajFakturu("Nabavka", status, SelectedPravnoLice, PodaciKupac[0], Stavke, SelectedFiles, Id.Instance.firmaid, BrojFakture, UkupnoOsnovica, ukupnoPDV, UkupnoUkupno, datum, GenerisanPdf);
                 Navigation.Instance.NavigateTo(new Nabavke(Navigation.Instance.GetMainWindow()));
 
             }
