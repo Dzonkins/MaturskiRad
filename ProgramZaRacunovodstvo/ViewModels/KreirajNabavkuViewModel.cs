@@ -416,7 +416,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 gfx.DrawString(UkupnoUkupno.ToString("N2") + " RSD", headerFont, XBrushes.Black, new XPoint(tableX + 420, currentY + 60));
 
                 currentY += rowHeight + 20;
-
+                document.Save(outputPath);
                 byte[] GenerisanPdf = File.ReadAllBytes(outputPath);
                 string formattedDate = Date.HasValue ? Date.Value.Date.ToString("dd-MM-yyyy") : "01-01-0001";
                 DateTime datum = Date.HasValue ? new DateTime(Date.Value.Year, Date.Value.Month, Date.Value.Day, 0, 0, 0) : DateTime.MinValue;

@@ -28,9 +28,12 @@ namespace ProgramZaRacunovodstvo.ViewModels
         private string _iznos = string.Empty;
         private bool _placeno;
         private string? _pdfUrl;
+
+        private string? _tempFilePath;
         public ObservableCollection<FajlFakture> Fajlovi { get; set; } = new();
         public ICommand Sacuvaj { get; }
         public ICommand Checkbox { get; }
+        public ICommand PreuzmiFakturuCommand { get; }
 
 
         public int id { get; set; }
@@ -120,6 +123,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
             PovuciPodatke();
             Sacuvaj = new RelayCommand<FajlFakture>(SacuvajDokument);
             Checkbox = new RelayCommand<bool?>(CheckboxPromenjen);
+            PreuzmiFakturuCommand = new RelayCommand(PreuzmiFakturu, CanPreuzmiFakturu);
 
         }
 
@@ -194,6 +198,33 @@ namespace ProgramZaRacunovodstvo.ViewModels
             }
         }
 
+
+        private void PreuzmiFakturu(object parameter)
+        {
+            if (string.IsNullOrEmpty(_tempFilePath) || !File.Exists(_tempFilePath))
+            {
+                return;
+            }
+
+            var saveDialog = new SaveFileDialog
+            {
+                FileName = "Faktura " + BrojFakture +".pdf",
+                Filter = "PDF files (*.pdf)|*.pdf",
+                Title = "Save PDF"
+            };
+
+            if (saveDialog.ShowDialog() == true)
+            {
+                File.Copy(_tempFilePath, saveDialog.FileName, true);
+            }
+        }
+
+        private bool CanPreuzmiFakturu(object parameter)
+        {
+            return !string.IsNullOrEmpty(_tempFilePath) && File.Exists(_tempFilePath);
+        }
+
+
         private void PdfWebView(byte[]? pdfData)
         {
             if (pdfData == null)
@@ -213,6 +244,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 }
 
                 string tempFilePath = System.IO.Path.Combine(tempFolderPath, "temp_faktura.pdf");
+                _tempFilePath = tempFilePath;
 
                 System.IO.File.WriteAllBytes(tempFilePath, pdfData);
 

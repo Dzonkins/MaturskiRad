@@ -58,8 +58,8 @@ namespace ProgramZaRacunovodstvo
                                 `Osnovica` DECIMAL(30, 2),
                                 `PDV` DECIMAL(30, 2),
                                 `Ukupno` DECIMAL(30, 2),
-                                `Datum` date,
-                                `FirmaId` integer,
+                                `Datum` DATE,
+                                `FirmaId` INTEGER,
                                 `Fajl` BLOB
                             );"},
             {"ElementiFakture", @"CREATE TABLE IF NOT EXISTS `ElementiFakture`(

@@ -355,7 +355,7 @@
                     </DataGridTextColumn>
 
                     <DataGridTextColumn Header="Datum"
-                                        Binding="{Binding DatumSlanja, StringFormat=\{0:dd.MM.yyyy\}}"
+                                        Binding="{Binding DatumSlanja, StringFormat=\{0:dd.MM.yyyy.\}}"
                                         Width="*"
                                         MinWidth="100">
                         <DataGridTextColumn.ElementStyle>
