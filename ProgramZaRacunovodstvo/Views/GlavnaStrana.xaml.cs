@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProgramZaRacunovodstvo.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -27,6 +28,7 @@ namespace ProgramZaRacunovodstvo.ViewModel
 
         public GlavnaStrana(MainWindow mainWindow)
         {
+            DataContext = new ViewModels.GlavnaStrana();
             InitializeComponent();
             _mainWindow = mainWindow;
             Naslovi();

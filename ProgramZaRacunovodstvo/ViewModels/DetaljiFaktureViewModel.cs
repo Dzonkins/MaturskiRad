@@ -119,7 +119,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         public DetaljiFaktureViewModel()
         {
-            id = Id.Instance.NabavkaId;
+            id = Id.Instance.FakturaId;
             PovuciPodatke();
             Sacuvaj = new RelayCommand<FajlFakture>(SacuvajDokument);
             Checkbox = new RelayCommand<bool?>(CheckboxPromenjen);

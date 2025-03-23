@@ -28,6 +28,9 @@
     <Compile Update="Views\KreirajNabavku.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\KreirajProdaju.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Nabavke.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -70,6 +73,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\KreirajNabavku.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\KreirajProdaju.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Nabavke.xaml">

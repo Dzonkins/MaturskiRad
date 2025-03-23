@@ -1,6 +1,7 @@
 ﻿using LiveChartsCore.Themes;
 using Microsoft.Data.Sqlite;
 using ProgramZaRacunovodstvo.Models;
+using ProgramZaRacunovodstvo.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -284,7 +285,7 @@ namespace ProgramZaRacunovodstvo
             using var connection = new SqliteConnection(_connectionString);
             connection.Open();
 
-            string query = "SELECT ImeFirme, PIB, MaticniBroj, Adresa, Grad FROM Firme WHERE Id = @Id";
+            string query = "SELECT ImeFirme, PIB, MaticniBroj, Adresa, Grad, BrojRacuna FROM Firme WHERE Id = @Id";
 
             using (var command = new SqliteCommand(query, connection))
             {
@@ -427,16 +428,17 @@ namespace ProgramZaRacunovodstvo
 
         }
 
-        public List<Nabavka> IzvuciNabavke(int firmaid)
+        public List<Nabavka> IzvuciNabavke(int firmaid, string tipFakture)
         {
             List<Nabavka> Nabavke = new List<Nabavka>();
             using var connection = new SqliteConnection(_connectionString);
             connection.Open();
 
-            string query = @"SELECT Id, BrojFakture, StatusFakture, Dobavljac, Osnovica, PDV, Ukupno, Datum FROM Fakture WHERE FirmaId = @FirmaId";
+            string query = @"SELECT Id, BrojFakture, StatusFakture, Dobavljac, Osnovica, PDV, Ukupno, Datum FROM Fakture WHERE FirmaId = @FirmaId AND TipFakture = @TipFakture";
 
             using var command = new SqliteCommand(query, connection);
             command.Parameters.AddWithValue("@FirmaId", firmaid);
+            command.Parameters.AddWithValue("@TipFakture", tipFakture);
 
             using var reader = command.ExecuteReader();
 
@@ -458,6 +460,37 @@ namespace ProgramZaRacunovodstvo
             return Nabavke;
         }
 
+        public List<Prodaja> IzvuciProdaje(int firmaid, string tipFakture)
+        {
+            List<Prodaja> Prodaja = new List<Prodaja>();
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = @"SELECT Id, BrojFakture, StatusFakture, Kupac, Osnovica, PDV, Ukupno, Datum FROM Fakture WHERE FirmaId = @FirmaId AND TipFakture = @TipFakture";
+
+            using var command = new SqliteCommand(query, connection);
+            command.Parameters.AddWithValue("@FirmaId", firmaid);
+            command.Parameters.AddWithValue("@TipFakture", tipFakture);
+
+            using var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Prodaja.Add(new Prodaja
+                {
+                    Id = reader.GetInt32("Id"),
+                    BrojFakture = reader.GetString(1),
+                    Status = reader.GetString(2),
+                    Kupac = reader.GetString(3),
+                    Osnovica = reader.GetDecimal(4),
+                    Pdv = reader.GetDecimal(5),
+                    Ukupno = reader.GetDecimal(6),
+                    DatumSlanja = DateOnly.FromDateTime(reader.GetDateTime(7))
+                });
+            }
+
+            return Prodaja;
+        }
         public DetaljiFakture PodaciOFakturi(int fakturaId)
         {
             using var connection = new SqliteConnection(_connectionString);
@@ -531,6 +564,64 @@ namespace ProgramZaRacunovodstvo
                 command.Parameters.AddWithValue("@StatusFakture", statusFakture);
                 command.ExecuteNonQuery();
             }
+        }
+
+        public int BrojUlaznihFaktura(int firmaId)
+        {
+            int count = 0;
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = "SELECT COUNT(*) FROM Fakture WHERE strftime('%Y-%m', Datum) = strftime('%Y-%m', 'now') AND FirmaId = @firmaId AND TipFakture = 'Nabavka'";
+
+            using var command = new SqliteCommand(query, connection);
+            command.Parameters.AddWithValue("@firmaId", firmaId);
+
+            count = Convert.ToInt32(command.ExecuteScalar());
+
+            return count;
+        }
+
+        public int BrojIzlaznihFaktura(int firmaId)
+        {
+            int count = 0;
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = "SELECT COUNT(*) FROM Fakture WHERE strftime('%Y-%m', Datum) = strftime('%Y-%m', 'now') AND FirmaId = @firmaId AND TipFakture = 'Prodaja'";
+
+            using var command = new SqliteCommand(query, connection);
+            command.Parameters.AddWithValue("@firmaId", firmaId);
+
+            count = Convert.ToInt32(command.ExecuteScalar());
+
+            return count;
+        }
+
+        public decimal Prihodi(int firmaId)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = "SELECT SUM(Ukupno) FROM Fakture WHERE strftime('%Y-%m', Datum) = strftime('%Y-%m', 'now') AND StatusFakture = 'Plaćeno' AND TipFakture = 'Prodaja' AND FirmaId = @FirmaId";
+
+            using var command = new SqliteCommand(query, connection);
+            command.Parameters.AddWithValue("@FirmaId", firmaId);
+            var result = command.ExecuteScalar();
+            return result != DBNull.Value ? Convert.ToDecimal(result) : 0m;
+        }
+
+        public decimal Rashodi(int firmaId)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = "SELECT SUM(Ukupno) FROM Fakture WHERE strftime('%Y-%m', Datum) = strftime('%Y-%m', 'now') AND StatusFakture = 'Plaćeno' AND TipFakture = 'Nabavka' AND FirmaId = @FirmaId";
+
+            using var command = new SqliteCommand(query, connection);
+            command.Parameters.AddWithValue("@FirmaId", firmaId);
+            var result = command.ExecuteScalar();
+            return result != DBNull.Value ? Convert.ToDecimal(result) : 0m;
         }
     }
 }

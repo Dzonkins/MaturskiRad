@@ -187,7 +187,8 @@ namespace ProgramZaRacunovodstvo.ViewModels
         {
             if (parameter is Models.Nabavka nabavka && PagedNabavke.Contains(nabavka))
             {
-                Id.Instance.NabavkaId = nabavka.Id;
+                Id.Instance.TipFakture = "Nabavka";
+                Id.Instance.FakturaId = nabavka.Id;
                 Navigation.Instance.NavigateTo(new Views.DetaljiFakture(Navigation.Instance.GetMainWindow()));
             }
         }
@@ -234,7 +235,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         private void ucitajPodatke()
         {
-            _originalNabavke = new ObservableCollection<Nabavka>(_database.IzvuciNabavke(Id.Instance.firmaid).OrderByDescending(n => n.Id));
+            _originalNabavke = new ObservableCollection<Nabavka>(_database.IzvuciNabavke(Id.Instance.firmaid, "Nabavka").OrderByDescending(n => n.Id));
             Nabavke = new ObservableCollection<Nabavka>(_originalNabavke);
 
             OsveziStavke();

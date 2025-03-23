@@ -24,7 +24,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
 
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Kreiraj dokument"
+            <TextBlock Text="Kreiraj nabavku"
                        FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                        FontSize="28"
                        Margin="20,40,0,20"

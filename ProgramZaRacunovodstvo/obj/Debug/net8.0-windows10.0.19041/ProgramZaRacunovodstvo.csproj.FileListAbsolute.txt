@@ -133,3 +133,5 @@ C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\D
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\Microsoft.Web.WebView2.WinForms.xml
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\Microsoft.Web.WebView2.Wpf.xml
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\ProgramZaRacunovodstvo_Content.g.cs
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\KreirajProdaju.g.cs
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\KreirajProdaju.baml

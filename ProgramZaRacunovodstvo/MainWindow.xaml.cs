@@ -113,7 +113,7 @@ namespace ProgramZaRacunovodstvo
                         NavigateTo(new Nabavke(this));
                         break;
                     case "Prodaja":
-                        NavigateTo(new Views.Prodaja());
+                        NavigateTo(new Views.Prodaja(this));
                         break;
                     case "Izvodi":
                         NavigateTo(new Views.Izvodi());

@@ -17,7 +17,6 @@ using ProgramZaRacunovodstvo.Services;
 using ProgramZaRacunovodstvo.Views;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Globalization;
 
 namespace ProgramZaRacunovodstvo.ViewModels
@@ -393,10 +392,17 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 gfx.DrawString("Iznos sa PDV", headerFont, XBrushes.Black, new XPoint(tableX + 470, tableY + 20));
 
 
-
+                double maxY = page.Height.Point - 100;
                 double currentY = tableY + rowHeight;
                 foreach (var stavke in Stavke)
                 {
+                    if (currentY + rowHeight > maxY)
+                    {
+                        page = document.AddPage();
+                        gfx = XGraphics.FromPdfPage(page);
+                        currentY = 50;
+                    }
+
                     gfx.DrawRectangle(XPens.Black, tableX, currentY, tableWidth, rowHeight);
                     gfx.DrawString(stavke.naziv, contentFont, XBrushes.Black, new XPoint(tableX + 10, currentY + 20));
                     gfx.DrawString(stavke.kolicina?.ToString() ?? "-", contentFont, XBrushes.Black, new XPoint(tableX + 80, currentY + 20));

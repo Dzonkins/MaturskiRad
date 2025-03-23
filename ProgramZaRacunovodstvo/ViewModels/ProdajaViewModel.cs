@@ -1,4 +1,6 @@
 ﻿using ProgramZaRacunovodstvo.Models;
+using ProgramZaRacunovodstvo.Services;
+using ProgramZaRacunovodstvo.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,18 +9,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Xml.Linq;
 using Wpf.Ui.Input;
 
 namespace ProgramZaRacunovodstvo.ViewModels
 {
     class ProdajaViewModel : INotifyPropertyChanged
     {
+        private readonly DatabaseKomande _database = new DatabaseKomande();
         private System.Timers.Timer _timer;
         private int _trenutnaStranica = 1;
         private int _stavkiPoStranici = 9;
         private int _totalPages;
         private string _pretragaText = string.Empty;
-        private ObservableCollection<Prodaja> _originalProdaja = new();
+
+        private ObservableCollection<Models.Prodaja> _originalProdaja = new();
+        public ICommand Izbrisi { get; }
+        public ICommand Detalji { get; }
 
 
         public string PretragaText
@@ -64,9 +71,9 @@ namespace ProgramZaRacunovodstvo.ViewModels
             }
         }
 
-        private ObservableCollection<Prodaja> _pagedProdaja = new();
+        private ObservableCollection<Models.Prodaja> _pagedProdaja = new();
 
-        public ObservableCollection<Prodaja> PagedProdaja
+        public ObservableCollection<Models.Prodaja> PagedProdaja
         {
             get => _pagedProdaja;
             set
@@ -137,9 +144,9 @@ namespace ProgramZaRacunovodstvo.ViewModels
         }
 
 
-        private ObservableCollection<Prodaja> _prodaja = new();
+        private ObservableCollection<Models.Prodaja> _prodaja = new();
 
-        public ObservableCollection<Prodaja> Prodaje
+        public ObservableCollection<Models.Prodaja> Prodaje
         {
             get => _prodaja;
             set
@@ -151,6 +158,8 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         public ProdajaViewModel()
         {
+            Izbrisi = new RelayCommand(IzbrisiNabavku);
+            Detalji = new RelayCommand(DetaljiNabavke);
             PrethodnaStranica = new RelayCommand<object>(_ => PrethodnaStrana(), _ => _trenutnaStranica > 1);
             SledecaStranica = new RelayCommand<object>(_ => SledecaStrana(), _ => _trenutnaStranica < TotalPages);
             ucitajPodatke();
@@ -161,6 +170,28 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
 
         }
+
+        private void IzbrisiNabavku(object parameter)
+        {
+            if (parameter is Models.Prodaja prodaja && PagedProdaja.Contains(prodaja))
+            {
+                PagedProdaja.Remove(prodaja);
+                Prodaje.Remove(prodaja);
+                _database.IzbrisiFakturu(prodaja.Id);
+                OsveziStavke();
+            }
+        }
+
+        private void DetaljiNabavke(object parameter)
+        {
+            if (parameter is Models.Prodaja prodaja && PagedProdaja.Contains(prodaja))
+            {
+                Id.Instance.TipFakture = "Prodaja";
+                Id.Instance.FakturaId = prodaja.Id;
+                Navigation.Instance.NavigateTo(new Views.DetaljiFakture(Navigation.Instance.GetMainWindow()));
+            }
+        }
+
 
         private void Pretraga()
         {
@@ -173,7 +204,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
                     filter = filter.Where(n =>
                         (n.BrojFakture?.Contains(PretragaText, StringComparison.OrdinalIgnoreCase) ?? false) ||
                         (n.Status != null && n.Status.StartsWith(PretragaText, StringComparison.OrdinalIgnoreCase)) ||
-                        (n.Primalac?.Contains(PretragaText, StringComparison.OrdinalIgnoreCase) ?? false)
+                        (n.Kupac?.Contains(PretragaText, StringComparison.OrdinalIgnoreCase) ?? false)
                     );
                 }
 
@@ -189,7 +220,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
                     filter = filter.Where(n => n.DatumSlanja <= endDate);
                 }
 
-                Prodaje = new ObservableCollection<Prodaja>(filter);
+                Prodaje = new ObservableCollection<Models.Prodaja>(filter);
                 OsveziStavke();
             });
         }
@@ -202,26 +233,8 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         private void ucitajPodatke()
         {
-            _originalProdaja = new ObservableCollection<Prodaja>
-            {
-                new Prodaja { BrojFakture = "F23456", Status = "Plaćeno", Primalac = "ABC d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
-                new Prodaja { BrojFakture = "F12346", Status = "Neplaćeno", Primalac = "XYZ d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
-                new Prodaja { BrojFakture = "F12345", Status = "Plaćeno", Primalac = "ABC d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
-                new Prodaja { BrojFakture = "F12346", Status = "Neplaćeno", Primalac = "XYZ d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
-                new Prodaja { BrojFakture = "1F2345", Status = "Plaćeno", Primalac = "ABC d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
-                new Prodaja { BrojFakture = "F12346", Status = "Neplaćeno", Primalac = "XYZ d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
-                new Prodaja { BrojFakture = "F12345", Status = "Plaćeno", Primalac = "ABC d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
-                new Prodaja { BrojFakture = "F12346", Status = "Neplaćeno", Primalac = "XYZ d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
-                new Prodaja { BrojFakture = "F12345", Status = "Plaćeno", Primalac = "ABC d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
-                new Prodaja { BrojFakture = "F12346", Status = "Neplaćeno", Primalac = "XYZ d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
-                new Prodaja { BrojFakture = "F12345", Status = "Plaćeno", Primalac = "ABC d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
-                new Prodaja { BrojFakture = "F12346", Status = "Neplaćeno", Primalac = "XYZ d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
-                new Prodaja { BrojFakture = "F12345", Status = "Plaćeno", Primalac = "ABC d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
-                new Prodaja { BrojFakture = "F12346", Status = "Neplaćeno", Primalac = "XYZ d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)},
-                new Prodaja { BrojFakture = "F12345", Status = "Plaćeno", Primalac = "ABC d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 15000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-10) },
-                new Prodaja { BrojFakture = "F12346", Status = "Neplaćeno", Primalac = "XYZ d.o.o.", Osnovica = 10000, Pdv = 2000, Ukupno = 25000, DatumSlanja = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)}
-            };
-            Prodaje = new ObservableCollection<Prodaja>(_originalProdaja);
+            _originalProdaja = new ObservableCollection<Models.Prodaja>(_database.IzvuciProdaje(Id.Instance.firmaid, "Prodaja").OrderByDescending(n => n.Id));
+            Prodaje = new ObservableCollection<Models.Prodaja>(_originalProdaja);
 
             OsveziStavke();
 
@@ -235,7 +248,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
             if (_trenutnaStranica > TotalPages) _trenutnaStranica = TotalPages;
 
-            PagedProdaja = new ObservableCollection<Prodaja>(
+            PagedProdaja = new ObservableCollection<Models.Prodaja>(
                 Prodaje.Skip((_trenutnaStranica - 1) * stavkiPoStranici).Take(stavkiPoStranici)
             );
 

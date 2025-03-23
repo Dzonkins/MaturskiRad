@@ -12,6 +12,8 @@ using System.Globalization;
 using System.IO;
 using HarfBuzzSharp;
 using ProgramZaRacunovodstvo.ViewModel;
+using ProgramZaRacunovodstvo.Services;
+using System.Diagnostics.Eventing.Reader;
 
 namespace ProgramZaRacunovodstvo.ViewModels
 {
@@ -22,7 +24,17 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         private static readonly SKTypeface customFont;
 
-        
+        private decimal prihodi = 0;
+        private decimal rashodi = 0;
+        public decimal stanje { get; set; }
+        public int UlazneFakture { get; set; }
+        public int IzlazneFakture { get; set; }
+
+        private readonly DatabaseKomande _database = new();
+        public string StanjeFormatted => stanje.ToString("#,0.00", culture) + " RSD";
+
+
+
 
         static GlavnaStrana()
         {
@@ -42,36 +54,43 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 System.Diagnostics.Debug.WriteLine($"Error loading font: {ex.Message}");
                 customFont = SKTypeface.Default;
             }
+            
         }
-        public IEnumerable<ISeries> PrihodiRashodi { get; set; } =
-        [
-            new PieSeries<double>
+
+        public GlavnaStrana()
+        {
+            rashodi = _database.Rashodi(Id.Instance.firmaid);
+            prihodi = _database.Prihodi(Id.Instance.firmaid);
+            stanje = prihodi-rashodi;
+
+            int firmaId = Id.Instance.firmaid;
+            UlazneFakture = _database.BrojUlaznihFaktura(firmaId);
+            IzlazneFakture = _database.BrojIzlaznihFaktura(firmaId);
+
+            PrihodiRashodi = new List<ISeries>
             {
-                Values = new[] { 4000000.75 },
-                Name = "Prihodi",
-                DataLabelsSize = 16,
-                DataLabelsPaint = new SolidColorPaint
+                new PieSeries<double>
                 {
-                    SKTypeface = customFont,
-                    Color = SKColors.White
+                    Values = new[] { (double)prihodi },
+                    Name = "Prihodi",
+                    DataLabelsSize = 16,
+                    DataLabelsPaint = new SolidColorPaint { SKTypeface = customFont, Color = SKColors.White },
+                    DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                    DataLabelsFormatter = value => value.Model.ToString("#,0.00", culture) + " RSD"
                 },
-                DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
-                DataLabelsFormatter = value => value.Model.ToString("#,0.00", culture)
-            },
-            new PieSeries<double>
-            {
-                Values = new[] { 1500000.50 },
-                Name = "Rashodi",
-                DataLabelsSize = 16,
-                DataLabelsPaint = new SolidColorPaint
+                new PieSeries<double>
                 {
-                    SKTypeface = customFont,
-                    Color = SKColors.White
-                },
-                DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
-                DataLabelsFormatter = value => value.Model.ToString("#,0.00", culture)
-            }
-        ];
+                    Values = new[] { (double)rashodi },
+                    Name = "Rashodi",
+                    DataLabelsSize = 16,
+                    DataLabelsPaint = new SolidColorPaint { SKTypeface = customFont, Color = SKColors.White },
+                    DataLabelsPosition = LiveChartsCore.Measure.PolarLabelsPosition.Middle,
+                    DataLabelsFormatter = value => value.Model.ToString("#,0.00", culture) + " RSD"
+                }
+            };
+        }
+        public IEnumerable<ISeries> PrihodiRashodi { get; set; }
+
 
         public LabelVisual PrihodiRashodiNaslov { get; set; } =
             new LabelVisual

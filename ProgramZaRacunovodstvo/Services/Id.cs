@@ -13,7 +13,9 @@ namespace ProgramZaRacunovodstvo.Services
 
         public int firmaid { get; set; }
         public int pravnoLiceId { get; set; }
-        public int NabavkaId { get; set; }
+        public int FakturaId { get; set; }
+        public string TipFakture { get; set; } = string.Empty;
+
 
 
         private Id() { }

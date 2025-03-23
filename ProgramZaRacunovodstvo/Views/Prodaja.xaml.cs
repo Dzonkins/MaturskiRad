@@ -21,8 +21,12 @@ namespace ProgramZaRacunovodstvo.Views
     /// </summary>
     public partial class Prodaja : UserControl
     {
-        public Prodaja()
+        private MainWindow _mainWindow;
+
+        public Prodaja(MainWindow mainWindow)
         {
+            DataContext = new ProdajaViewModel();
+            _mainWindow = mainWindow;
             InitializeComponent();
         }
 
@@ -57,6 +61,11 @@ namespace ProgramZaRacunovodstvo.Views
 
 
             }
+        }
+
+        private void KreirajProdaju(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.NavigateTo(new Views.KreirajProdaju(_mainWindow));
         }
     }
 }
