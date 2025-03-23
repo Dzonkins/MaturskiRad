@@ -1,1 +1,0 @@
-{"net":{"http_server_properties":{"servers":[{"anonymization":["FAAAAA4AAABodHRwczovL3czLm9yZwAA",false],"network_stats":{"srtt":18697},"server":"https://www.w3.org"}],"supports_quic":{"address":"192.168.1.65","used_quic":true},"version":5},"network_qualities":{"CAASABiAgICA+P////8B":"4G"}}}
