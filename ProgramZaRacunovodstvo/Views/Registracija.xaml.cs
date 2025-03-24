@@ -146,6 +146,11 @@ namespace ProgramZaRacunovodstvo.Views
             {
                 greska.Visibility = Visibility.Visible;
                 greska.Text = "Molimo vas popunite sva polja";
+            }else if (_database.RegistracijaProvera(txtEmail.Text))
+            {
+                greska.Visibility = Visibility.Visible;
+                greska.Text = "Korisnik sa unetim email-om već postoji";
+
             }
             else
             {

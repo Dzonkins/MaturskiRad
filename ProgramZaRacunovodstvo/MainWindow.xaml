@@ -103,6 +103,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Border Height="100">
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -279,10 +280,28 @@
                     </Grid>
                 </Button>
 
+                <Button Tag="PromeniFirmu"
+                        Style="{StaticResource SidebarButtonStyle}"
+                        Grid.Row="8">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                       
+                        <TextBlock Text="Promeni firmu"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Grid.Column="0"
+                                   Margin="10,0,33,0"
+                                   Width="auto"
+                                   FontSize="20"
+                                   FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
+                    </Grid>
+                </Button>
 
                 <Button Tag="IzlogujSe"
                         Style="{StaticResource SidebarButtonStyle}"
-                        Grid.Row="8">
+                        Grid.Row="9">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />

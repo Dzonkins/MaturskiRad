@@ -14,6 +14,8 @@ using HarfBuzzSharp;
 using ProgramZaRacunovodstvo.ViewModel;
 using ProgramZaRacunovodstvo.Services;
 using System.Diagnostics.Eventing.Reader;
+using System.Net.Sockets;
+using PdfSharp.Charting;
 
 namespace ProgramZaRacunovodstvo.ViewModels
 {
@@ -29,6 +31,15 @@ namespace ProgramZaRacunovodstvo.ViewModels
         public decimal stanje { get; set; }
         public int UlazneFakture { get; set; }
         public int IzlazneFakture { get; set; }
+        public List<ISeries> KlijentiSeries { get; set; }
+        public List<LiveChartsCore.SkiaSharpView.Axis> KlijentiXAxes { get; set; }
+        public List<LiveChartsCore.SkiaSharpView.Axis> KlijentiYAxes { get; set; }
+        public List<ISeries> DobavljaciSeries { get; set; }
+        public List<LiveChartsCore.SkiaSharpView.Axis> DobavljaciXAxes { get; set; }
+        public List<LiveChartsCore.SkiaSharpView.Axis> DobavljaciYAxes { get; set; }
+        public List<ISeries> PrihodiRashodiMesec { get; set; }
+        public List<LiveChartsCore.SkiaSharpView.Axis> PrihodiRashodiXAxes { get; set; }
+
 
         private readonly DatabaseKomande _database = new();
         public string StanjeFormatted => stanje.ToString("#,0.00", culture) + " RSD";
@@ -59,13 +70,115 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         public GlavnaStrana()
         {
-            rashodi = _database.Rashodi(Id.Instance.firmaid);
-            prihodi = _database.Prihodi(Id.Instance.firmaid);
-            stanje = prihodi-rashodi;
+            
 
             int firmaId = Id.Instance.firmaid;
+            rashodi = _database.Rashodi(firmaId);
+            prihodi = _database.Prihodi(firmaId);
+            stanje = prihodi - rashodi;
             UlazneFakture = _database.BrojUlaznihFaktura(firmaId);
             IzlazneFakture = _database.BrojIzlaznihFaktura(firmaId);
+            var topKlijenti = _database.Top10Klijenti(firmaId);
+            var topDobavljaci = _database.Top10Dobavljaci(firmaId);
+            var (prihodi1, rashodi1, meseci) = _database.PrihodiRashodi(Id.Instance.firmaid);
+
+            PrihodiRashodiXAxes = new List<LiveChartsCore.SkiaSharpView.Axis>
+            {
+                new LiveChartsCore.SkiaSharpView.Axis
+                {
+                    Labels = meseci,
+                    LabelsRotation = 0,
+                    TextSize = 14,
+                    NamePaint = new SolidColorPaint { Color = SKColors.Black }
+                }
+            };
+
+            PrihodiRashodiMesec = new List<ISeries> {
+                new ColumnSeries<decimal>
+                {
+                    Values = prihodi1,
+                    Stroke = null,
+                    MaxBarWidth = 40,
+                    IgnoresBarPosition = true
+                },
+                new ColumnSeries<decimal>
+                {
+                    Values = rashodi1,
+                    Stroke = null,
+                    MaxBarWidth = 30,
+                    IgnoresBarPosition = true
+                }
+             };
+
+            KlijentiXAxes = new List<LiveChartsCore.SkiaSharpView.Axis>
+            {
+                new LiveChartsCore.SkiaSharpView.Axis
+                {
+                    Labels = topKlijenti.Select(k => k.Klijent).ToList(),
+                    LabelsRotation = 0,
+                    TextSize = 14,
+                    NamePaint = new SolidColorPaint { Color = SKColors.Black }
+                }
+            };
+
+            KlijentiYAxes = new List<LiveChartsCore.SkiaSharpView.Axis>
+            {
+                new LiveChartsCore.SkiaSharpView.Axis
+                {
+                    Labeler = value => FormatLargeNumbers(value),
+                    TextSize = 14,
+                    Name = "Ukupno (RSD)",
+                    NamePaint = new SolidColorPaint { Color = SKColors.Black }
+                }
+            };
+
+            KlijentiSeries = new List<ISeries>
+            {
+                new ColumnSeries<double>
+                {
+                    Values = topKlijenti.Select(k => (double)k.Ukupno).ToArray(),
+                    Name = "Prihodi po klijentu",
+                    DataLabelsPaint = new SolidColorPaint { Color = SKColors.Black },
+                    DataLabelsPosition = LiveChartsCore.Measure.DataLabelsPosition.Top,
+                    DataLabelsFormatter = value => FormatLargeNumbers(value.Model) // Format numbers
+
+                }
+            };
+
+            DobavljaciXAxes = new List<LiveChartsCore.SkiaSharpView.Axis>
+            {
+                new LiveChartsCore.SkiaSharpView.Axis
+                {
+                    Labels = topDobavljaci.Select(k => k.Dobavljac).ToList(),
+                    LabelsRotation = 0,
+                    TextSize = 14,
+                    NamePaint = new SolidColorPaint { Color = SKColors.Black }
+                }
+            };
+
+            DobavljaciYAxes = new List<LiveChartsCore.SkiaSharpView.Axis>
+            {
+                new LiveChartsCore.SkiaSharpView.Axis
+                {
+                    Labeler = value => FormatLargeNumbers(value),
+                    TextSize = 14,
+                    Name = "Ukupno (RSD)",
+                    NamePaint = new SolidColorPaint { Color = SKColors.Black }
+                }
+            };
+
+            DobavljaciSeries = new List<ISeries>
+            {
+                new ColumnSeries<double>
+                {
+                    Values = topDobavljaci.Select(k => (double)k.Ukupno).ToArray(),
+                    Name = "Prihodi po klijentu",
+                    DataLabelsPaint = new SolidColorPaint { Color = SKColors.Black },
+                    DataLabelsPosition = LiveChartsCore.Measure.DataLabelsPosition.Top,
+                    DataLabelsFormatter = value => FormatLargeNumbers(value.Model)
+
+                }
+            };
 
             PrihodiRashodi = new List<ISeries>
             {
@@ -137,7 +250,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
            new LabelVisual
            {
 
-               Text = "Prihodi i rashodi za prethodnih 6 meseci",
+               Text = "Prihodi i rashodi za prethodnih 12 meseci",
                TextSize = 25,
                Padding = new LiveChartsCore.Drawing.Padding(15),
                Paint = new SolidColorPaint
@@ -147,6 +260,12 @@ namespace ProgramZaRacunovodstvo.ViewModels
                }
            };
 
-       
+        private static string FormatLargeNumbers(double value)
+        {
+            if (value >= 1_000_000_000) return (value / 1_000_000_000).ToString("0.#") + "B";
+            if (value >= 1_000_000) return (value / 1_000_000).ToString("0.#") + "M";
+            if (value >= 1_000) return (value / 1_000).ToString("0.#") + "K";
+            return value.ToString("N0");
+        }
     }
 }

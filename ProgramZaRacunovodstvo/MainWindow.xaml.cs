@@ -52,7 +52,7 @@ namespace ProgramZaRacunovodstvo
         {
             _IzborFirme = new IzborFirme(this);
             ShowOverlay(_IzborFirme);
-            this.Title = "Izbor Firme";
+            this.Title = "Izbor firme";
             MainContent.Content = new IzborFirme(this);
         }
 
@@ -127,6 +127,13 @@ namespace ProgramZaRacunovodstvo
                         KorisnikId = -1;
                         Title = "Prijava";
                         ShowPrijava();
+                        break;
+                    case "PromeniFirmu":
+                        OverlayContainer.Visibility = Visibility.Visible;
+                        MainLayout.Visibility = Visibility.Collapsed;
+                        Id.Instance.firmaid = -1;
+                        Title = "Izbor firme";
+                        ShowIzborFirme();
                         break;
                 }
             }

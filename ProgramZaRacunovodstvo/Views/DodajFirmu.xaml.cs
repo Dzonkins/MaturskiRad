@@ -85,6 +85,25 @@ namespace ProgramZaRacunovodstvo.Views
             if (string.IsNullOrEmpty(txtImeFirme.Text) || txtImeFirme.Text == "Ime firme" || string.IsNullOrEmpty(txtPIB.Text) || txtPIB.Text == "PIB" || string.IsNullOrEmpty(txtMaticni.Text) || txtMaticni.Text == "Matični broj" || string.IsNullOrEmpty(txtGrad.Text) || txtGrad.Text == "Grad" || string.IsNullOrEmpty(txtAdresa.Text) || txtAdresa.Text == "Adresa sedišta firme" || string.IsNullOrEmpty(txtBrojZiroRacuna.Text) || txtBrojZiroRacuna.Text == "Broj žiro računa" || string.IsNullOrEmpty(txtZastupnik.Text) || txtZastupnik.Text == "Zastupnik")
             {
                 greska.Visibility = Visibility.Visible;
+            }else if (_database.DodajFirmuProvera(txtImeFirme.Text))
+            {
+                greska.Visibility = Visibility.Visible;
+                greska.Text = "Firma sa unetim imenom već postoji";
+            }
+            else if (_database.PIBProvera(txtPIB.Text))
+            {
+                greska.Visibility = Visibility.Visible;
+                greska.Text = "Firma sa unetim PIB-om već postoji";
+            }
+            else if (_database.MaticniBrojProvera(txtMaticni.Text))
+            {
+                greska.Visibility = Visibility.Visible;
+                greska.Text = "Firma sa unetim matičnim brojem već postoji";
+            }
+            else if (_database.BrojRacunaProvera(txtBrojZiroRacuna.Text))
+            {
+                greska.Visibility = Visibility.Visible;
+                greska.Text = "Firma sa unetim brojem računa već postoji";
             }
             else {
                 _database.DodajFirmu(txtImeFirme.Text, txtPIB.Text, txtMaticni.Text, txtAdresa.Text, txtGrad.Text, txtBrojZiroRacuna.Text, txtZastupnik.Text, _mainWindow.KorisnikId);

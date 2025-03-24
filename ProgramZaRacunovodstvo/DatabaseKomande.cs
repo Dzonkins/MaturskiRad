@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Reflection.Metadata;
@@ -20,6 +21,8 @@ namespace ProgramZaRacunovodstvo
     internal class DatabaseKomande
     {
         private readonly string _connectionString = "Data Source=baza.db";
+        private static readonly CultureInfo culture = new("sr-Latn-RS");
+
 
         public bool ProveraPrijava(string email, string lozinka)
         {
@@ -46,6 +49,18 @@ namespace ProgramZaRacunovodstvo
             command.Parameters.AddWithValue("@Email", email);
             command.Parameters.AddWithValue("@Lozinka", lozinka);
             command.ExecuteNonQuery();
+        }
+
+        public bool RegistracijaProvera(string email)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            using var check = new SqliteCommand("SELECT COUNT(*) FROM Korisnici WHERE Email = @Email", connection);
+            check.Parameters.AddWithValue("@Email", email);
+            long count = (check.ExecuteScalar() as long?) ?? 0;
+
+            return count > 0;
         }
 
         public string NadjiIme(string email)
@@ -135,6 +150,51 @@ namespace ProgramZaRacunovodstvo
             }
         }
 
+        public bool DodajFirmuProvera(string imeFirme)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            using var check = new SqliteCommand("SELECT COUNT(*) FROM Firme WHERE ImeFirme = @ImeFirme", connection);
+            check.Parameters.AddWithValue("@ImeFirme", imeFirme);
+            long count = (check.ExecuteScalar() as long?) ?? 0;
+
+            return count > 0;
+        }
+        public bool PIBProvera(string pib)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            using var check = new SqliteCommand("SELECT COUNT(*) FROM Firme WHERE PIB = @PIB", connection);
+            check.Parameters.AddWithValue("@PIB", pib);
+            long count = (check.ExecuteScalar() as long?) ?? 0;
+
+            return count > 0;
+        }
+        public bool MaticniBrojProvera(string maticniBroj)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            using var check = new SqliteCommand("SELECT COUNT(*) FROM Firme WHERE MaticniBroj = @MaticniBroj", connection);
+            check.Parameters.AddWithValue("@MaticniBroj", maticniBroj);
+            long count = (check.ExecuteScalar() as long?) ?? 0;
+
+            return count > 0;
+        }
+
+        public bool BrojRacunaProvera(string brojRacuna)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            using var check = new SqliteCommand("SELECT COUNT(*) FROM Firme WHERE BrojRacuna = @BrojRacuna", connection);
+            check.Parameters.AddWithValue("@BrojRacuna", brojRacuna);
+            long count = (check.ExecuteScalar() as long?) ?? 0;
+
+            return count > 0;
+        }
         public int FirmaID(string Imefirme)
         {
             using var connection = new SqliteConnection(_connectionString);
@@ -167,6 +227,18 @@ namespace ProgramZaRacunovodstvo
             }
         }
 
+        public bool PravnoLiceProvera(string naziv, int firmaId)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            using var check = new SqliteCommand("SELECT COUNT(*) FROM PravnaLica WHERE Naziv = @Naziv AND FirmaId = @FirmaId", connection);
+            check.Parameters.AddWithValue("@Naziv", naziv);
+            check.Parameters.AddWithValue("@FirmaId", firmaId);
+            long count = (check.ExecuteScalar() as long?) ?? 0;
+
+            return count > 0;
+        }
         public List<PravnaLica> IzvuciPravnaLica(int firmaId)
         {
             List<PravnaLica> PravnaLica = new List<PravnaLica>();
@@ -622,6 +694,104 @@ namespace ProgramZaRacunovodstvo
             command.Parameters.AddWithValue("@FirmaId", firmaId);
             var result = command.ExecuteScalar();
             return result != DBNull.Value ? Convert.ToDecimal(result) : 0m;
+        }
+
+        public List<(string Klijent, decimal Ukupno)> Top10Klijenti(int firmaId)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = @"
+        SELECT Kupac, SUM(Ukupno) as Ukupno
+        FROM Fakture
+        WHERE strftime('%Y-%m', Datum) = strftime('%Y-%m', 'now') 
+              AND StatusFakture = 'Plaćeno' 
+              AND TipFakture = 'Prodaja' 
+              AND FirmaId = @FirmaId
+        GROUP BY Kupac
+        ORDER BY Ukupno DESC
+        LIMIT 10";
+
+            using var command = new SqliteCommand(query, connection);
+            command.Parameters.AddWithValue("@FirmaId", firmaId);
+
+            using var reader = command.ExecuteReader();
+
+            var topKlijenti = new List<(string Klijent, decimal Ukupno)>();
+            while (reader.Read())
+            {
+                string klijent = reader.GetString(0);
+                decimal ukupno = reader.GetDecimal(1);
+                topKlijenti.Add((klijent, ukupno));
+            }
+
+            return topKlijenti;
+        }
+
+        public List<(string Dobavljac, decimal Ukupno)> Top10Dobavljaci(int firmaId)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = @"
+        SELECT Dobavljac, SUM(Ukupno) as Ukupno
+        FROM Fakture
+        WHERE strftime('%Y-%m', Datum) = strftime('%Y-%m', 'now') 
+              AND StatusFakture = 'Plaćeno' 
+              AND TipFakture = 'Nabavka' 
+              AND FirmaId = @FirmaId
+        GROUP BY Dobavljac
+        ORDER BY Ukupno DESC
+        LIMIT 10";
+
+            using var command = new SqliteCommand(query, connection);
+            command.Parameters.AddWithValue("@FirmaId", firmaId);
+
+            using var reader = command.ExecuteReader();
+
+            var topDobavljaci = new List<(string Dobavljac, decimal Ukupno)>();
+            while (reader.Read())
+            {
+                string dobavljac = reader.GetString(0);
+                decimal ukupno = reader.GetDecimal(1);
+                topDobavljaci.Add((dobavljac, ukupno));
+            }
+
+            return topDobavljaci;
+        }
+
+        public (List<decimal> prihodi, List<decimal> rashodi, string[] months) PrihodiRashodi(int firmaId)
+        {
+            List<decimal> prihodi = new List<decimal>();
+            List<decimal> rashodi = new List<decimal>();
+            List<string> months = new List<string>();
+
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = @"
+            SELECT strftime('%Y-%m', Datum) AS Mesec,
+                   SUM(CASE WHEN TipFakture = 'Prodaja' AND StatusFakture = 'Plaćeno' THEN Ukupno ELSE 0 END) AS Prihodi,
+                   SUM(CASE WHEN TipFakture = 'Nabavka' AND StatusFakture = 'Plaćeno' THEN Ukupno ELSE 0 END) AS Rashodi
+            FROM Fakture
+            WHERE Datum >= date('now', '-12 months')
+            AND FirmaId = @firmaId
+            GROUP BY Mesec
+            ORDER BY Mesec;";
+
+            using var command = new SqliteCommand(query, connection);
+            command.Parameters.AddWithValue("@firmaId", firmaId);
+            using var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                DateTime date = DateTime.ParseExact(reader.GetString(0), "yyyy-MM", culture);
+                months.Add(date.ToString("MMMM yyyy", culture));
+                prihodi.Add(reader.IsDBNull(1) ? 0 : reader.GetInt32(1));
+                rashodi.Add(reader.IsDBNull(2) ? 0 : reader.GetInt32(2));
+            }
+
+            return (prihodi, rashodi, months.ToArray());
         }
     }
 }
