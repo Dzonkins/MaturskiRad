@@ -34,6 +34,9 @@
     <Compile Update="Views\Nabavke.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\OFirmi.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\PravnaLica.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -79,6 +82,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Nabavke.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\OFirmi.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\PravnaLica.xaml">

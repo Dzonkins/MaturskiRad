@@ -121,7 +121,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 PagedPravnaLica.Remove(pravnoLice);
                 PravnaLica1.Remove(pravnoLice);
                 _database.IzbrisiPravnoLice(pravnoLice.Id);
-                OsveziStavke();
+                ucitajPodatke();
             }
         }
 
@@ -188,6 +188,17 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
             PagedPravnaLica = new ObservableCollection<Models.PravnaLica>(
                 PravnaLica1.Skip((_trenutnaStranica - 1) * stavkiPoStranici).Take(stavkiPoStranici)
+                  .Select(p => new Models.PravnaLica
+                  {
+                      Id = p.Id,
+                      Naziv = p.Naziv,
+                      PIB = p.PIB,
+                      Maticnibroj = p.Maticnibroj,
+                      Grad = p.Grad,
+                      Adresa = p.Adresa,
+                      Zastupnik = p.Zastupnik,
+                      Racun = FormatBrojRacuna(p.Racun)
+                  })
             );
 
 
@@ -215,6 +226,11 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 OsveziStatusKomandi();
 
             }
+        }
+
+        private string FormatBrojRacuna(string broj)
+        {
+            return $"{broj.Substring(0, 3)}-{broj.Substring(3, broj.Length - 5)}-{broj.Substring(broj.Length - 2)}";
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

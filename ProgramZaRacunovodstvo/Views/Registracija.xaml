@@ -34,7 +34,8 @@
                     FontSize="30"
                     HorizontalAlignment="Center"
                     Width="470"
-                    Click="KreirajNalog">
+                    Click="KreirajNalog"
+                    TabIndex="8">
                 <Button.Effect>
                     <DropShadowEffect ShadowDepth="10"
                                       Direction="320"
@@ -103,7 +104,8 @@
                          Background="#8CFFFFFF"
                          Margin="0,451,0,0"
                          GotFocus="txtPassword_GotFocus"
-                         LostFocus="txtPassword_LostFocus">
+                         LostFocus="txtPassword_LostFocus"
+                         TabIndex="7">
                 <PasswordBox.Style>
                     <Style TargetType="PasswordBox">
                         <Setter Property="Background"
@@ -152,7 +154,8 @@
                      Width="470"
                      Visibility="Collapsed"
                      GotFocus="txtPassword_GotFocus"
-                     LostFocus="txtPassword_LostFocus">
+                     LostFocus="txtPassword_LostFocus"
+                     TabIndex="7">
                 <TextBox.Style>
                     <Style TargetType="TextBox">
                         <Setter Property="Effect">
@@ -195,7 +198,8 @@
                      HorizontalAlignment="Center"
                      Width="470"
                      GotFocus="TextBox_GotFocus"
-                     LostFocus="TextBox_LostFocus">
+                     LostFocus="TextBox_LostFocus"
+                     TabIndex="6">
                 <TextBox.Style>
                     <Style TargetType="TextBox">
                         <Setter Property="Effect">
@@ -228,7 +232,8 @@
                     VerticalAlignment="Top"
                     Background="{x:Null}"
                     BorderThickness="0"
-                    Click="PrikaziSifru">
+                    Click="PrikaziSifru"
+                    IsTabStop="False">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="Transparent"
@@ -255,7 +260,8 @@
                      Grid.Column="1"
                      Width="226"
                      GotFocus="TextBox_GotFocus"
-                     LostFocus="TextBox_LostFocus">
+                     LostFocus="TextBox_LostFocus"
+                     TabIndex="1">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="Effect">
@@ -295,7 +301,8 @@
                      Grid.Column="1"
                      Width="224"
                      GotFocus="TextBox_GotFocus"
-                     LostFocus="TextBox_LostFocus">
+                     LostFocus="TextBox_LostFocus"
+                     TabIndex="2">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="Effect">
@@ -337,7 +344,8 @@
                      Width="470"
                      PreviewTextInput="BrojCheck"
                      GotFocus="TextBox_GotFocus"
-                     LostFocus="TextBox_LostFocus">
+                     LostFocus="TextBox_LostFocus"
+                     TabIndex="3">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="Effect">
@@ -377,7 +385,8 @@
                      HorizontalAlignment="Center"
                      Width="470"
                      GotFocus="TextBox_GotFocus"
-                     LostFocus="TextBox_LostFocus">
+                     LostFocus="TextBox_LostFocus"
+                     TabIndex="5">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="Effect">
@@ -417,7 +426,8 @@
                      HorizontalAlignment="Center"
                      Width="470"
                      GotFocus="TextBox_GotFocus"
-                     LostFocus="TextBox_LostFocus">
+                     LostFocus="TextBox_LostFocus"
+                     TabIndex="4">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="Effect">
@@ -452,7 +462,8 @@
                     HorizontalAlignment="Center"
                     Width="470"
                     Click="Nazad"
-                    Height="70">
+                    Height="70"
+                    TabIndex="9">
                 <Button.Effect>
                     <DropShadowEffect ShadowDepth="10"
                                       Direction="320"

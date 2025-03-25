@@ -115,7 +115,19 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         private void sacuvaj(object parameter)
         {
-            if(!string.IsNullOrWhiteSpace(Naziv) && !string.IsNullOrWhiteSpace(Pib) && !string.IsNullOrWhiteSpace(MaticniBroj) && !string.IsNullOrWhiteSpace(Grad) && !string.IsNullOrWhiteSpace(Adresa) && !string.IsNullOrWhiteSpace(Racun) && !string.IsNullOrWhiteSpace(Zastupnik))
+            if(string.IsNullOrWhiteSpace(Naziv) || string.IsNullOrWhiteSpace(Pib) || string.IsNullOrWhiteSpace(MaticniBroj) || string.IsNullOrWhiteSpace(Grad) || string.IsNullOrWhiteSpace(Adresa) || string.IsNullOrWhiteSpace(Racun) || string.IsNullOrWhiteSpace(Zastupnik))
+            {
+                Greska = "Molimo vas popunite sva polja";
+            }else if(_database.PravnoLiceProvera(Naziv ,Id.Instance.firmaid))
+            {
+                Greska = "Pravno lice sa unetim nazivom već postoji";
+
+            }else if(_database.PravnoLicePIB(Pib, Id.Instance.firmaid))
+            {
+                Greska = "Pravno lice sa unetim PIB-om već postoji";
+
+            }
+            else
             {
                 _database.DodajPravnoLice(Naziv, Pib, MaticniBroj, Grad, Adresa, Racun, Zastupnik, FirmaId);
                 Greska = "";
@@ -127,10 +139,6 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 Racun = String.Empty;
                 Zastupnik = String.Empty;
                 Navigation.Instance.NavigateTo(new PravnaLica(Navigation.Instance.GetMainWindow()));
-            }
-            else
-            {
-                Greska = "Molimo vas popunite sva polja";
             }
         }
 

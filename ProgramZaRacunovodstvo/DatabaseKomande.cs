@@ -63,6 +63,18 @@ namespace ProgramZaRacunovodstvo
             return count > 0;
         }
 
+        public bool RegistracijaJMBG(string jmbg)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            using var check = new SqliteCommand("SELECT COUNT(*) FROM Korisnici WHERE JMBG = @JMBG", connection);
+            check.Parameters.AddWithValue("@JMBG", jmbg);
+            long count = (check.ExecuteScalar() as long?) ?? 0;
+
+            return count > 0;
+        }
+
         public string NadjiIme(string email)
         {
             using var connection = new SqliteConnection(_connectionString);
@@ -234,6 +246,18 @@ namespace ProgramZaRacunovodstvo
 
             using var check = new SqliteCommand("SELECT COUNT(*) FROM PravnaLica WHERE Naziv = @Naziv AND FirmaId = @FirmaId", connection);
             check.Parameters.AddWithValue("@Naziv", naziv);
+            check.Parameters.AddWithValue("@FirmaId", firmaId);
+            long count = (check.ExecuteScalar() as long?) ?? 0;
+
+            return count > 0;
+        }
+        public bool PravnoLicePIB(string pib, int firmaId)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            using var check = new SqliteCommand("SELECT COUNT(*) FROM PravnaLica WHERE PIB = @Pib AND FirmaId = @FirmaId", connection);
+            check.Parameters.AddWithValue("@Pib", pib);
             check.Parameters.AddWithValue("@FirmaId", firmaId);
             long count = (check.ExecuteScalar() as long?) ?? 0;
 
@@ -562,6 +586,38 @@ namespace ProgramZaRacunovodstvo
             }
 
             return Prodaja;
+        }
+
+        public List<Izvod> Izvodi(int firmaid)
+        {
+            List<Izvod> Izvodi = new List<Izvod>();
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = @"SELECT Id, BrojFakture, TipFakture, StatusFakture, Kupac, Osnovica, PDV, Ukupno, Datum FROM Fakture WHERE FirmaId = @FirmaId";
+
+            using var command = new SqliteCommand(query, connection);
+            command.Parameters.AddWithValue("@FirmaId", firmaid);
+
+            using var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Izvodi.Add(new Izvod
+                {
+                    Id = reader.GetInt32("Id"),
+                    BrojFakture = reader.GetString(1),
+                    TipFakture = reader.GetString(2),
+                    Status = reader.GetString(3),
+                    PravnoLice = reader.GetString(4),
+                    Osnovica = reader.GetDecimal(5),
+                    Pdv = reader.GetDecimal(6),
+                    Ukupno = reader.GetDecimal(7),
+                    DatumSlanja = DateOnly.FromDateTime(reader.GetDateTime(8))
+                });
+            }
+
+            return Izvodi;
         }
         public DetaljiFakture PodaciOFakturi(int fakturaId)
         {

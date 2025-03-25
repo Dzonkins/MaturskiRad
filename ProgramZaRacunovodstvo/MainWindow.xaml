@@ -138,7 +138,8 @@
                 </Border>
                 <Button Tag="Pocetna"
                         Style="{StaticResource SidebarButtonStyle}"
-                        Grid.Row="1">
+                        Grid.Row="1"
+                        IsTabStop="False">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -162,7 +163,8 @@
 
                 <Button Tag="Nabavke"
                         Style="{StaticResource SidebarButtonStyle}"
-                        Grid.Row="2">
+                        Grid.Row="2"
+                        IsTabStop="False">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -186,7 +188,8 @@
 
                 <Button Tag="Prodaja"
                         Style="{StaticResource SidebarButtonStyle}"
-                        Grid.Row="3">
+                        Grid.Row="3"
+                        IsTabStop="False">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -210,7 +213,8 @@
 
                 <Button Tag="Izvodi"
                         Style="{StaticResource SidebarButtonStyle}"
-                        Grid.Row="4">
+                        Grid.Row="4"
+                        IsTabStop="False">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -233,7 +237,8 @@
                 </Button>
                 <Button Tag="Pravna lica"
                         Style="{StaticResource SidebarButtonStyle}"
-                        Grid.Row="5">
+                        Grid.Row="5"
+                        IsTabStop="False">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -257,7 +262,8 @@
                 </Button>
                 <Button Tag="O firmi"
                         Style="{StaticResource SidebarButtonStyle}"
-                        Grid.Row="6">
+                        Grid.Row="6"
+                        IsTabStop="False">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -282,17 +288,15 @@
 
                 <Button Tag="PromeniFirmu"
                         Style="{StaticResource SidebarButtonStyle}"
-                        Grid.Row="8">
+                        Grid.Row="8"
+                        IsTabStop="False">
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+
                        
                         <TextBlock Text="Promeni firmu"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
-                                   Grid.Column="0"
-                                   Margin="10,0,33,0"
+                                   Margin="0,0,0,0"
                                    Width="auto"
                                    FontSize="20"
                                    FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
@@ -301,7 +305,8 @@
 
                 <Button Tag="IzlogujSe"
                         Style="{StaticResource SidebarButtonStyle}"
-                        Grid.Row="9">
+                        Grid.Row="9"
+                        IsTabStop="False">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -326,7 +331,8 @@
 
 
             <ContentControl x:Name="MainContent"
-                            Grid.Column="1" />
+                            Grid.Column="1"
+                            IsTabStop="False" />
         </Grid>
         <Grid x:Name="OverlayContainer"
               Background="White"

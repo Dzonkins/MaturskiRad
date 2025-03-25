@@ -142,7 +142,7 @@ namespace ProgramZaRacunovodstvo.Views
 
             string upisanaLozinka = passwordVisibilty ? txtPasswordVisible.Text : txtPassword.Password;
 
-            if (string.IsNullOrEmpty(txtEmail.Text) || txtEmail.Text == "Email" || string.IsNullOrEmpty(upisanaLozinka) || string.IsNullOrEmpty(txtJMBG.Text) || txtJMBG.Text == "JMBG" || string.IsNullOrEmpty(txtGrad.Text) || txtGrad.Text == "Grad" || string.IsNullOrEmpty(txtAdresa.Text) || txtAdresa.Text == "Adresa" || string.IsNullOrEmpty(txtIme.Text) || txtIme.Text == "Ime" || string.IsNullOrEmpty(txtPrezime.Text) || txtPrezime.Text == "Prezime")
+            if (string.IsNullOrEmpty(txtEmail.Text) || txtEmail.Text == "Email" || string.IsNullOrEmpty(upisanaLozinka) || string.IsNullOrEmpty(txtJMBG.Text) || txtJMBG.Text.Length < 13 || txtJMBG.Text == "JMBG" || string.IsNullOrEmpty(txtGrad.Text) || txtGrad.Text == "Grad" || string.IsNullOrEmpty(txtAdresa.Text) || txtAdresa.Text == "Adresa" || string.IsNullOrEmpty(txtIme.Text) || txtIme.Text == "Ime" || string.IsNullOrEmpty(txtPrezime.Text) || txtPrezime.Text == "Prezime")
             {
                 greska.Visibility = Visibility.Visible;
                 greska.Text = "Molimo vas popunite sva polja";
@@ -150,7 +150,10 @@ namespace ProgramZaRacunovodstvo.Views
             {
                 greska.Visibility = Visibility.Visible;
                 greska.Text = "Korisnik sa unetim email-om već postoji";
-
+            }else if (_database.RegistracijaJMBG(txtJMBG.Text))
+            {
+                greska.Visibility = Visibility.Visible;
+                greska.Text = "Korisnik sa unetim JMBG-om već postoji";
             }
             else
             {

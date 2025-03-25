@@ -32,7 +32,8 @@
                      HorizontalAlignment="Center"
                      Width="470"
                      GotFocus="TextBox_GotFocus"
-                     LostFocus="TextBox_LostFocus">
+                     LostFocus="TextBox_LostFocus"
+                     TabIndex="1">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="Effect">
@@ -75,7 +76,8 @@
                      Width="470"
                      PreviewTextInput="BrojCheck"
                      GotFocus="TextBox_GotFocus"
-                     LostFocus="TextBox_LostFocus">
+                     LostFocus="TextBox_LostFocus"
+                     TabIndex="3">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="Effect">
@@ -118,7 +120,8 @@
                      Width="470"
                      PreviewTextInput="BrojCheck"
                      GotFocus="TextBox_GotFocus"
-                     LostFocus="TextBox_LostFocus">
+                     LostFocus="TextBox_LostFocus"
+                     TabIndex="2">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="Effect">
@@ -159,7 +162,8 @@
                      HorizontalAlignment="Center"
                      Width="470"
                      GotFocus="TextBox_GotFocus"
-                     LostFocus="TextBox_LostFocus">
+                     LostFocus="TextBox_LostFocus"
+                     TabIndex="4">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="Effect">
@@ -200,7 +204,8 @@
                      HorizontalAlignment="Center"
                      Width="470"
                      GotFocus="TextBox_GotFocus"
-                     LostFocus="TextBox_LostFocus">
+                     LostFocus="TextBox_LostFocus"
+                     TabIndex="5">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="Effect">
@@ -243,7 +248,8 @@
                      Width="470"
                      GotFocus="TextBox_GotFocus"
                      LostFocus="TextBox_LostFocus"
-                     PreviewTextInput="BrojCheck">
+                     PreviewTextInput="BrojCheck"
+                     TabIndex="6">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="Effect">
@@ -284,7 +290,8 @@
                      HorizontalAlignment="Center"
                      Width="470"
                      GotFocus="TextBox_GotFocus"
-                     LostFocus="TextBox_LostFocus">
+                     LostFocus="TextBox_LostFocus"
+                     TabIndex="7">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="Effect">
@@ -320,7 +327,8 @@
                     FontSize="30"
                     HorizontalAlignment="Right"
                     Width="226"
-                    Click="Nazad">
+                    Click="Nazad"
+                    TabIndex="9">
                 <Button.Effect>
                     <DropShadowEffect ShadowDepth="10"
                                       Direction="320"
@@ -376,7 +384,8 @@
                     FontSize="30"
                     HorizontalAlignment="Left"
                     Width="226"
-                    Click="dodajFirmu">
+                    Click="dodajFirmu"
+                    TabIndex="8">
                 <Button.Effect>
                     <DropShadowEffect ShadowDepth="10"
                                       Direction="320"

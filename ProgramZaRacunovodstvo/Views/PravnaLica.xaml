@@ -176,7 +176,7 @@
                     <DataGridTextColumn Header="Naziv"
                                         Binding="{Binding Naziv}"
                                         Width="*"
-                                        MinWidth="100">
+                                        MinWidth="250">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextAlignment"
@@ -185,6 +185,8 @@
                                         Value="Center" />
                                 <Setter Property="Padding"
                                         Value="10" />
+                                <Setter Property="TextTrimming"
+                                        Value="CharacterEllipsis" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
@@ -256,7 +258,7 @@
                     <DataGridTextColumn Header="Broj računa"
                                         Binding="{Binding Racun}"
                                         Width="*"
-                                        MinWidth="100">
+                                        MinWidth="180">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextAlignment"

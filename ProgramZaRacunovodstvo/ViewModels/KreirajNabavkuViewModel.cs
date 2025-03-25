@@ -358,8 +358,11 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 XFont titleFont = new XFont("Arial", 20, XFontStyleEx.Bold);
                 XFont headerFont = new XFont("Arial", 10, XFontStyleEx.Bold);
                 XFont contentFont = new XFont("Arial", 8);
+                double sirinaTeksta = gfx.MeasureString("Faktura: " + BrojFakture, titleFont).Width;
+                double pageWidth = 595;
+                double centerX = (pageWidth - sirinaTeksta) / 2;
 
-                gfx.DrawString("Faktura: " + BrojFakture, titleFont, XBrushes.Black, new XPoint(200, 50));
+                gfx.DrawString("Faktura: " + BrojFakture, titleFont, XBrushes.Black, new XPoint(centerX, 50));
                 gfx.DrawString("Datuma slanja: " + (Date?.Date.ToString("dd.MM.yyyy.") ?? "N/A"), contentFont, XBrushes.Black, new XPoint(350, 220));
 
 
@@ -368,7 +371,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 gfx.DrawString("Matični broj: " + PodaciDobavljac[1], contentFont, XBrushes.Black, new XPoint(50, 140));
                 gfx.DrawString("Adresa: " + PodaciDobavljac[3], contentFont, XBrushes.Black, new XPoint(50, 160));
                 gfx.DrawString("Grad: " + PodaciDobavljac[2], contentFont, XBrushes.Black, new XPoint(50, 180));
-                gfx.DrawString("Žiro račun: " + PodaciDobavljac[4], contentFont, XBrushes.Black, new XPoint(50, 200));
+                gfx.DrawString("Žiro račun: " + FormatBrojRacuna(PodaciDobavljac[4]), contentFont, XBrushes.Black, new XPoint(50, 200));
 
                 gfx.DrawString("Ime kupca: " + PodaciKupac[0], contentFont, XBrushes.Black, new XPoint(350, 100));
                 gfx.DrawString("PIB: " + PodaciKupac[1], contentFont, XBrushes.Black, new XPoint(350, 120));
@@ -435,6 +438,11 @@ namespace ProgramZaRacunovodstvo.ViewModels
             {
                 Greska = "Molimo vas unesite sve podatke i dodajte potrebne dokumente";
             }
+        }
+
+        private string FormatBrojRacuna(string broj)
+        {
+            return $"{broj.Substring(0, 3)}-{broj.Substring(3, broj.Length - 5)}-{broj.Substring(broj.Length - 2)}";
         }
 
         private void UcitajImenaPravnihLica()

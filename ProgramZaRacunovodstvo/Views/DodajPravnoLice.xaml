@@ -49,7 +49,8 @@
                                     Margin="0,0,0,20"
                                     PlaceholderText="Naziv"
                                     Text="{Binding Naziv}"
-                                    VerticalContentAlignment="Center"></ui:TextBox>
+                                    VerticalContentAlignment="Center"
+                                    TabIndex="1"></ui:TextBox>
                         <ui:TextBox MinHeight="50"
                                     MinWidth="1000"
                                     Width="1000"
@@ -60,7 +61,8 @@
                                     PlaceholderText="PIB"
                                     Text="{Binding Pib}"
                                     PreviewTextInput="BrojCheck"
-                                    VerticalContentAlignment="Center"></ui:TextBox>
+                                    VerticalContentAlignment="Center"
+                                    TabIndex="2"></ui:TextBox>
                         <ui:TextBox MinHeight="50"
                                     MinWidth="1000"
                                     Width="1000"
@@ -71,7 +73,8 @@
                                     PlaceholderText="Matični broj"
                                     Text="{Binding MaticniBroj}"
                                     PreviewTextInput="BrojCheck"
-                                    VerticalContentAlignment="Center"></ui:TextBox>
+                                    VerticalContentAlignment="Center"
+                                    TabIndex="3"></ui:TextBox>
                         <ui:TextBox MinHeight="50"
                                     MinWidth="1000"
                                     Width="1000"
@@ -80,7 +83,8 @@
                                     Margin="0,0,0,20"
                                     PlaceholderText="Grad"
                                     Text="{Binding Grad}"
-                                    VerticalContentAlignment="Center"></ui:TextBox>
+                                    VerticalContentAlignment="Center"
+                                    TabIndex="4"></ui:TextBox>
                         <ui:TextBox MinHeight="50"
                                     MinWidth="1000"
                                     Width="1000"
@@ -89,7 +93,8 @@
                                     Margin="0,0,0,20"
                                     PlaceholderText="Adresa"
                                     Text="{Binding Adresa}"
-                                    VerticalContentAlignment="Center"></ui:TextBox>
+                                    VerticalContentAlignment="Center"
+                                    TabIndex="5"></ui:TextBox>
                         <ui:TextBox MinHeight="50"
                                     MinWidth="1000"
                                     Width="1000"
@@ -100,7 +105,8 @@
                                     PlaceholderText="Broj računa"
                                     Text="{Binding Racun}"
                                     PreviewTextInput="BrojCheck"
-                                    VerticalContentAlignment="Center"></ui:TextBox>
+                                    VerticalContentAlignment="Center"
+                                    TabIndex="6"></ui:TextBox>
                         <ui:TextBox MinHeight="50"
                                     MinWidth="1000"
                                     Width="1000"
@@ -109,7 +115,8 @@
                                     Margin="0,0,0,0"
                                     PlaceholderText="Zastupnik"
                                     Text="{Binding Zastupnik}"
-                                    VerticalContentAlignment="Center"></ui:TextBox>
+                                    VerticalContentAlignment="Center"
+                                    TabIndex="7"></ui:TextBox>
                         <ui:TextBlock Text="{Binding Greska}" Margin="0,20,0,0" Foreground="Red" HorizontalAlignment="Center"></ui:TextBlock>
                     </StackPanel>
                     <Grid Grid.Row="1">
@@ -125,6 +132,7 @@
                                    Foreground="White"
                                    FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                                    FontSize="15"
+                                   TabIndex="8"
                                    Command="{Binding Sacuvaj}">
                             <ui:Button.Effect>
                                 <DropShadowEffect ShadowDepth="10"
@@ -179,6 +187,7 @@
                                    Foreground="White"
                                    FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                                    FontSize="15"
+                                   TabIndex="9"
                                    Click="Nazad">
                             <ui:Button.Effect>
                                 <DropShadowEffect ShadowDepth="10"
