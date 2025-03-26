@@ -102,6 +102,7 @@
                       CanUserAddRows="False"
                       Background="Transparent"
                       CanUserResizeRows="False"
+                      CanUserReorderColumns="False"
                       GridLinesVisibility="None"
                       HeadersVisibility="Column"
                       BorderBrush="Transparent"
@@ -176,7 +177,7 @@
                     <DataGridTextColumn Header="Naziv"
                                         Binding="{Binding Naziv}"
                                         Width="*"
-                                        MinWidth="250">
+                                        MinWidth="180">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextAlignment"
@@ -258,7 +259,7 @@
                     <DataGridTextColumn Header="Broj računa"
                                         Binding="{Binding Racun}"
                                         Width="*"
-                                        MinWidth="180">
+                                        MinWidth="200">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
                                 <Setter Property="TextAlignment"

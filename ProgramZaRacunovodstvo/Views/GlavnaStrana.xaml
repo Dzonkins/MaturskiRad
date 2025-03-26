@@ -200,6 +200,7 @@
                                     Grid.ColumnSpan="2"
                                     Series="{Binding PrihodiRashodiMesec}"
                                     XAxes="{Binding PrihodiRashodiXAxes}"
+                                    YAxes="{Binding PrihodiRashodiYAxes}"
                                     Height="400"
                                     Margin="20"
                                     Title="{Binding PrihodiRashodiVise}" />

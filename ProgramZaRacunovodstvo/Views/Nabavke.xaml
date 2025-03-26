@@ -187,6 +187,7 @@
                       CanUserAddRows="False"
                       Background="Transparent"
                       CanUserResizeRows="False"
+                      CanUserReorderColumns="False"
                       GridLinesVisibility="None"
                       HeadersVisibility="Column"
                       BorderBrush="Transparent"

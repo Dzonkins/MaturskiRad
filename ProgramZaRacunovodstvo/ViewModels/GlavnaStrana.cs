@@ -37,6 +37,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
         public List<ISeries> DobavljaciSeries { get; set; }
         public List<LiveChartsCore.SkiaSharpView.Axis> DobavljaciXAxes { get; set; }
         public List<LiveChartsCore.SkiaSharpView.Axis> DobavljaciYAxes { get; set; }
+        public List<LiveChartsCore.SkiaSharpView.Axis> PrihodiRashodiYAxes { get; set; }
         public List<ISeries> PrihodiRashodiMesec { get; set; }
         public List<LiveChartsCore.SkiaSharpView.Axis> PrihodiRashodiXAxes { get; set; }
 
@@ -92,7 +93,16 @@ namespace ProgramZaRacunovodstvo.ViewModels
                     NamePaint = new SolidColorPaint { Color = SKColors.Black }
                 }
             };
-
+            PrihodiRashodiYAxes = new List<LiveChartsCore.SkiaSharpView.Axis>
+            {
+                new LiveChartsCore.SkiaSharpView.Axis
+                {
+                    Labeler = value => FormatLargeNumbers(value),
+                    TextSize = 14,
+                    Name = "Ukupno (RSD)",
+                    NamePaint = new SolidColorPaint { Color = SKColors.Black }
+                }
+            };
             PrihodiRashodiMesec = new List<ISeries> {
                 new ColumnSeries<decimal>
                 {
@@ -140,7 +150,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
                     Name = "Prihodi po klijentu",
                     DataLabelsPaint = new SolidColorPaint { Color = SKColors.Black },
                     DataLabelsPosition = LiveChartsCore.Measure.DataLabelsPosition.Top,
-                    DataLabelsFormatter = value => FormatLargeNumbers(value.Model) // Format numbers
+                    DataLabelsFormatter = value => FormatLargeNumbers(value.Model)
 
                 }
             };
@@ -262,9 +272,9 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         private static string FormatLargeNumbers(double value)
         {
-            if (value >= 1_000_000_000) return (value / 1_000_000_000).ToString("0.#") + "B";
-            if (value >= 1_000_000) return (value / 1_000_000).ToString("0.#") + "M";
-            if (value >= 1_000) return (value / 1_000).ToString("0.#") + "K";
+            if (value >= 1_000_000_000) return (value / 1_000_000_000).ToString("0.##") + "B";
+            if (value >= 1_000_000) return (value / 1_000_000).ToString("0.##") + "M";
+            if (value >= 1_000) return (value / 1_000).ToString("0.##") + "K";
             return value.ToString("N0");
         }
     }
