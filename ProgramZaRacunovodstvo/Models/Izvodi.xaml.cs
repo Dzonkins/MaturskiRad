@@ -11,7 +11,6 @@ namespace ProgramZaRacunovodstvo.Models
         public int Id {  get; set; }
         public string BrojFakture { get; set; } = string.Empty;
         public string TipFakture { get; set; } = string.Empty;
-        public string Status { get; set; } = string.Empty;
         public string PravnoLice { get; set; } = string.Empty;
         public decimal Osnovica { get; set; }
         public decimal Pdv { get; set; }

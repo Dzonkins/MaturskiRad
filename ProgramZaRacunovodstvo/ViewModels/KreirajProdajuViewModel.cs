@@ -380,6 +380,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 double tableY = 240;
                 double tableWidth = 565;
                 double rowHeight = 30;
+                double maxNazivWidth = 70;
 
                 gfx.DrawRectangle(XPens.Black, tableX, tableY, tableWidth, rowHeight);
                 gfx.DrawString("Naziv", headerFont, XBrushes.Black, new XPoint(tableX + 10, tableY + 20));
@@ -402,15 +403,62 @@ namespace ProgramZaRacunovodstvo.ViewModels
                         currentY = 50;
                     }
 
-                    gfx.DrawRectangle(XPens.Black, tableX, currentY, tableWidth, rowHeight);
-                    gfx.DrawString(stavke.naziv, contentFont, XBrushes.Black, new XPoint(tableX + 10, currentY + 20));
-                    gfx.DrawString(stavke.kolicina?.ToString() ?? "-", contentFont, XBrushes.Black, new XPoint(tableX + 80, currentY + 20));
-                    gfx.DrawString(stavke.cenaRSD, contentFont, XBrushes.Black, new XPoint(tableX + 140, currentY + 20));
-                    gfx.DrawString(stavke.osnovicaRSD, contentFont, XBrushes.Black, new XPoint(tableX + 220, currentY + 20));
-                    gfx.DrawString(stavke.pdvposto?.ToString() ?? "-", contentFont, XBrushes.Black, new XPoint(tableX + 320, currentY + 20));
-                    gfx.DrawString(stavke.PDVRSD?.ToString() ?? "-", contentFont, XBrushes.Black, new XPoint(tableX + 380, currentY + 20));
-                    gfx.DrawString(stavke.ukupnoRSD?.ToString() ?? "-", contentFont, XBrushes.Black, new XPoint(tableX + 470, currentY + 20));
-                    currentY += rowHeight;
+                    string naziv = stavke.naziv;
+                    List<string> nazivLines = new List<string>();
+
+                    while (naziv.Length > 0)
+                    {
+                        double nazivWidth = gfx.MeasureString(naziv, contentFont).Width;
+
+                        if (nazivWidth > maxNazivWidth)
+                        {
+                            int splitIndex = naziv.LastIndexOf(' ', (int)(maxNazivWidth / contentFont.Size));
+
+                            if (splitIndex == -1)
+                            {
+                                splitIndex = (int)(maxNazivWidth / contentFont.Size);
+                            }
+
+                            splitIndex = Math.Min(splitIndex, naziv.Length);
+
+                            string line = naziv.Substring(0, splitIndex).Trim();
+                            nazivLines.Add(line);
+                            naziv = naziv.Substring(splitIndex).Trim();
+                        }
+                        else
+                        {
+                            nazivLines.Add(naziv);
+                            naziv = "";
+                        }
+                    }
+
+                    double totalNazivHeight = 0;
+                    foreach (var line in nazivLines)
+                    {
+                        totalNazivHeight += gfx.MeasureString(line, contentFont).Height;
+                    }
+
+                    double padding = 5;
+                    double dynamicRowHeight = totalNazivHeight + (2 * padding);
+
+                    gfx.DrawRectangle(XPens.Black, tableX, currentY, tableWidth, dynamicRowHeight);
+
+                    double nazivYOffset = padding;
+                    foreach (var line in nazivLines)
+                    {
+                        gfx.DrawString(line, contentFont, XBrushes.Black, new XPoint(tableX + 10, currentY + nazivYOffset + gfx.MeasureString(line, contentFont).Height));
+                        nazivYOffset += gfx.MeasureString(line, contentFont).Height;
+                    }
+
+                    double otherColumnYOffset = currentY + padding + gfx.MeasureString(nazivLines[0], contentFont).Height;
+                    gfx.DrawString(stavke.kolicina?.ToString() ?? "-", contentFont, XBrushes.Black, new XPoint(tableX + 80, otherColumnYOffset));
+                    gfx.DrawString(stavke.cenaRSD, contentFont, XBrushes.Black, new XPoint(tableX + 140, otherColumnYOffset));
+                    gfx.DrawString(stavke.osnovicaRSD, contentFont, XBrushes.Black, new XPoint(tableX + 220, otherColumnYOffset));
+                    gfx.DrawString(stavke.pdvposto?.ToString() ?? "-", contentFont, XBrushes.Black, new XPoint(tableX + 320, otherColumnYOffset));
+                    gfx.DrawString(stavke.PDVRSD?.ToString() ?? "-", contentFont, XBrushes.Black, new XPoint(tableX + 380, otherColumnYOffset));
+                    gfx.DrawString(stavke.ukupnoRSD?.ToString() ?? "-", contentFont, XBrushes.Black, new XPoint(tableX + 470, otherColumnYOffset));
+
+                    currentY += dynamicRowHeight;
                 }
 
                 gfx.DrawString("Iznos bez PDV:", headerFont, XBrushes.Black, new XPoint(tableX + 320, currentY + 20));

@@ -55,11 +55,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.105.0-rc" />
     <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-rc5.4" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.2" />
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3124.44" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.0-preview.2.25163.8" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3171-prerelease" />
     <PackageReference Include="PDFsharp" Version="6.2.0-preview-3" />
-    <PackageReference Include="WPF-UI" Version="4.0.1" />
+    <PackageReference Include="WPF-UI" Version="4.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -169,6 +170,9 @@
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="xcopy &quot;$(ProjectDir)Fonts\*.*&quot; &quot;$(TargetDir)Fonts\&quot; /Y /E" />
+    <Exec Command="xcopy &quot;$(ProjectDir)Template\*.*&quot; &quot;$(TargetDir)Template\&quot; /Y /E" />
+
   </Target>
+  
 
 </Project>

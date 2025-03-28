@@ -594,7 +594,7 @@ namespace ProgramZaRacunovodstvo
             using var connection = new SqliteConnection(_connectionString);
             connection.Open();
 
-            string query = @"SELECT Id, BrojFakture, TipFakture, StatusFakture, Kupac, Osnovica, PDV, Ukupno, Datum FROM Fakture WHERE FirmaId = @FirmaId";
+            string query = @"SELECT Id, BrojFakture, TipFakture, Kupac, Osnovica, PDV, Ukupno, Datum FROM Fakture WHERE FirmaId = @FirmaId AND StatusFakture = 'Plaćeno'";
 
             using var command = new SqliteCommand(query, connection);
             command.Parameters.AddWithValue("@FirmaId", firmaid);
@@ -608,12 +608,11 @@ namespace ProgramZaRacunovodstvo
                     Id = reader.GetInt32("Id"),
                     BrojFakture = reader.GetString(1),
                     TipFakture = reader.GetString(2),
-                    Status = reader.GetString(3),
-                    PravnoLice = reader.GetString(4),
-                    Osnovica = reader.GetDecimal(5),
-                    Pdv = reader.GetDecimal(6),
-                    Ukupno = reader.GetDecimal(7),
-                    DatumSlanja = DateOnly.FromDateTime(reader.GetDateTime(8))
+                    PravnoLice = reader.GetString(3),
+                    Osnovica = reader.GetDecimal(4),
+                    Pdv = reader.GetDecimal(5),
+                    Ukupno = reader.GetDecimal(6),
+                    DatumSlanja = DateOnly.FromDateTime(reader.GetDateTime(7))
                 });
             }
 
@@ -843,8 +842,8 @@ namespace ProgramZaRacunovodstvo
             {
                 DateTime date = DateTime.ParseExact(reader.GetString(0), "yyyy-MM", culture);
                 months.Add(date.ToString("MMMM yyyy", culture));
-                prihodi.Add(reader.IsDBNull(1) ? 0 : reader.GetInt32(1));
-                rashodi.Add(reader.IsDBNull(2) ? 0 : reader.GetInt32(2));
+                prihodi.Add(reader.IsDBNull(1) ? 0 : reader.GetInt64(1));
+                rashodi.Add(reader.IsDBNull(2) ? 0 : reader.GetInt64(2));
             }
 
             return (prihodi, rashodi, months.ToArray());

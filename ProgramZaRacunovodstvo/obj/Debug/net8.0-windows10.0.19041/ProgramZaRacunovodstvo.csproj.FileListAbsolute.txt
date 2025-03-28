@@ -137,3 +137,11 @@ C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\D
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\KreirajProdaju.baml
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\OFirmi.g.cs
 C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\obj\Debug\net8.0-windows10.0.19041\Views\OFirmi.baml
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\ClosedXML.dll
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\ClosedXML.Parser.dll
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\DocumentFormat.OpenXml.dll
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\DocumentFormat.OpenXml.Framework.dll
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\ExcelNumberFormat.dll
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\RBush.dll
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\SixLabors.Fonts.dll
+C:\Users\Nikola\source\repos\ProgramZaRacunovodstvo\ProgramZaRacunovodstvo\bin\Debug\net8.0-windows10.0.19041\System.IO.Packaging.dll

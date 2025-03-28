@@ -23,6 +23,7 @@ namespace ProgramZaRacunovodstvo.Views
     {
         public Izvodi()
         {
+            DataContext = new IzvodiViewModel();
             InitializeComponent();
         }
 
