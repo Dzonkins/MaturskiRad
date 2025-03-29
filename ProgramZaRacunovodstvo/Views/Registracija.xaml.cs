@@ -135,25 +135,39 @@ namespace ProgramZaRacunovodstvo.Views
             }
         }
 
+        private bool EmailCheck(string email)
+        {
+            string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            Regex regex = new Regex(emailPattern);
 
+            return regex.IsMatch(email);
+        }
 
         private void KreirajNalog(object sender, RoutedEventArgs e)
         {
 
             string upisanaLozinka = passwordVisibilty ? txtPasswordVisible.Text : txtPassword.Password;
 
-            if (string.IsNullOrEmpty(txtEmail.Text) || txtEmail.Text == "Email" || string.IsNullOrEmpty(upisanaLozinka) || string.IsNullOrEmpty(txtJMBG.Text) || txtJMBG.Text.Length < 13 || txtJMBG.Text == "JMBG" || string.IsNullOrEmpty(txtGrad.Text) || txtGrad.Text == "Grad" || string.IsNullOrEmpty(txtAdresa.Text) || txtAdresa.Text == "Adresa" || string.IsNullOrEmpty(txtIme.Text) || txtIme.Text == "Ime" || string.IsNullOrEmpty(txtPrezime.Text) || txtPrezime.Text == "Prezime")
+            if (string.IsNullOrEmpty(txtEmail.Text) || txtEmail.Text == "Email" || string.IsNullOrEmpty(upisanaLozinka) || string.IsNullOrEmpty(txtJMBG.Text) || txtJMBG.Text == "JMBG" || string.IsNullOrEmpty(txtGrad.Text) || txtGrad.Text == "Grad" || string.IsNullOrEmpty(txtAdresa.Text) || txtAdresa.Text == "Adresa" || string.IsNullOrEmpty(txtIme.Text) || txtIme.Text == "Ime" || string.IsNullOrEmpty(txtPrezime.Text) || txtPrezime.Text == "Prezime")
             {
                 greska.Visibility = Visibility.Visible;
                 greska.Text = "Molimo vas popunite sva polja";
-            }else if (_database.RegistracijaProvera(txtEmail.Text))
+            } else if (_database.RegistracijaProvera(txtEmail.Text))
             {
                 greska.Visibility = Visibility.Visible;
                 greska.Text = "Korisnik sa unetim email-om već postoji";
-            }else if (_database.RegistracijaJMBG(txtJMBG.Text))
+            } else if (_database.RegistracijaJMBG(txtJMBG.Text))
             {
                 greska.Visibility = Visibility.Visible;
                 greska.Text = "Korisnik sa unetim JMBG-om već postoji";
+            } else if (txtJMBG.Text.Length < 13) {
+                greska.Visibility = Visibility.Visible;
+                greska.Text = "JMBG je prekratak";
+            }
+            else if (!EmailCheck(txtEmail.Text))
+            {
+                greska.Visibility = Visibility.Visible;
+                greska.Text = "Email format je nepravilan";
             }
             else
             {
@@ -181,7 +195,7 @@ namespace ProgramZaRacunovodstvo.Views
                 greska.Visibility = Visibility.Hidden;
                 _mainWindow.ShowPrijava();
 
-              
+
             }
         }
 

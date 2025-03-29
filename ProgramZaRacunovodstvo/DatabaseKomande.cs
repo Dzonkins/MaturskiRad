@@ -263,6 +263,19 @@ namespace ProgramZaRacunovodstvo
 
             return count > 0;
         }
+
+        public bool PravnoLiceMaticniBroj(string maticniBroj, int firmaId)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            using var check = new SqliteCommand("SELECT COUNT(*) FROM PravnaLica WHERE MaticniBroj = @MaticniBroj AND FirmaId = @FirmaId", connection);
+            check.Parameters.AddWithValue("@MaticniBroj", maticniBroj);
+            check.Parameters.AddWithValue("@FirmaId", firmaId);
+            long count = (check.ExecuteScalar() as long?) ?? 0;
+
+            return count > 0;
+        }
         public List<PravnaLica> IzvuciPravnaLica(int firmaId)
         {
             List<PravnaLica> PravnaLica = new List<PravnaLica>();
@@ -666,7 +679,6 @@ namespace ProgramZaRacunovodstvo
 
             while (reader.Read())
             {
-                Debug.WriteLine(reader.GetString(2));
                 fajlovi.Add(new FajlFakture
                 {
                     Id = reader.GetInt32(0),
@@ -847,6 +859,108 @@ namespace ProgramZaRacunovodstvo
             }
 
             return (prihodi, rashodi, months.ToArray());
+        }
+
+        public Firma OFirmi(int firmaId)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = @"SELECT ImeFirme, PIB, MaticniBroj, Adresa, Grad, BrojRacuna, Zastupnik 
+                     FROM Firme WHERE Id = @Id";
+
+            using var command = new SqliteCommand(query, connection);
+            command.Parameters.AddWithValue("@Id", firmaId);
+
+            using var reader = command.ExecuteReader();
+
+            if (!reader.Read()) return null!;
+
+            var firma = new Firma
+            {
+                Naziv = reader["ImeFirme"] as string ?? string.Empty,
+                PIB = reader["PIB"] as string ?? string.Empty,
+                MaticniBroj = reader["MaticniBroj"] as string ?? string.Empty,
+                Adresa = reader["Adresa"] as string ?? string.Empty,
+                Grad = reader["Grad"] as string ?? string.Empty,
+                BrojRacuna = reader["BrojRacuna"] as string ?? string.Empty,
+                Zastupnik = reader["Zastupnik"] as string ?? string.Empty,
+            };
+
+            return firma;
+        }
+
+        public List<Administratori> Administratori(int firmaId)
+        {
+            var administratori = new List<Administratori>();
+
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = @"SELECT AdministratoriFirme.Id, AdministratoriFirme.KorisnikId, Korisnici.Ime, Korisnici.Prezime, Korisnici.Email FROM AdministratoriFirme
+                 INNER JOIN Korisnici ON AdministratoriFirme.KorisnikId = Korisnici.Id WHERE AdministratoriFirme.FirmaId = @FirmaId";
+
+            using var command = new SqliteCommand(query, connection);
+            command.Parameters.AddWithValue("@FirmaId", firmaId);
+
+            using var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                administratori.Add(new Administratori
+                {
+                    Id = reader.GetInt32(0),
+                    korisnikId = reader.GetInt32(1),
+                    Ime = reader.GetString(2),
+                    Prezime = reader.GetString(3),
+                    Email = reader.GetString(4)
+                });
+            }
+
+            return administratori;
+        }
+
+        public bool ProveraAdministrator(int korisnikId, int firmaId)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            using var check = new SqliteCommand("SELECT COUNT(*) FROM AdministratoriFirme WHERE KorisnikId = @KorisnikId AND FirmaId = @FirmaId", connection);
+            check.Parameters.AddWithValue("@KorisnikId", korisnikId);
+            check.Parameters.AddWithValue("@FirmaId", firmaId);
+            long count = (check.ExecuteScalar() as long?) ?? 0;
+
+            return count > 0;
+        }
+
+        public void DodajAdministratoraFirmi(int KorisnikId, int FirmaId)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = "INSERT INTO AdministratoriFirme (KorisnikId, FirmaId) VALUES (@KorisnikId, @FirmaId)";
+
+            using (var command = new SqliteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@KorisnikId", KorisnikId);
+                command.Parameters.AddWithValue("@FirmaId", FirmaId);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void IzbrisiAdmina(int KorisnikId, int FirmaId)
+        {
+            using var connection = new SqliteConnection(_connectionString);
+            connection.Open();
+
+            string query = "DELETE FROM AdministratoriFirme WHERE KorisnikId = @KorisnikId AND FirmaId = @FirmaId";
+
+            using (var command = new SqliteCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@KorisnikId", KorisnikId);
+                command.Parameters.AddWithValue("@FirmaId", FirmaId);
+                command.ExecuteNonQuery();
+            }
         }
     }
 }

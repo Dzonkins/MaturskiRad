@@ -46,7 +46,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
             set
             {
                 _brojFakture = value;
-                OnPropertyChanged(BrojFakture);
+                OnPropertyChanged(nameof(BrojFakture));
             }
         }
         public string SelectedPravnoLice
@@ -56,7 +56,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
             {
 
                 _selectedPravnoLice = value;
-                OnPropertyChanged(SelectedPravnoLice);
+                OnPropertyChanged(nameof(SelectedPravnoLice));
             }
         }
 

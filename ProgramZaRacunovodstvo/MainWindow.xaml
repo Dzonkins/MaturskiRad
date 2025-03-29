@@ -260,7 +260,7 @@
                                    FontFamily="pack://application:,,,/Fonts/#Poppins Light" />
                     </Grid>
                 </Button>
-                <Button Tag="O firmi"
+                <Button Tag="OFirmi"
                         Style="{StaticResource SidebarButtonStyle}"
                         Grid.Row="6"
                         IsTabStop="False">

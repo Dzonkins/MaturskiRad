@@ -38,7 +38,7 @@ namespace ProgramZaRacunovodstvo
             Navigation.Instance.Initialize(this);
             this.Title = "Prijava";
             ShowOverlay(new Prijava(this));
-            //NavigateTo(new DetaljiFakture(this));
+            //NavigateTo(new OFirmi(this));
         }
 
         public void ShowPrijava()
@@ -120,6 +120,9 @@ namespace ProgramZaRacunovodstvo
                         break;
                     case "Pravna lica":
                         NavigateTo(new Views.PravnaLica(this));
+                        break;
+                    case "OFirmi":
+                        NavigateTo(new Views.OFirmi(this));
                         break;
                     case "IzlogujSe":
                         OverlayContainer.Visibility = Visibility.Visible;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProgramZaRacunovodstvo.Services;
+using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
@@ -50,6 +51,7 @@ namespace ProgramZaRacunovodstvo
                     txtEmail.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF616161"));
                     _mainWindow.imeKorisnika = _database.NadjiIme(txtEmail.Text);
                     _mainWindow.KorisnikId = _database.NadjiID(txtEmail.Text);
+                    Id.Instance.idkorisnik = _database.NadjiID(txtEmail.Text);
                     txtEmail.Text = "Email";
                     txtPassword.Password = "";
                     txtPasswordVisible.Text = "";

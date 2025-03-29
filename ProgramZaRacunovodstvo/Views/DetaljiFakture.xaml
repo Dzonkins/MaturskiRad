@@ -172,6 +172,7 @@
                       Grid.Column="2"
                       Grid.Row="1"
                       IsReadOnly="True"
+                      CanUserReorderColumns="False"
                       VerticalAlignment="Top"
                       HorizontalAlignment="Left"
                       AutoGenerateColumns="False"

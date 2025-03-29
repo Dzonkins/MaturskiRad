@@ -104,6 +104,18 @@ namespace ProgramZaRacunovodstvo.Views
             {
                 greska.Visibility = Visibility.Visible;
                 greska.Text = "Firma sa unetim brojem računa već postoji";
+            }else if(txtBrojZiroRacuna.Text.Length < 18)
+            {
+                greska.Visibility = Visibility.Visible;
+                greska.Text = "Broj računa je prekratak";
+            }else if (txtPIB.Text.Length < 9)
+            {
+                greska.Visibility = Visibility.Visible;
+                greska.Text = "PIB je prekratak";
+            }else if (txtMaticni.Text.Length < 8)
+            {
+                greska.Visibility = Visibility.Visible;
+                greska.Text = "Matični broj je prekratak";
             }
             else {
                 _database.DodajFirmu(txtImeFirme.Text, txtPIB.Text, txtMaticni.Text, txtAdresa.Text, txtGrad.Text, txtBrojZiroRacuna.Text, txtZastupnik.Text, _mainWindow.KorisnikId);

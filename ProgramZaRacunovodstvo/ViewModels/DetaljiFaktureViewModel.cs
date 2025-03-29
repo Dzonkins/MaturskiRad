@@ -124,7 +124,6 @@ namespace ProgramZaRacunovodstvo.ViewModels
             Sacuvaj = new RelayCommand<FajlFakture>(SacuvajDokument);
             Checkbox = new RelayCommand<bool?>(CheckboxPromenjen);
             PreuzmiFakturuCommand = new RelayCommand(PreuzmiFakturu, CanPreuzmiFakturu);
-
         }
 
         private void CheckboxPromenjen(bool? isChecked)

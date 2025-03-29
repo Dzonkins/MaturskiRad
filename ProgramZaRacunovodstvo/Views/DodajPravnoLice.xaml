@@ -31,7 +31,7 @@
                     Background="#ebeced"
                     HorizontalAlignment="Center"
                     Padding="60"
-                    Height="700"
+                    Height="720"
                     VerticalAlignment="Top"
                     Margin="0,50,0,50"
                     CornerRadius="20">
@@ -117,7 +117,12 @@
                                     Text="{Binding Zastupnik}"
                                     VerticalContentAlignment="Center"
                                     TabIndex="7"></ui:TextBox>
-                        <ui:TextBlock Text="{Binding Greska}" Margin="0,20,0,0" Foreground="Red" HorizontalAlignment="Center"></ui:TextBlock>
+                        <ui:TextBlock Text="{Binding Greska}"
+                                      Margin="0,20,0,0"
+                                      Foreground="Red"
+                                      HorizontalAlignment="Center"
+                                      FontSize="17"
+                                      FontFamily="pack://application:,,,/Fonts/#Poppins Light"></ui:TextBlock>
                     </StackPanel>
                     <Grid Grid.Row="1">
                         <ui:Button Grid.ColumnSpan="2"

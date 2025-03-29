@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProgramZaRacunovodstvo.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,8 +21,12 @@ namespace ProgramZaRacunovodstvo.Views
     /// </summary>
     public partial class OFirmi : UserControl
     {
-        public OFirmi()
+        private MainWindow _mainWindow;
+
+        public OFirmi(MainWindow mainWindow)
         {
+            DataContext = new OFirmiViewModel();
+            _mainWindow = mainWindow;
             InitializeComponent();
         }
     }

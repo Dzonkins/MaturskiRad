@@ -115,17 +115,31 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         private void sacuvaj(object parameter)
         {
-            if(string.IsNullOrWhiteSpace(Naziv) || string.IsNullOrWhiteSpace(Pib) || string.IsNullOrWhiteSpace(MaticniBroj) || string.IsNullOrWhiteSpace(Grad) || string.IsNullOrWhiteSpace(Adresa) || string.IsNullOrWhiteSpace(Racun) || string.IsNullOrWhiteSpace(Zastupnik))
+            if (string.IsNullOrWhiteSpace(Naziv) || string.IsNullOrWhiteSpace(Pib) || string.IsNullOrWhiteSpace(MaticniBroj) || string.IsNullOrWhiteSpace(Grad) || string.IsNullOrWhiteSpace(Adresa) || string.IsNullOrWhiteSpace(Racun) || string.IsNullOrWhiteSpace(Zastupnik))
             {
                 Greska = "Molimo vas popunite sva polja";
-            }else if(_database.PravnoLiceProvera(Naziv ,Id.Instance.firmaid))
+            } else if (_database.PravnoLiceProvera(Naziv, Id.Instance.firmaid))
             {
                 Greska = "Pravno lice sa unetim nazivom već postoji";
 
-            }else if(_database.PravnoLicePIB(Pib, Id.Instance.firmaid))
+            } else if (_database.PravnoLicePIB(Pib, Id.Instance.firmaid))
             {
                 Greska = "Pravno lice sa unetim PIB-om već postoji";
 
+            } else if (_database.PravnoLiceMaticniBroj(MaticniBroj, Id.Instance.firmaid)) {
+                Greska = "Pravno lice sa unetim matičnim brojem već postoji";
+
+            } else if (Pib.Length < 9)
+            {
+                Greska = "PIB je prekratak";
+            }
+            else if (Racun.Length < 18)
+            {
+                Greska = "Broj računa je prekratak";
+            }
+            else if (MaticniBroj.Length < 8)
+            {
+                Greska = "Matični broj je prekratak";
             }
             else
             {
