@@ -31,6 +31,7 @@ namespace ProgramZaRacunovodstvo.ViewModel
             DataContext = new ViewModels.GlavnaStrana();
             InitializeComponent();
             _mainWindow = mainWindow;
+            mainWindow.Title = "Početna";
             Naslovi();
         }
 

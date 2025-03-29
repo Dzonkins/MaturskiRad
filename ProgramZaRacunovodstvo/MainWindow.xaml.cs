@@ -114,15 +114,19 @@ namespace ProgramZaRacunovodstvo
                         break;
                     case "Prodaja":
                         NavigateTo(new Views.Prodaja(this));
+                        this.Title = "Prodaja";
                         break;
                     case "Izvodi":
                         NavigateTo(new Views.Izvodi());
+                        this.Title = "Izvodi";
                         break;
                     case "Pravna lica":
                         NavigateTo(new Views.PravnaLica(this));
+                        this.Title = "Pravna lica";
                         break;
                     case "OFirmi":
                         NavigateTo(new Views.OFirmi(this));
+                        this.Title = "O firmi";
                         break;
                     case "IzlogujSe":
                         OverlayContainer.Visibility = Visibility.Visible;

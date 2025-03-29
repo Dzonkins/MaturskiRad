@@ -57,7 +57,7 @@ namespace ProgramZaRacunovodstvo.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ProgramZaRacunovodstvo;V1.0.0.0;component/views/dodajpravnolice.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ProgramZaRacunovodstvo;component/views/dodajpravnolice.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\DodajPravnoLice.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

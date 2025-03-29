@@ -33,6 +33,7 @@ namespace ProgramZaRacunovodstvo.Views
             tipfakture = Id.Instance.TipFakture;
             DataContext = new DetaljiFaktureViewModel();
             _mainWindow = mainWindow;
+            mainWindow.Title = "Detalji fakture";
             InitializeComponent();
         }
 

@@ -27,6 +27,7 @@ namespace ProgramZaRacunovodstvo.Views
         {
             DataContext = new PravnaLicaViewModel();
             _mainWindow = mainWindow;
+            mainWindow.Title = "Pravna lica";
             InitializeComponent();
         }
 

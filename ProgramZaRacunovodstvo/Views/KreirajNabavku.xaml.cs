@@ -36,6 +36,7 @@ namespace ProgramZaRacunovodstvo.Views
         {
             DataContext = new KreirajNabavkuViewModel();
             _mainWindow = mainWindow;
+            mainWindow.Title = "Kreiraj nabavku";
             InitializeComponent();
             SelectedFiles = new ObservableCollection<Dokument>();
         }

@@ -27,6 +27,7 @@ namespace ProgramZaRacunovodstvo.Views
         {
             DataContext = new ProdajaViewModel();
             _mainWindow = mainWindow;
+            mainWindow.Title = "Prodaja";
             InitializeComponent();
         }
 

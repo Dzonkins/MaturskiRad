@@ -28,6 +28,7 @@ namespace ProgramZaRacunovodstvo.Views
         {
             DataContext = new IzmeniPravnoLiceVievModel();
             _mainWindow = mainWindow;
+            mainWindow.Title = "Izmeni pravno lice";
             InitializeComponent();
         }
 

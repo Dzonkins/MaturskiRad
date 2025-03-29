@@ -26,6 +26,7 @@ namespace ProgramZaRacunovodstvo.Views
         public DodajPravnoLice(MainWindow mainWindow)
         {
             _mainWindow = mainWindow;
+            mainWindow.Title = "Dodaj pravno lice";
             InitializeComponent();
         }
 
