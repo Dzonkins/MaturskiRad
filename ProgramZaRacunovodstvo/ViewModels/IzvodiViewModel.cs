@@ -209,28 +209,29 @@ namespace ProgramZaRacunovodstvo.ViewModels
 
         public void IzvozUExcel(object parameter)
         {
-            string formattedDate = string.Empty;
-
-            if (Date.HasValue && !Date2.HasValue)
-            {
-                formattedDate = DateOnly.FromDateTime(Date.Value).ToString("dd.MM.yyyy") + "-" + Izvodi.Max(i => i.DatumSlanja).ToString("dd.MM.yyyy");
-            }
-            else if (Date2.HasValue && !Date.HasValue)
-            {
-                formattedDate = Izvodi.Min(i => i.DatumSlanja).ToString("dd.MM.yyyy") + "-" + DateOnly.FromDateTime(Date2.Value).ToString("dd.MM.yyyy");
-            }
-            else if (Date.HasValue && Date2.HasValue)
-            {
-                formattedDate = DateOnly.FromDateTime(Date.Value).ToString("dd.MM.yyyy") + "-" + DateOnly.FromDateTime(Date2.Value).ToString("dd.MM.yyyy");
-            }
-            else
-            {
-                formattedDate = Izvodi.Min(i => i.DatumSlanja).ToString("dd.MM.yyyy") + " - " + Izvodi.Max(i => i.DatumSlanja).ToString("dd.MM.yyyy");
-            }
-
-            string dynamicFilename = "Izvod " + formattedDate + ".xlsx"; // Avoiding extra spaces or dots
+           
             if (Izvodi.Count > 0)
             {
+                string formattedDate = string.Empty;
+
+                if (Date.HasValue && !Date2.HasValue)
+                {
+                    formattedDate = DateOnly.FromDateTime(Date.Value).ToString("dd.MM.yyyy") + "-" + Izvodi.Max(i => i.DatumSlanja).ToString("dd.MM.yyyy");
+                }
+                else if (Date2.HasValue && !Date.HasValue)
+                {
+                    formattedDate = Izvodi.Min(i => i.DatumSlanja).ToString("dd.MM.yyyy") + "-" + DateOnly.FromDateTime(Date2.Value).ToString("dd.MM.yyyy");
+                }
+                else if (Date.HasValue && Date2.HasValue)
+                {
+                    formattedDate = DateOnly.FromDateTime(Date.Value).ToString("dd.MM.yyyy") + "-" + DateOnly.FromDateTime(Date2.Value).ToString("dd.MM.yyyy");
+                }
+                else
+                {
+                    formattedDate = Izvodi.Min(i => i.DatumSlanja).ToString("dd.MM.yyyy") + " - " + Izvodi.Max(i => i.DatumSlanja).ToString("dd.MM.yyyy");
+                }
+
+                string dynamicFilename = "Izvod " + formattedDate + ".xlsx";
                 SaveFileDialog saveDialog = new SaveFileDialog
                 {
                     FileName = dynamicFilename,
