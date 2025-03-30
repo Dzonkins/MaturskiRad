@@ -229,130 +229,133 @@ namespace ProgramZaRacunovodstvo.ViewModels
             }
 
             string dynamicFilename = "Izvod " + formattedDate + ".xlsx"; // Avoiding extra spaces or dots
-
-            SaveFileDialog saveDialog = new SaveFileDialog
+            if (Izvodi.Count > 0)
             {
-                FileName = dynamicFilename,
-                Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*"
-            };
-
-            if (saveDialog.ShowDialog() == true)
-            {
-                string outputPath = saveDialog.FileName;
-                string templatePath = Path.Combine(Directory.GetCurrentDirectory(), "Template", "Template.xlsx");
-
-                using (var stream = new FileStream(templatePath, FileMode.Open, FileAccess.Read))
-                using (var workbook = new XLWorkbook(stream))
+                SaveFileDialog saveDialog = new SaveFileDialog
                 {
-                    var worksheet = workbook.Worksheet(1);
-                    decimal OsnovicaProdaja = 0;
-                    decimal OsnovicaNabavke = 0;
-                    decimal PDVProdaja = 0;
-                    decimal PDVNabavke = 0;
-                    decimal UkupnoProdaja = 0;
-                    decimal UkupnoNabavke = 0;
-                    decimal Promet = 0;
-                    decimal PDVStanje = 0;
-                    int startRow = 6;
-                    int startCol = 2;
-                    int endCol = 9;
-                    int redniBroj = 1;
+                    FileName = dynamicFilename,
+                    Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*"
+                };
 
-                    App.Current.Dispatcher.Invoke(() =>
+                if (saveDialog.ShowDialog() == true)
+                {
+                    string outputPath = saveDialog.FileName;
+                    string templatePath = Path.Combine(Directory.GetCurrentDirectory(), "Template", "Template.xlsx");
+
+                    using (var stream = new FileStream(templatePath, FileMode.Open, FileAccess.Read))
+                    using (var workbook = new XLWorkbook(stream))
                     {
-                        foreach (var izvod in Izvodi)
+                        var worksheet = workbook.Worksheet(1);
+                        decimal OsnovicaProdaja = 0;
+                        decimal OsnovicaNabavke = 0;
+                        decimal PDVProdaja = 0;
+                        decimal PDVNabavke = 0;
+                        decimal UkupnoProdaja = 0;
+                        decimal UkupnoNabavke = 0;
+                        decimal Promet = 0;
+                        decimal PDVStanje = 0;
+                        int startRow = 6;
+                        int startCol = 2;
+                        int endCol = 9;
+                        int redniBroj = 1;
+
+                        App.Current.Dispatcher.Invoke(() =>
                         {
-                            worksheet.Row(startRow).InsertRowsAbove(1);
-
-                            worksheet.Cell(startRow, 2).Value = redniBroj + ".";
-                            worksheet.Cell(startRow, 3).Value = izvod.BrojFakture;
-                            worksheet.Cell(startRow, 4).Value = izvod.TipFakture;
-                            worksheet.Cell(startRow, 5).Value = izvod.PravnoLice;
-
-                            worksheet.Cell(startRow, 6).Value = izvod.Osnovica;
-                            worksheet.Cell(startRow, 6).Style.NumberFormat.Format = "#,##0.00";
-
-                            worksheet.Cell(startRow, 7).Value = izvod.Pdv;
-                            worksheet.Cell(startRow, 7).Style.NumberFormat.Format = "#,##0.00";
-
-                            worksheet.Cell(startRow, 8).Value = izvod.Ukupno;
-                            worksheet.Cell(startRow, 8).Style.NumberFormat.Format = "#,##0.00";
-
-                            worksheet.Cell(startRow, 9).Value = izvod.DatumSlanja.ToString("dd.MM.yyyy.");
-                            if (izvod.TipFakture == "Nabavka")
+                            foreach (var izvod in Izvodi)
                             {
-                                OsnovicaNabavke += izvod.Osnovica;
-                                PDVNabavke += izvod.Pdv;
-                                UkupnoNabavke += izvod.Ukupno;
+                                worksheet.Row(startRow).InsertRowsAbove(1);
+
+                                worksheet.Cell(startRow, 2).Value = redniBroj + ".";
+                                worksheet.Cell(startRow, 3).Value = izvod.BrojFakture;
+                                worksheet.Cell(startRow, 4).Value = izvod.TipFakture;
+                                worksheet.Cell(startRow, 5).Value = izvod.PravnoLice;
+
+                                worksheet.Cell(startRow, 6).Value = izvod.Osnovica;
+                                worksheet.Cell(startRow, 6).Style.NumberFormat.Format = "#,##0.00";
+
+                                worksheet.Cell(startRow, 7).Value = izvod.Pdv;
+                                worksheet.Cell(startRow, 7).Style.NumberFormat.Format = "#,##0.00";
+
+                                worksheet.Cell(startRow, 8).Value = izvod.Ukupno;
+                                worksheet.Cell(startRow, 8).Style.NumberFormat.Format = "#,##0.00";
+
+                                worksheet.Cell(startRow, 9).Value = izvod.DatumSlanja.ToString("dd.MM.yyyy.");
+                                if (izvod.TipFakture == "Nabavka")
+                                {
+                                    OsnovicaNabavke += izvod.Osnovica;
+                                    PDVNabavke += izvod.Pdv;
+                                    UkupnoNabavke += izvod.Ukupno;
+                                }
+                                else
+                                {
+                                    OsnovicaProdaja += izvod.Osnovica;
+                                    PDVProdaja += izvod.Pdv;
+                                    UkupnoProdaja += izvod.Ukupno;
+                                }
+
+                                for (int col = startCol; col <= endCol; col++)
+                                {
+                                    worksheet.Cell(startRow, col).Style.Border.TopBorder = XLBorderStyleValues.Thin;
+                                    worksheet.Cell(startRow, col).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
+                                    worksheet.Cell(startRow, col).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
+                                    worksheet.Cell(startRow, col).Style.Border.RightBorder = XLBorderStyleValues.Thin;
+                                    worksheet.Cell(startRow, col).Style.Border.TopBorderColor = XLColor.Black;
+                                    worksheet.Cell(startRow, col).Style.Border.BottomBorderColor = XLColor.Black;
+                                    worksheet.Cell(startRow, col).Style.Border.LeftBorderColor = XLColor.Black;
+                                    worksheet.Cell(startRow, col).Style.Border.RightBorderColor = XLColor.Black;
+                                }
+
+                                startRow++;
+                                redniBroj++;
+                            }
+
+                            Promet = UkupnoProdaja - UkupnoNabavke;
+                            PDVStanje = PDVNabavke - PDVProdaja;
+                            int summaryRow = startRow + 1;
+                            worksheet.Cell(summaryRow, 8).Value = OsnovicaProdaja;
+                            worksheet.Cell(summaryRow, 8).Style.NumberFormat.Format = "#,##0.00";
+                            worksheet.Cell(summaryRow + 2, 8).Value = PDVProdaja;
+                            worksheet.Cell(summaryRow + 2, 8).Style.NumberFormat.Format = "#,##0.00";
+                            worksheet.Cell(summaryRow + 4, 8).Value = UkupnoProdaja;
+                            worksheet.Cell(summaryRow + 4, 8).Style.NumberFormat.Format = "#,##0.00";
+                            worksheet.Cell(summaryRow + 7, 8).Value = OsnovicaNabavke;
+                            worksheet.Cell(summaryRow + 7, 8).Style.NumberFormat.Format = "#,##0.00";
+                            worksheet.Cell(summaryRow + 9, 8).Value = PDVNabavke;
+                            worksheet.Cell(summaryRow + 9, 8).Style.NumberFormat.Format = "#,##0.00";
+                            worksheet.Cell(summaryRow + 11, 8).Value = UkupnoNabavke;
+                            worksheet.Cell(summaryRow + 11, 8).Style.NumberFormat.Format = "#,##0.00";
+                            worksheet.Cell(summaryRow + 14, 8).Value = PDVStanje;
+                            worksheet.Cell(summaryRow + 14, 8).Style.NumberFormat.Format = "#,##0.00";
+                            worksheet.Cell(summaryRow + 17, 8).Value = Promet;
+                            worksheet.Cell(summaryRow + 17, 8).Style.NumberFormat.Format = "#,##0.00";
+
+                            if (Date.HasValue && !Date2.HasValue)
+                            {
+                                worksheet.Cell(2, 2).Value = "Izvod: " + DateOnly.FromDateTime(Date.Value) + " -  " + Izvodi.Max(i => i.DatumSlanja);
+                            }
+                            else if (Date2.HasValue && !Date.HasValue)
+                            {
+                                worksheet.Cell(2, 2).Value = "Izvod: " + Izvodi.Min(i => i.DatumSlanja) + " -  " + DateOnly.FromDateTime(Date2.Value);
+                            }
+                            else if (Date.HasValue && Date2.HasValue)
+                            {
+                                worksheet.Cell(2, 2).Value = "Izvod: " + DateOnly.FromDateTime(Date.Value) + " -  " + DateOnly.FromDateTime(Date2.Value);
                             }
                             else
                             {
-                                OsnovicaProdaja += izvod.Osnovica;
-                                PDVProdaja += izvod.Pdv;
-                                UkupnoProdaja += izvod.Ukupno;
+                                worksheet.Cell(2, 2).Value = "Izvod: " + Izvodi.Min(i => i.DatumSlanja) + " - " + Izvodi.Max(i => i.DatumSlanja);
                             }
 
-                            for (int col = startCol; col <= endCol; col++)
-                            {
-                                worksheet.Cell(startRow, col).Style.Border.TopBorder = XLBorderStyleValues.Thin;
-                                worksheet.Cell(startRow, col).Style.Border.BottomBorder = XLBorderStyleValues.Thin;
-                                worksheet.Cell(startRow, col).Style.Border.LeftBorder = XLBorderStyleValues.Thin;
-                                worksheet.Cell(startRow, col).Style.Border.RightBorder = XLBorderStyleValues.Thin;
-                                worksheet.Cell(startRow, col).Style.Border.TopBorderColor = XLColor.Black;
-                                worksheet.Cell(startRow, col).Style.Border.BottomBorderColor = XLColor.Black;
-                                worksheet.Cell(startRow, col).Style.Border.LeftBorderColor = XLColor.Black;
-                                worksheet.Cell(startRow, col).Style.Border.RightBorderColor = XLColor.Black;
-                            }
+                            worksheet.Range(6, startCol, startRow - 1, endCol).Style.Border.OutsideBorder = XLBorderStyleValues.Thick;
+                            worksheet.Range(6, startCol, startRow - 1, endCol).Style.Border.OutsideBorderColor = XLColor.Black;
+                        });
 
-                            startRow++;
-                            redniBroj++;
-                        }
-
-                        Promet = UkupnoProdaja - UkupnoNabavke;
-                        PDVStanje = PDVNabavke - PDVProdaja;
-                        int summaryRow = startRow + 1;
-                        worksheet.Cell(summaryRow, 8).Value = OsnovicaProdaja;
-                        worksheet.Cell(summaryRow, 8).Style.NumberFormat.Format = "#,##0.00";
-                        worksheet.Cell(summaryRow + 2, 8).Value = PDVProdaja;
-                        worksheet.Cell(summaryRow + 2, 8).Style.NumberFormat.Format = "#,##0.00";
-                        worksheet.Cell(summaryRow + 4, 8).Value = UkupnoProdaja;
-                        worksheet.Cell(summaryRow + 4, 8).Style.NumberFormat.Format = "#,##0.00";
-                        worksheet.Cell(summaryRow + 7, 8).Value = OsnovicaNabavke;
-                        worksheet.Cell(summaryRow + 7, 8).Style.NumberFormat.Format = "#,##0.00";
-                        worksheet.Cell(summaryRow + 9, 8).Value = PDVNabavke;
-                        worksheet.Cell(summaryRow + 9, 8).Style.NumberFormat.Format = "#,##0.00";
-                        worksheet.Cell(summaryRow + 11, 8).Value = UkupnoNabavke;
-                        worksheet.Cell(summaryRow + 11, 8).Style.NumberFormat.Format = "#,##0.00";
-                        worksheet.Cell(summaryRow + 14, 8).Value = PDVStanje;
-                        worksheet.Cell(summaryRow + 14, 8).Style.NumberFormat.Format = "#,##0.00";
-                        worksheet.Cell(summaryRow + 17, 8).Value = Promet;
-                        worksheet.Cell(summaryRow + 17, 8).Style.NumberFormat.Format = "#,##0.00";
-
-                        if (Date.HasValue && !Date2.HasValue)
-                        {
-                            worksheet.Cell(2, 2).Value = "Izvod: " + DateOnly.FromDateTime(Date.Value) + " -  " + Izvodi.Max(i => i.DatumSlanja);
-                        }
-                        else if (Date2.HasValue && !Date.HasValue)
-                        {
-                            worksheet.Cell(2, 2).Value = "Izvod: " + Izvodi.Min(i => i.DatumSlanja) + " -  " + DateOnly.FromDateTime(Date2.Value);
-                        }
-                        else if (Date.HasValue && Date2.HasValue)
-                        {
-                            worksheet.Cell(2, 2).Value = "Izvod: " + DateOnly.FromDateTime(Date.Value) + " -  " + DateOnly.FromDateTime(Date2.Value);
-                        }
-                        else
-                        {
-                            worksheet.Cell(2, 2).Value = "Izvod: " + Izvodi.Min(i => i.DatumSlanja) + " - " + Izvodi.Max(i => i.DatumSlanja);
-                        }
-
-                        worksheet.Range(6, startCol, startRow - 1, endCol).Style.Border.OutsideBorder = XLBorderStyleValues.Thick;
-                        worksheet.Range(6, startCol, startRow - 1, endCol).Style.Border.OutsideBorderColor = XLColor.Black;
-                    });
-
-                    workbook.SaveAs(outputPath);
-                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(outputPath) { UseShellExecute = true });
+                        workbook.SaveAs(outputPath);
+                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(outputPath) { UseShellExecute = true });
+                    }
                 }
             }
+            
         }
 
         private void DetaljiIzvod(object parameter)

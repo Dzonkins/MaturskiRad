@@ -121,7 +121,7 @@
                                     Margin="0,0,0,0"
                                     Width="125">
                             <Border Width="125"></Border>
-                            <TextBlock Text="Dobrodošli"
+                            <TextBlock Text="Korisnik"
                                        Foreground="White"
                                        HorizontalAlignment="Left"
                                        FontSize="20"
