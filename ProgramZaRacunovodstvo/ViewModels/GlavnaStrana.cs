@@ -219,7 +219,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
             new LabelVisual
             {
 
-                Text = "Prihodi i rashodi za " + DateTime.Now.ToString("MMMM"),
+                Text = "Prihodi i rashodi za " + DateTime.Now.ToString("MMMM", new CultureInfo("sr-Latn-RS")),
                 TextSize = 25,
                 Padding = new LiveChartsCore.Drawing.Padding(15),
                 Paint = new SolidColorPaint
@@ -232,7 +232,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
            new LabelVisual
            {
 
-               Text = "Najveći dobavljači za " + DateTime.Now.ToString("MMMM"),
+               Text = "Najveći dobavljači za " + DateTime.Now.ToString("MMMM", new CultureInfo("sr-Latn-RS")),
                TextSize = 25,
                Padding = new LiveChartsCore.Drawing.Padding(15),
                Paint = new SolidColorPaint
@@ -246,7 +246,7 @@ namespace ProgramZaRacunovodstvo.ViewModels
            new LabelVisual
            {
 
-               Text = "Najveći klijenti za " + DateTime.Now.ToString("MMMM"),
+               Text = "Najveći klijenti za " + DateTime.Now.ToString("MMMM", new CultureInfo("sr-Latn-RS")),
                TextSize = 25,
                Padding = new LiveChartsCore.Drawing.Padding(15),
                Paint = new SolidColorPaint

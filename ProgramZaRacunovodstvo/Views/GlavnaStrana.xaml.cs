@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,9 +39,9 @@ namespace ProgramZaRacunovodstvo.ViewModel
         private void Naslovi()
         {
 
-            Stanje.Text = "Trenutno stanje za " + DateTime.Now.ToString("MMMM");
-            Ulazne.Text = "Ulazne fakture u " + DateTime.Now.ToString("MMMM") + "u";
-            Izlazne.Text = "Izlazne fakture u " + DateTime.Now.ToString("MMMM") + "u";
+            Stanje.Text = "Trenutno stanje za " + DateTime.Now.ToString("MMMM", new CultureInfo("sr-Latn-RS"));
+            Ulazne.Text = "Ulazne fakture za " + DateTime.Now.ToString("MMMM", new CultureInfo("sr-Latn-RS"));
+            Izlazne.Text = "Izlazne fakture za " + DateTime.Now.ToString("MMMM", new CultureInfo("sr-Latn-RS"));
             Firma.Text = "Dobrodošli " + _mainWindow.SelectedFirma;
 
         }
