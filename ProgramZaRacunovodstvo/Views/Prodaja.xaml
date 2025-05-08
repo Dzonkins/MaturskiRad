@@ -273,6 +273,8 @@
                                         Value="10" />
                                 <Setter Property="TextTrimming"
                                         Value="CharacterEllipsis" />
+                                <Setter Property="ToolTip"
+                                        Value="{Binding BrojFakture}" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
@@ -307,6 +309,8 @@
                                         Value="10" />
                                 <Setter Property="TextTrimming"
                                         Value="CharacterEllipsis" />
+                                <Setter Property="ToolTip"
+                                        Value="{Binding Kupac}" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
@@ -323,6 +327,10 @@
                                         Value="Center" />
                                 <Setter Property="Padding"
                                         Value="10" />
+                                <Setter Property="TextTrimming"
+                                        Value="CharacterEllipsis" />
+                                <Setter Property="ToolTip"
+                                        Value="{Binding OsnovicaRSD}" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
@@ -339,6 +347,10 @@
                                         Value="Center" />
                                 <Setter Property="Padding"
                                         Value="10" />
+                                <Setter Property="TextTrimming"
+                                        Value="CharacterEllipsis" />
+                                <Setter Property="ToolTip"
+                                        Value="{Binding PdvRSD}" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
@@ -355,6 +367,10 @@
                                         Value="Center" />
                                 <Setter Property="Padding"
                                         Value="10" />
+                                <Setter Property="TextTrimming"
+                                        Value="CharacterEllipsis" />
+                                <Setter Property="ToolTip"
+                                        Value="{Binding UkupnoRSD}" />
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>

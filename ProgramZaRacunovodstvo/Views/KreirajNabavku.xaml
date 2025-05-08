@@ -718,7 +718,7 @@
                        Text="{Binding UkupnoUkupno, StringFormat= 'Ukupan iznos: {0:N2} RSD'}"
                        Grid.Row="2"
                        Grid.ColumnSpan="2"
-                       Margin="20,180,0,100"></TextBlock>
+                       Margin="20,180,0,80"></TextBlock>
             <Button Grid.ColumnSpan="2"
                     Grid.Column="0"
                     Grid.Row="2"

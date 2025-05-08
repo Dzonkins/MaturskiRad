@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>slike\accounting.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -52,6 +53,10 @@
     <None Remove="slike\prodaja.png" />
     <None Remove="slike\sifra.png" />
     <None Remove="slike\Vector.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="slike\accounting.ico" />
   </ItemGroup>
 
   <ItemGroup>

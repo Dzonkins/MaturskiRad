@@ -478,9 +478,12 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 Navigation.Instance.NavigateTo(new Views.Prodaja(Navigation.Instance.GetMainWindow()));
 
             }
+            else if (BrojFakture.Contains("/"))
+            {
+                Greska = "Broj fakture ne sme da sadrži kosu crtu";
+            }
             else
             {
-
                 Greska = "Molimo vas unesite sve podatke i dodajte potrebne dokumente";
             }
         }

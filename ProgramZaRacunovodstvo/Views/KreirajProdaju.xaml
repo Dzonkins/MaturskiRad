@@ -107,7 +107,7 @@
                     </ComboBox>
 
                     <TextBlock Name="ComboboxTekst"
-                               Text="Izaberite dobavljača"
+                               Text="Izaberite kupca"
                                FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                                FontSize="12"
                                Foreground="Gray"
@@ -716,7 +716,7 @@
                        Text="{Binding UkupnoUkupno, StringFormat= 'Ukupan iznos: {0:N2} RSD'}"
                        Grid.Row="2"
                        Grid.ColumnSpan="2"
-                       Margin="20,180,0,0"></TextBlock>
+                       Margin="20,180,0,80"></TextBlock>
             <Button Grid.ColumnSpan="2"
                     Grid.Column="0"
                     Grid.Row="2"

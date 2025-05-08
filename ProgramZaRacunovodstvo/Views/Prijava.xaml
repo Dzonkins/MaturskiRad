@@ -81,7 +81,7 @@
                         </Setter>
                     </Style>
                 </ui:Button.Style>
-                <TextBlock Text="Prijavi Se"
+                <TextBlock Text="Prijavi se"
                            FontSize="30"
                            FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                            VerticalAlignment="Center"
@@ -142,7 +142,7 @@
                         </Setter>
                     </Style>
                 </ui:Button.Style>
-                <TextBlock Text="Registruj Se"
+                <TextBlock Text="Registruj se"
                            FontSize="30"
                            FontFamily="pack://application:,,,/Fonts/#Poppins Light"
                            VerticalAlignment="Center"

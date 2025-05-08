@@ -481,6 +481,9 @@ namespace ProgramZaRacunovodstvo.ViewModels
                 _database.KreirajFakturu("Nabavka", status, SelectedPravnoLice, PodaciKupac[0], Stavke, SelectedFiles, Id.Instance.firmaid, BrojFakture, UkupnoOsnovica, ukupnoPDV, UkupnoUkupno, datum, GenerisanPdf);
                 Navigation.Instance.NavigateTo(new Nabavke(Navigation.Instance.GetMainWindow()));
 
+            }else if (BrojFakture.Contains("/"))
+            {
+                Greska = "Broj fakture ne sme da sadrži kosu crtu";
             }
             else
             {
